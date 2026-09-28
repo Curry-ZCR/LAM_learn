@@ -1,0 +1,28 @@
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM/external/landmark_detection/FaceBoxesV2/utils
++ /usr/local/miniconda3/envs/lam/bin/python build.py build_ext --inplace
++ tail -30
+Compiling nms/cpu_nms.pyx because it changed.
+[1/1] Cythonizing nms/cpu_nms.pyx
+nms/cpu_nms.c: In function ‘__pyx_pf_3nms_7cpu_nms_2cpu_soft_nms’:
+nms/cpu_nms.c:6444:32: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+ 6444 |       __pyx_t_9 = (__pyx_v_pos < __pyx_v_N);
+      |                                ^
+nms/cpu_nms.c:6959:32: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+ 6959 |       __pyx_t_9 = (__pyx_v_pos < __pyx_v_N);
+      |                                ^
++ echo EXIT_FACEBOXES=0
+EXIT_FACEBOXES=0
++ ls -la nms/
+total 796
+drwxr-xr-x 2 root root   4096 Sep 28 13:36 .
+drwxr-xr-x 4 root root   4096 Sep 28 13:15 ..
+-rw-r--r-- 1 root root      0 Sep 28 13:15 __init__.py
+-rw-r--r-- 1 root root 661366 Sep 28 13:36 cpu_nms.c
+-rwxr-xr-x 1 root root 111896 Sep 28 13:36 cpu_nms.cpython-310-x86_64-linux-gnu.so
+-rw-r--r-- 1 root root      0 Sep 28 13:15 cpu_nms.py
+-rw-r--r-- 1 root root   5287 Sep 28 13:15 cpu_nms.pyx
+-rw-r--r-- 1 root root    146 Sep 28 13:15 gpu_nms.hpp
+-rw-r--r-- 1 root root   1110 Sep 28 13:15 gpu_nms.pyx
+-rw-r--r-- 1 root root   5064 Sep 28 13:15 nms_kernel.cu
+-rw-r--r-- 1 root root   1051 Sep 28 13:15 py_cpu_nms.py

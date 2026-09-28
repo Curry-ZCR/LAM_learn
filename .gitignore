@@ -1,0 +1,79 @@
+# =============================================================================
+#  .gitignore — LAM 学习/部署工作区
+#
+#  原则：只提交「源码 + 脚本 + 文档 + 安装日志」；
+#        忽略「模型权重 / 数据集 / 推理产物 / 构建产物」等大文件。
+#        克隆本仓库后需运行 install_lam.sh 重建环境并下载权重。
+# =============================================================================
+
+# ---------------------------- 模型权重 (约 3.1 GB) ---------------------------
+LAM/model_zoo/
+LAM/pretrain_model/
+LAM/pretrained_models/
+*.safetensors
+*.ckpt
+*.trcd
+*.pth
+*.pt
+*.pkl
+
+# ---------------------------- 数据集 / 素材 (约 300 MB) ----------------------
+# 由 LAM-assets.tar 解包得到：驱动视频 + 逐帧 FLAME 参数 + 人脸测试图
+LAM/assets/sample_motion/
+LAM/assets/sample_input/
+assets/sample_motion/
+assets/sample_input/
+# 本地测试用的输入与动作序列
+my_inputs/
+my_inputs_jpg/
+my_motion/
+
+# ---------------------------- 推理产物 --------------------------------------
+LAM/exps/
+LAM/tracking_output/
+LAM/output/
+LAM/tracking_output/
+exps/
+tracking_output/
+output/
+accept_out/
+
+# ---------------------------- 第三方源码 (约 256 MB) -------------------------
+# 由 install_lam.sh 自动 git clone，不入库
+LAM/thirdparty_src/
+thirdparty_src/
+
+# ---------------------------- 编译 / Python 产物 ----------------------------
+__pycache__/
+*.py[cod]
+*.so
+*.o
+*.a
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+.pytest_cache/
+.mypy_cache/
+
+# ---------------------------- 编辑器 / 系统 ---------------------------------
+.vscode/
+.idea/
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*~
+
+# ---------------------------- 虚拟环境 / 缓存 -------------------------------
+.venv/
+venv/
+env/
+.cache/
+
+# ---------------------------- 临时文件 --------------------------------------
+*.partial
+*.tmp
+*.pyc.orig
+*.bundle

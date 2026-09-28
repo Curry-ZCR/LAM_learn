@@ -1,0 +1,12 @@
+EXIT_CODE=0   耗时=43s
+===== 报错统计 =====
+0
+===== 新生成的文件 =====
+total 1560
+drwxr-xr-x 2 root root   4096 Sep 28 14:06 .
+drwxr-xr-x 3 root root   4096 Sep 28 14:06 ..
+-rw-r--r-- 1 root root 661261 Sep 28 14:06 status.mp4
+-rw-r--r-- 1 root root 922967 Sep 28 14:06 status_audio.mp4
+===== 视频规格 =====
+frames: 520 fps: 30.0 size: (512, 512)
+>>> 6.6 PASS

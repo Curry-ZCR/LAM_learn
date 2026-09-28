@@ -1,0 +1,60 @@
++ export PYTHONPATH=/workspace/LAM:
++ PYTHONPATH=/workspace/LAM:
++ export EXPORT_MESH=false
++ EXPORT_MESH=false
++ ulimit -n 65535
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ CUDA_VISIBLE_DEVICES=0
++ /usr/local/miniconda3/envs/lam/bin/python -m lam.launch infer.lam --config configs/inference/lam-20k-8gpu.yaml model_name=model_zoo/lam_models/releases/lam/lam-20k/step_045500/ image_input=assets/sample_input/status.png export_video=true export_mesh=false motion_seqs_dir=assets/sample_motion/export/Look_In_My_Eyes/ motion_img_dir=null vis_motion=false motion_img_need_mask=true render_fps=30 motion_video_read_fps=30 save_ply=false save_img=false gaga_track_type= cross_id=false test_sample=false rank=0 nodes=0
+2026-09-28 13:51:07.596327: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2026-09-28 13:51:07.636331: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-09-28 13:51:08.440936: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-09-28 13:51:17.414 | INFO     | tools.flame_tracking_single_image:__init__:69 - Output Directory: tracking_output
+2026-09-28 13:51:17.415 | INFO     | tools.flame_tracking_single_image:__init__:72 - Loading Pre-trained Models...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+2026-09-28 13:51:20.955 | INFO     | tools.flame_tracking_single_image:__init__:119 - Finished Loading Pre-trained Models. Time: 3.54s
+================================================================================================================================================ 
+skip_decoder: True 
+================================================================================================================================================
+#########scale sphere:False, add_teeth:False
+================================================================================================================================================ 
+ Render rgb: True 
+================================================================================================================================================
+face_upsampled:(39904, 3), face_ori:torch.Size([9976, 3]),                 vertex_num_upsampled:20018, vertex_num_ori:5023
+================================================================================================================================================
+loading pretrained weight from: model_zoo/lam_models/releases/lam/lam-20k/step_045500/model.safetensors
+finish loading pretrained weight from: model_zoo/lam_models/releases/lam/lam-20k/step_045500/model.safetensors
+================================================================================================================================================
+  0%|          | 0/1 [00:00<?, ?it/s]2026-09-28 13:51:20.956 | INFO     | tools.flame_tracking_single_image:preprocess:144 - Starting Preprocessing...
+2026-09-28 13:51:23.019 | INFO     | tools.flame_tracking_single_image:preprocess:239 - Finished Processing Image. Time: 2.05s
+2026-09-28 13:51:23.019 | INFO     | tools.flame_tracking_single_image:optimize:247 - Starting Optimization...
+Ignoring unknown cluster teeth.
+Traceback (most recent call last):
+  File "/workspace/LAM/lam/runners/infer/lam.py", line 435, in infer
+    return_code = self.flametracking.optimize()
+  File "/workspace/LAM/tools/flame_tracking_single_image.py", line 264, in optimize
+    tracker = GlobalTracker(config_data)
+  File "/workspace/LAM/vhap/model/tracker.py", line 1290, in __init__
+    super().__init__(cfg)
+  File "/workspace/LAM/vhap/model/tracker.py", line 68, in __init__
+    self.render = NVDiffRenderer(
+  File "/workspace/LAM/vhap/util/render_nvdiffrast.py", line 72, in __init__
+    self.glctx = dr.RasterizeGLContext() if use_opengl else dr.RasterizeCudaContext()
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/nvdiffrast/torch/ops.py", line 184, in __init__
+    self.cpp_wrapper = _get_plugin().RasterizeCRStateWrapper(cuda_device_idx)
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/nvdiffrast/torch/ops.py", line 125, in _get_plugin
+    torch.utils.cpp_extension.load(name=plugin_name, sources=source_paths, extra_cflags=common_opts+cc_opts, extra_cuda_cflags=common_opts+['-lineinfo'], extra_ldflags=ldflags, with_cuda=True, verbose=False)
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 1309, in load
+    return _jit_compile(
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 1719, in _jit_compile
+    _write_ninja_file_and_build_library(
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 1802, in _write_ninja_file_and_build_library
+    verify_ninja_availability()
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 1851, in verify_ninja_availability
+    raise RuntimeError("Ninja is required to load C++ extensions")
+RuntimeError: Ninja is required to load C++ extensions
+100%|██████████| 1/1 [00:03<00:00,  3.64s/it]100%|██████████| 1/1 [00:03<00:00,  3.64s/it]
++ echo EXIT_INFER=0
+EXIT_INFER=0

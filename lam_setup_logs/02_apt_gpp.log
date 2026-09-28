@@ -1,0 +1,11 @@
++ export DEBIAN_FRONTEND=noninteractive
++ DEBIAN_FRONTEND=noninteractive
++ apt-get install -y g++
+E: Could not get lock /var/lib/dpkg/lock-frontend. It is held by process 1941 (apt-get)
+E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
++ echo EXIT_GPP=100
+EXIT_GPP=100
++ g++ --version
++ head -1
+02_apt_gpp.sh: line 6: g++: command not found
++ which g++ c++

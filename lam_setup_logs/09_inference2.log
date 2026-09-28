@@ -1,0 +1,56 @@
++ export PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ export PYTHONPATH=/workspace/LAM:
++ PYTHONPATH=/workspace/LAM:
++ export TORCH_CUDA_ARCH_LIST=8.9
++ TORCH_CUDA_ARCH_LIST=8.9
++ ulimit -n 65535
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ CUDA_VISIBLE_DEVICES=0
++ /usr/local/miniconda3/envs/lam/bin/python -m lam.launch infer.lam --config configs/inference/lam-20k-8gpu.yaml model_name=model_zoo/lam_models/releases/lam/lam-20k/step_045500/ image_input=assets/sample_input/messi.png export_video=true export_mesh=true motion_seqs_dir=assets/sample_motion/export/Donald_Trump/ motion_img_dir=null vis_motion=false motion_img_need_mask=true render_fps=30 motion_video_read_fps=30 save_ply=false save_img=false gaga_track_type= cross_id=false test_sample=false rank=0 nodes=0
++ tail -40
+len motion_seq:264
+start to inference...................
+time elapsed: 2.178652048110962
+Moviepy - Building video exps/videos/lam/lam_20k/messi.mp4.
+Moviepy - Writing video exps/videos/lam/lam_20k/messi.mp4
+
+
+t:   0%|          | 0/264 [00:00<?, ?it/s, now=None][A
+t:   9%|▉         | 25/264 [00:00<00:00, 243.37it/s, now=None][A
+t:  19%|█▉        | 50/264 [00:00<00:00, 217.54it/s, now=None][A
+t:  28%|██▊       | 74/264 [00:00<00:00, 226.96it/s, now=None][A
+t:  37%|███▋      | 97/264 [00:00<00:00, 226.56it/s, now=None][A
+t:  45%|████▌     | 120/264 [00:00<00:00, 225.60it/s, now=None][A
+t:  55%|█████▌    | 146/264 [00:00<00:00, 235.10it/s, now=None][A
+t:  64%|██████▍   | 170/264 [00:00<00:00, 227.04it/s, now=None][A
+t:  73%|███████▎  | 194/264 [00:00<00:00, 230.32it/s, now=None][A
+t:  83%|████████▎ | 218/264 [00:00<00:00, 225.76it/s, now=None][A
+t:  91%|█████████▏| 241/264 [00:01<00:00, 221.58it/s, now=None][A
+t: 100%|██████████| 264/264 [00:01<00:00, 221.34it/s, now=None][A
+                                                               [A                                       0%|          | 0/1 [00:18<?, ?it/s]                                       0%|          | 0/1 [00:18<?, ?it/s]                                       0%|          | 0/1 [00:18<?, ?it/s]                                       0%|          | 0/1 [00:18<?, ?it/s]Moviepy - Done !
+Moviepy - video ready exps/videos/lam/lam_20k/messi.mp4
+Video saved successfully at exps/videos/lam/lam_20k/messi.mp4
+Moviepy - Building video exps/videos/lam/lam_20k/messi_audio.mp4.
+MoviePy - Writing audio in messi_audioTEMP_MPY_wvf_snd.mp4
+
+chunk:   0%|          | 0/195 [00:00<?, ?it/s, now=None][A
+chunk:  56%|█████▋    | 110/195 [00:00<00:00, 870.24it/s, now=None][A
+                                                                   [A                                       0%|          | 0/1 [00:18<?, ?it/s]                                       0%|          | 0/1 [00:18<?, ?it/s]MoviePy - Done.
+Moviepy - Writing video exps/videos/lam/lam_20k/messi_audio.mp4
+
+
+t:   0%|          | 0/264 [00:00<?, ?it/s, now=None][A
+t:  22%|██▏       | 58/264 [00:00<00:00, 576.26it/s, now=None][A
+t:  47%|████▋     | 125/264 [00:00<00:00, 630.11it/s, now=None][A
+t:  72%|███████▏  | 191/264 [00:00<00:00, 639.87it/s, now=None][A
+t:  99%|█████████▉| 261/264 [00:00<00:00, 663.24it/s, now=None][A
+                                                               [A                                       0%|          | 0/1 [00:19<?, ?it/s]                                       0%|          | 0/1 [00:19<?, ?it/s]100%|██████████| 1/1 [00:19<00:00, 19.12s/it]100%|██████████| 1/1 [00:19<00:00, 19.12s/it]
+Moviepy - Done !
+Moviepy - video ready exps/videos/lam/lam_20k/messi_audio.mp4
+Audio added successfully at exps/videos/lam/lam_20k/messi_audio.mp4
++ echo EXIT_INFER2=0
+EXIT_INFER2=0

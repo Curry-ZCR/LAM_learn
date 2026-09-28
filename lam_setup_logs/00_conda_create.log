@@ -1,0 +1,1361 @@
++ export PATH=/usr/local/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ source /usr/local/miniconda3/etc/profile.d/conda.sh
+++ export CONDA_EXE=/usr/local/miniconda3/bin/conda
+++ CONDA_EXE=/usr/local/miniconda3/bin/conda
+++ export _CE_M=
+++ _CE_M=
+++ export _CE_CONDA=
+++ _CE_CONDA=
+++ export CONDA_PYTHON_EXE=/usr/local/miniconda3/bin/python
+++ CONDA_PYTHON_EXE=/usr/local/miniconda3/bin/python
+++ '[' -z '' ']'
+++ export CONDA_SHLVL=0
+++ CONDA_SHLVL=0
+++ '[' -n '' ']'
+++++ dirname /usr/local/miniconda3/bin/conda
++++ dirname /usr/local/miniconda3/bin
+++ PATH=/usr/local/miniconda3/condabin:/usr/local/miniconda3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ '[' -z '' ']'
+++ PS1=
++ conda create -y -n lam python=3.10
++ local cmd=create
++ case "$cmd" in
++ __conda_exe create -y -n lam python=3.10
++ '[' -n '' ']'
++ /usr/local/miniconda3/bin/conda create -y -n lam python=3.10
+Retrieving notices: - \ | / - \ done
+Channels:
+ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
+ - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+ - defaults
+Platform: linux-64
+Collecting package metadata (repodata.json): / - \ | / - \ | / - \ | / - \ | / - \ | / done
+Solving environment: \ | done
+
+## Package Plan ##
+
+  environment location: /usr/local/miniconda3/envs/lam
+
+  added / updated specs:
+    - python=3.10
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    _openmp_mutex-5.1          |           52_gnu           7 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    ca-certificates-2026.8.13  |       h06a4308_0         107 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    ld_impl_linux-64-2.44      |       h9e0c5a2_3         725 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libexpat-2.8.5             |       h7354ed3_1         129 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libffi-3.4.8               |       h06d3fd0_3         137 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libgcc-15.2.0              |       h69a1729_8         803 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libgcc-ng-15.2.0           |       h166f726_8          28 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libnsl-2.0.0               |       h5eee18b_0          31 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libstdcxx-15.2.0           |       h39759b7_8         3.7 MB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libxcb-1.17.0              |       h9b100fa_0         430 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    libzlib-1.3.2              |       h47b2149_0          60 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    ncurses-6.6                |       hfaaeb4e_0         893 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    openssl-3.5.8              |       h1b28b03_0         5.5 MB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    packaging-26.3             |  py310h06a4308_0         329 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    pip-26.2.1                 |     pyhc872135_0         1.1 MB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    pthread-stubs-0.3          |       h47b2149_2           7 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    python-3.10.21             |       h17756b0_0        24.4 MB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    readline-8.3               |       hc2a1206_0         471 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    setuptools-83.0.0          |  py310h06a4308_0         1.2 MB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    sqlite-3.53.4              |       h795bf6d_0         1.2 MB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    tk-8.6.15                  |       h54e0aa7_0         3.4 MB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    tzdata-2026c               |       he532380_0         117 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    wheel-0.47.0               |  py310h06a4308_0          56 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    xorg-libx11-1.8.13         |       h65de747_0         817 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    xorg-libxau-1.0.12         |       h9b100fa_0          13 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    xorg-libxdmcp-1.1.5        |       h9b100fa_0          19 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    xorg-xorgproto-2025.1      |       h47b2149_0         555 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    xz-5.8.4                   |       h140a991_0         652 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    zlib-1.3.2                 |       h47b2149_0          92 KB  https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    ------------------------------------------------------------
+                                           Total:        46.9 MB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      anaconda/pkgs/main/linux-64::_libgcc_mutex-0.1-main 
+  _openmp_mutex      anaconda/pkgs/main/linux-64::_openmp_mutex-5.1-52_gnu 
+  bzip2              anaconda/pkgs/main/linux-64::bzip2-1.0.8-h5eee18b_6 
+  ca-certificates    anaconda/pkgs/main/linux-64::ca-certificates-2026.8.13-h06a4308_0 
+  ld_impl_linux-64   anaconda/pkgs/main/linux-64::ld_impl_linux-64-2.44-h9e0c5a2_3 
+  libexpat           anaconda/pkgs/main/linux-64::libexpat-2.8.5-h7354ed3_1 
+  libffi             anaconda/pkgs/main/linux-64::libffi-3.4.8-h06d3fd0_3 
+  libgcc             anaconda/pkgs/main/linux-64::libgcc-15.2.0-h69a1729_8 
+  libgcc-ng          anaconda/pkgs/main/linux-64::libgcc-ng-15.2.0-h166f726_8 
+  libnsl             anaconda/pkgs/main/linux-64::libnsl-2.0.0-h5eee18b_0 
+  libstdcxx          anaconda/pkgs/main/linux-64::libstdcxx-15.2.0-h39759b7_8 
+  libuuid            anaconda/pkgs/main/linux-64::libuuid-1.41.5-h5eee18b_0 
+  libxcb             anaconda/pkgs/main/linux-64::libxcb-1.17.0-h9b100fa_0 
+  libzlib            anaconda/pkgs/main/linux-64::libzlib-1.3.2-h47b2149_0 
+  ncurses            anaconda/pkgs/main/linux-64::ncurses-6.6-hfaaeb4e_0 
+  openssl            anaconda/pkgs/main/linux-64::openssl-3.5.8-h1b28b03_0 
+  packaging          anaconda/pkgs/main/linux-64::packaging-26.3-py310h06a4308_0 
+  pip                anaconda/pkgs/main/noarch::pip-26.2.1-pyhc872135_0 
+  pthread-stubs      anaconda/pkgs/main/linux-64::pthread-stubs-0.3-h47b2149_2 
+  python             anaconda/pkgs/main/linux-64::python-3.10.21-h17756b0_0 
+  readline           anaconda/pkgs/main/linux-64::readline-8.3-hc2a1206_0 
+  setuptools         anaconda/pkgs/main/linux-64::setuptools-83.0.0-py310h06a4308_0 
+  sqlite             anaconda/pkgs/main/linux-64::sqlite-3.53.4-h795bf6d_0 
+  tk                 anaconda/pkgs/main/linux-64::tk-8.6.15-h54e0aa7_0 
+  tzdata             anaconda/pkgs/main/noarch::tzdata-2026c-he532380_0 
+  wheel              anaconda/pkgs/main/linux-64::wheel-0.47.0-py310h06a4308_0 
+  xorg-libx11        anaconda/pkgs/main/linux-64::xorg-libx11-1.8.13-h65de747_0 
+  xorg-libxau        anaconda/pkgs/main/linux-64::xorg-libxau-1.0.12-h9b100fa_0 
+  xorg-libxdmcp      anaconda/pkgs/main/linux-64::xorg-libxdmcp-1.1.5-h9b100fa_0 
+  xorg-xorgproto     anaconda/pkgs/main/linux-64::xorg-xorgproto-2025.1-h47b2149_0 
+  xz                 anaconda/pkgs/main/linux-64::xz-5.8.4-h140a991_0 
+  zlib               anaconda/pkgs/main/linux-64::zlib-1.3.2-h47b2149_0 
+
+
+
+Downloading and Extracting Packages: ...working...python-3.10.21       | 24.4 MB   |            |   0% 
+openssl-3.5.8        | 5.5 MB    |            |   0% [A
+
+libstdcxx-15.2.0     | 3.7 MB    |            |   0% [A[A
+
+
+tk-8.6.15            | 3.4 MB    |            |   0% [A[A[A
+
+
+
+sqlite-3.53.4        | 1.2 MB    |            |   0% [A[A[A[A
+
+
+
+
+setuptools-83.0.0    | 1.2 MB    |            |   0% [A[A[A[A[A
+
+
+
+
+
+pip-26.2.1           | 1.1 MB    |            |   0% [A[A[A[A[A[A
+
+
+
+
+
+
+ncurses-6.6          | 893 KB    |            |   0% [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+xorg-libx11-1.8.13   | 817 KB    |            |   0% [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+libgcc-15.2.0        | 803 KB    |            |   0% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+ld_impl_linux-64-2.4 | 725 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xz-5.8.4             | 652 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+xorg-xorgproto-2025. | 555 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+libxcb-1.17.0        | 430 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+packaging-26.3       | 329 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libffi-3.4.8         | 137 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libexpat-2.8.5       | 129 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tzdata-2026c         | 117 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+openssl-3.5.8        | 5.5 MB    |            |   0% [A
+
+
+
+sqlite-3.53.4        | 1.2 MB    | 1          |   1% [A[A[A[A
+
+
+tk-8.6.15            | 3.4 MB    |            |   0% [A[A[Apython-3.10.21       | 24.4 MB   |            |   0% 
+
+libstdcxx-15.2.0     | 3.7 MB    |            |   0% [A[A
+openssl-3.5.8        | 5.5 MB    | 4          |   5% [A
+
+
+
+sqlite-3.53.4        | 1.2 MB    | #6         |  16% [A[A[A[A
+
+
+tk-8.6.15            | 3.4 MB    | 7          |   7% [A[A[A
+
+libstdcxx-15.2.0     | 3.7 MB    | 6          |   7% [A[Apython-3.10.21       | 24.4 MB   | 1          |   1% 
+openssl-3.5.8        | 5.5 MB    | ###3       |  33% [A
+
+
+tk-8.6.15            | 3.4 MB    | ####5      |  45% [A[A[A
+
+libstdcxx-15.2.0     | 3.7 MB    | ####4      |  45% [A[Apython-3.10.21       | 24.4 MB   | 7          |   7% 
+
+
+
+sqlite-3.53.4        | 1.2 MB    | ########## | 100% [A[A[A[A
+
+
+
+sqlite-3.53.4        | 1.2 MB    | ########## | 100% [A[A[A[A
+
+
+
+
+setuptools-83.0.0    | 1.2 MB    | 1          |   1% [A[A[A[A[A
+openssl-3.5.8        | 5.5 MB    | #######9   |  79% [Apython-3.10.21       | 24.4 MB   | #6         |  17% 
+
+
+
+
+setuptools-83.0.0    | 1.2 MB    | ########## | 100% [A[A[A[A[A
+
+
+tk-8.6.15            | 3.4 MB    | ########## | 100% [A[A[A
+
+
+tk-8.6.15            | 3.4 MB    | ########## | 100% [A[A[A
+
+libstdcxx-15.2.0     | 3.7 MB    | ########## | 100% [A[A
+
+libstdcxx-15.2.0     | 3.7 MB    | ########## | 100% [A[A
+
+
+
+
+
+
+
+xorg-libx11-1.8.13   | 817 KB    | 1          |   2% [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+ncurses-6.6          | 893 KB    | 1          |   2% [A[A[A[A[A[A[A
+
+
+
+
+
+pip-26.2.1           | 1.1 MB    | 1          |   1% [A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | ##7        |  28% 
+
+
+
+sqlite-3.53.4        | 1.2 MB    | ########## | 100% [A[A[A[A
+
+
+
+
+
+
+
+xorg-libx11-1.8.13   | 817 KB    | ########## | 100% [A[A[A[A[A[A[A[A
+openssl-3.5.8        | 5.5 MB    | ########## | 100% [A
+
+
+
+
+
+pip-26.2.1           | 1.1 MB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+
+
+
+
+libgcc-15.2.0        | 803 KB    | 1          |   2% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+ncurses-6.6          | 893 KB    | ########## | 100% [A[A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | ###6       |  37% 
+
+
+
+
+
+
+
+
+
+ld_impl_linux-64-2.4 | 725 KB    | 2          |   2% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xz-5.8.4             | 652 KB    | 2          |   2% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+xorg-xorgproto-2025. | 555 KB    | 2          |   3% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+libgcc-15.2.0        | 803 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+xorg-xorgproto-2025. | 555 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+ld_impl_linux-64-2.4 | 725 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    | 3          |   3% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xz-5.8.4             | 652 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+libxcb-1.17.0        | 430 KB    | 3          |   4% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+packaging-26.3       | 329 KB    | 4          |   5% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libffi-3.4.8         | 137 KB    | #1         |  12% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | ####7      |  47% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libffi-3.4.8         | 137 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+libxcb-1.17.0        | 430 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libexpat-2.8.5       | 129 KB    | #2         |  12% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libexpat-2.8.5       | 129 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tzdata-2026c         | 117 KB    | #3         |  14% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tzdata-2026c         | 117 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | ######4    |  65% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+packaging-26.3       | 329 KB    | ####3      |  44% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+libstdcxx-15.2.0     | 3.7 MB    | ########## | 100% [A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+packaging-26.3       | 329 KB    | ########2  |  83% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+packaging-26.3       | 329 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | #######5   |  75% python-3.10.21       | 24.4 MB   | ########5  |  85% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | #########5 |  95% 
+
+
+
+
+
+
+
+xorg-libx11-1.8.13   | 817 KB    | ########## | 100% [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+xorg-libx11-1.8.13   | 817 KB    | ########## | 100% [A[A[A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | ########## | 100% 
+
+
+tk-8.6.15            | 3.4 MB    | ########## | 100% [A[A[A
+
+
+
+
+setuptools-83.0.0    | 1.2 MB    | ########## | 100% [A[A[A[A[A
+
+
+
+
+setuptools-83.0.0    | 1.2 MB    | ########## | 100% [A[A[A[A[A
+openssl-3.5.8        | 5.5 MB    | ########## | 100% [A
+
+
+
+
+
+
+
+
+libgcc-15.2.0        | 803 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+libgcc-15.2.0        | 803 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+pip-26.2.1           | 1.1 MB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+
+pip-26.2.1           | 1.1 MB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+ld_impl_linux-64-2.4 | 725 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+ld_impl_linux-64-2.4 | 725 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xz-5.8.4             | 652 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xz-5.8.4             | 652 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+xorg-xorgproto-2025. | 555 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+xorg-xorgproto-2025. | 555 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+libxcb-1.17.0        | 430 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+libxcb-1.17.0        | 430 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libexpat-2.8.5       | 129 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libexpat-2.8.5       | 129 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libffi-3.4.8         | 137 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libffi-3.4.8         | 137 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+packaging-26.3       | 329 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tzdata-2026c         | 117 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tzdata-2026c         | 117 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+ncurses-6.6          | 893 KB    | ########## | 100% [A[A[A[A[A[A[A
+
+
+
+
+
+
+ncurses-6.6          | 893 KB    | ########## | 100% [A[A[A[A[A[A[Apython-3.10.21       | 24.4 MB   | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A                                                     
+                                                     [A
+
+                                                     [A[A
+
+
+                                                     [A[A[A
+
+
+
+                                                     [A[A[A[A
+
+
+
+
+                                                     [A[A[A[A[A
+
+
+
+
+
+                                                     [A[A[A[A[A[A
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+[A
+
+[A[A
+
+
+[A[A[A
+
+
+
+[A[A[A[A
+
+
+
+
+[A[A[A[A[A
+
+
+
+
+
+[A[A[A[A[A[A
+
+
+
+
+
+
+[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+[A[A[A[A[A[A[A[A[A done
+Preparing transaction: - \ done
+Verifying transaction: / - \ | / - \ | / - \ done
+Executing transaction: / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / done
+#
+# To activate this environment, use
+#
+#     $ conda activate lam
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+Channel "defaults" has the following notices:
+  [info] -- Thu Aug  6 00:00:00 2026
+  main-x (Anaconda's new authenticated channel) is now generally available, with thousands of additional packages from our secure supply chain. Get started at: https://anaconda.com/docs/getting-started/main-x?utm_source=channel_notices
+
++ echo EXIT_CODE=0
+EXIT_CODE=0
++ conda run -n lam python -V
++ local cmd=run
++ case "$cmd" in
++ __conda_exe run -n lam python -V
++ '[' -n '' ']'
++ /usr/local/miniconda3/bin/conda run -n lam python -V
+Python 3.10.21
+

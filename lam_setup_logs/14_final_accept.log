@@ -1,0 +1,19 @@
+########## 前置检查 (§1.1) ##########
+/usr/local/miniconda3/envs/lam/bin/python
+Python 3.10.21
+/usr/local/miniconda3/envs/lam/bin/ninja
+1.13.2.git.kitware.jobserver-pipe-1
+cuda: True
+
+########## 记录运行前的输出状态 ##########
+旧 status_audio.mp4 md5: d7384f653e720e6c7ab9b5014abf9fcb
+
+########## §0 快速开始命令（逐字复制）##########
+退出码=0   耗时=43s
+
+########## 输出核对 ##########
+-rw-r--r-- 1 root root 661261 Sep 28 14:26 exps/videos/lam/lam_20k/status.mp4
+-rw-r--r-- 1 root root 922967 Sep 28 14:26 exps/videos/lam/lam_20k/status_audio.mp4
+Traceback 数量 (必须为 0): 0
+规格: fps=30.0 size=(512, 512)
+>>> 最终验收 PASS

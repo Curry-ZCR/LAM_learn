@@ -1,0 +1,57 @@
++ export PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ export PYTHONPATH=/workspace/LAM:
++ PYTHONPATH=/workspace/LAM:
++ export TORCH_CUDA_ARCH_LIST=8.9
++ TORCH_CUDA_ARCH_LIST=8.9
++ ulimit -n 65535
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ CUDA_VISIBLE_DEVICES=0
++ /usr/local/miniconda3/envs/lam/bin/python -m lam.launch infer.lam --config configs/inference/lam-20k-8gpu.yaml model_name=model_zoo/lam_models/releases/lam/lam-20k/step_045500/ image_input=assets/sample_input/status.png export_video=true export_mesh=true motion_seqs_dir=assets/sample_motion/export/Look_In_My_Eyes/ motion_img_dir=null vis_motion=false motion_img_need_mask=true render_fps=30 motion_video_read_fps=30 save_ply=true save_img=true gaga_track_type= cross_id=false test_sample=false rank=0 nodes=0
++ tail -25
+Moviepy - Building video exps/videos/lam/lam_20k/status_audio.mp4.
+MoviePy - Writing audio in status_audioTEMP_MPY_wvf_snd.mp4
+
+chunk:   0%|          | 0/382 [00:00<?, ?it/s, now=None][A
+chunk:  29%|██▉       | 110/382 [00:00<00:00, 1099.09it/s, now=None][A
+chunk:  60%|█████▉    | 228/382 [00:00<00:00, 1145.96it/s, now=None][A
+chunk:  95%|█████████▌| 363/382 [00:00<00:00, 1202.91it/s, now=None][A
+                                                                    [A                                       0%|          | 0/1 [00:22<?, ?it/s]                                       0%|          | 0/1 [00:22<?, ?it/s]MoviePy - Done.
+Moviepy - Writing video exps/videos/lam/lam_20k/status_audio.mp4
+
+
+t:   0%|          | 0/520 [00:00<?, ?it/s, now=None][A
+t:  12%|█▎        | 65/520 [00:00<00:00, 642.28it/s, now=None][A
+t:  25%|██▌       | 130/520 [00:00<00:00, 608.56it/s, now=None][A
+t:  37%|███▋      | 192/520 [00:00<00:00, 613.22it/s, now=None][A
+t:  50%|████▉     | 258/520 [00:00<00:00, 628.16it/s, now=None][A
+t:  62%|██████▏   | 323/520 [00:00<00:00, 634.86it/s, now=None][A
+t:  74%|███████▍  | 387/520 [00:00<00:00, 589.19it/s, now=None][A
+t:  87%|████████▋ | 451/520 [00:00<00:00, 602.91it/s, now=None][A
+t:  98%|█████████▊| 512/520 [00:00<00:00, 602.34it/s, now=None][A
+                                                               [A                                       0%|          | 0/1 [00:23<?, ?it/s]                                       0%|          | 0/1 [00:23<?, ?it/s]100%|██████████| 1/1 [01:22<00:00, 82.00s/it]100%|██████████| 1/1 [01:22<00:00, 82.00s/it]
+Moviepy - Done !
+Moviepy - video ready exps/videos/lam/lam_20k/status_audio.mp4
+Audio added successfully at exps/videos/lam/lam_20k/status_audio.mp4
+Save textured mesh to: ./exps/cano_gs/status_textured_mesh.obj
++ echo EXIT_MESH=0
+EXIT_MESH=0
++ echo '===== MESH ARTIFACTS ====='
+===== MESH ARTIFACTS =====
++ find /workspace/LAM/exps -name '*.ply' -o -name '*.obj'
++ head -10
+/workspace/LAM/exps/cano_gs/status_textured_mesh.obj
+/workspace/LAM/exps/cano_gs/status_shaped_mesh.obj
+/workspace/LAM/exps/cano_gs/framework_img.obj
+/workspace/LAM/exps/cano_gs/status_gs_offset.ply
+/workspace/LAM/exps/images/lam/lam_20k/status/0066.ply
+/workspace/LAM/exps/images/lam/lam_20k/status/0201.ply
+/workspace/LAM/exps/images/lam/lam_20k/status/0278.ply
+/workspace/LAM/exps/images/lam/lam_20k/status/0460.ply
+/workspace/LAM/exps/images/lam/lam_20k/status/0052.ply
+/workspace/LAM/exps/images/lam/lam_20k/status/0208.ply
++ du -sh /workspace/LAM/exps/cano_gs
+4.5M	/workspace/LAM/exps/cano_gs

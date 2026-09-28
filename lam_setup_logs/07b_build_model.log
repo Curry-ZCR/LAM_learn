@@ -1,0 +1,23 @@
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ /usr/local/miniconda3/envs/lam/bin/python -
+/workspace/LAM/./lam/models/encoders/dinov2/layers/swiglu_ffn.py:43: UserWarning: xFormers is available (SwiGLU)
+  warnings.warn("xFormers is available (SwiGLU)")
+/workspace/LAM/./lam/models/encoders/dinov2/layers/attention.py:27: UserWarning: xFormers is available (Attention)
+  warnings.warn("xFormers is available (Attention)")
+/workspace/LAM/./lam/models/encoders/dinov2/layers/block.py:39: UserWarning: xFormers is available (Block)
+  warnings.warn("xFormers is available (Block)")
+human_model_path = ./model_zoo/human_parametric_models
+================================================================================================================================================ 
+skip_decoder: True 
+================================================================================================================================================
+#########scale sphere:False, add_teeth:False
+================================================================================================================================================ 
+ Render rgb: True 
+================================================================================================================================================
+face_upsampled:(39904, 3), face_ori:torch.Size([9976, 3]),                 vertex_num_upsampled:20018, vertex_num_ori:5023
+ModelLAM constructed OK in 7.1s
+checkpoint tensors: 835 loaded, 0 unexpected, 0 shape-mismatch
+MODEL OK on cuda, VRAM 2.20 GB
++ echo EXIT_BUILD=0
+EXIT_BUILD=0

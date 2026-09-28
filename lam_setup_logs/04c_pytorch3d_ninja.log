@@ -1,0 +1,62 @@
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ PIP=/usr/local/miniconda3/envs/lam/bin/pip
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ export PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export TORCH_CUDA_ARCH_LIST=8.9
++ TORCH_CUDA_ARCH_LIST=8.9
++ export MAX_JOBS=16
++ MAX_JOBS=16
++ export FORCE_CUDA=1
++ FORCE_CUDA=1
++ cd /workspace/LAM/thirdparty_src/pytorch3d
++ ninja --version
+1.13.2.git.kitware.jobserver-pipe-1
++ echo NINJA_ON_PATH=0
+NINJA_ON_PATH=0
++ rm -rf build
++ /usr/local/miniconda3/envs/lam/bin/pip install . --no-build-isolation
++ tail -40
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting fvcore (from pytorch3d==0.7.6)
+  Using cached fvcore-0.1.5.post20221221.tar.gz (50 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting iopath (from pytorch3d==0.7.6)
+  Using cached iopath-0.1.10.tar.gz (42 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: numpy in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (1.23.0)
+Collecting yacs>=0.1.6 (from fvcore->pytorch3d==0.7.6)
+  Using cached yacs-0.1.8-py3-none-any.whl (14 kB)
+Requirement already satisfied: pyyaml>=5.1 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (6.0.3)
+Requirement already satisfied: tqdm in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (4.70.1)
+Requirement already satisfied: termcolor>=1.1 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (3.3.0)
+Requirement already satisfied: Pillow in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (10.4.0)
+Collecting tabulate (from fvcore->pytorch3d==0.7.6)
+  Using cached tabulate-0.10.0-py3-none-any.whl (39 kB)
+Requirement already satisfied: typing_extensions in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from iopath->pytorch3d==0.7.6) (4.16.0)
+Collecting portalocker (from iopath->pytorch3d==0.7.6)
+  Using cached portalocker-4.4.0-py3-none-any.whl (129 kB)
+Building wheels for collected packages: pytorch3d, fvcore, iopath
+  Building wheel for pytorch3d (pyproject.toml): started
+  Building wheel for pytorch3d (pyproject.toml): still running...
+  Building wheel for pytorch3d (pyproject.toml): finished with status 'done'
+  Created wheel for pytorch3d: filename=pytorch3d-0.7.6-cp310-cp310-linux_x86_64.whl size=3847940 sha256=62dfb4298cf87ac364c7828ff657a2a730e5d719e5d921944e5e005e96f07795
+  Stored in directory: /tmp/pip-ephem-wheel-cache-f08vz_37/wheels/65/de/ed/308b5a8d7e424cd8faef699735a46f3c20b4cf267b6bb04f3c
+  Building wheel for fvcore (pyproject.toml): started
+  Building wheel for fvcore (pyproject.toml): finished with status 'done'
+  Created wheel for fvcore: filename=fvcore-0.1.5.post20221221-py3-none-any.whl size=61443 sha256=5e8960ded4cb3ad220b42006c8b8744feca92e6a886104fb80e9a17da6d7072b
+  Stored in directory: /root/.cache/pip/wheels/28/82/4a/8330a47585ba1dba796077519f394a01d52bec45cf3a6e35df
+  Building wheel for iopath (pyproject.toml): started
+  Building wheel for iopath (pyproject.toml): finished with status 'done'
+  Created wheel for iopath: filename=iopath-0.1.10-py3-none-any.whl size=31596 sha256=79b2e43207597cd3366f3a894a09c2c933d60ea577a50e1853466e504579300e
+  Stored in directory: /root/.cache/pip/wheels/0c/56/8f/a7870ddf4fba21726bc49aae55cbeb5a4cca42f3949bddbefc
+Successfully built pytorch3d fvcore iopath
+Installing collected packages: yacs, tabulate, portalocker, iopath, fvcore, pytorch3d
+
+Successfully installed fvcore-0.1.5.post20221221 iopath-0.1.10 portalocker-4.4.0 pytorch3d-0.7.6 tabulate-0.10.0 yacs-0.1.8
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_P3D=0
+EXIT_P3D=0

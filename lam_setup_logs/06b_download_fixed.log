@@ -1,0 +1,2083 @@
++ MSC=/usr/local/miniconda3/envs/lam/bin/modelscope
++ cd /workspace/LAM
++ mkdir -p ./tmp
++ /usr/local/miniconda3/envs/lam/bin/modelscope download --repo-type model Damo_XR_Lab/LAM-assets --local-dir ./tmp/
+
+ _   .-')                _ .-') _     ('-.             .-')                              _ (`-.    ('-.
+( '.( OO )_             ( (  OO) )  _(  OO)           ( OO ).                           ( (OO  ) _(  OO)
+ ,--.   ,--.).-'),-----. \     .'_ (,------.,--.     (_)---\_)   .-----.  .-'),-----.  _.`     \(,------.
+ |   `.'   |( OO'  .-.  ',`'--..._) |  .---'|  |.-') /    _ |   '  .--./ ( OO'  .-.  '(__...--'' |  .---'
+ |         |/   |  | |  ||  |  \  ' |  |    |  | OO )\  :` `.   |  |('-. /   |  | |  | |  /  | | |  |
+ |  |'.'|  |\_) |  |\|  ||  |   ' |(|  '--. |  |`-' | '..`''.) /_) |OO  )\_) |  |\|  | |  |_.' |(|  '--.
+ |  |   |  |  \ |  | |  ||  |   / : |  .--'(|  '---.'.-._)   \ ||  |`-'|   \ |  | |  | |  .___.' |  .--'
+ |  |   |  |   `'  '-'  '|  '--'  / |  `---.|      | \       /(_'  '--'\    `'  '-'  ' |  |      |  `---.
+ `--'   `--'     `-----' `-------'  `------'`------'  `-----'    `-----'      `-----'  `--'      `------'
+
+2026-09-28 13:41:56,918 | INFO    | modelscope_hub.download | Downloading 7 files from Damo_XR_Lab/LAM-assets@master
+Downloading snapshot of Damo_XR_Lab/LAM-assets (model)…
+Downloading:   0%|          | 0/7 [00:00<?, ?file/s]
+.msc:   0%|          | 0.00/165 [00:00<?, ?B/s][A
+                                               [ADownloading:  14%|█▍        | 1/7 [00:00<00:02,  2.21file/s]
+.mv:   0%|          | 0.00/36.0 [00:00<?, ?B/s][A
+                                               [A
+configuration.json:   0%|          | 0.00/52.0 [00:00<?, ?B/s][A
+                                                              [A
+.gitattributes:   0%|          | 0.00/2.08k [00:00<?, ?B/s][A
+                                                           [A
+LAM_assets.tar:   0%|          | 0.00/297M [00:00<?, ?B/s][A
+
+README.md:   0%|          | 0.00/2.72k [00:00<?, ?B/s][A[A
+
+                                                      [A[ADownloading:  71%|███████▏  | 5/7 [00:00<00:00,  9.64file/s]
+LAM_assets.tar:   1%|          | 3.15M/297M [00:00<00:12, 24.5MB/s][A
+
+thirdparty_models.tar:   0%|          | 0.00/969M [00:00<?, ?B/s][A[A
+LAM_assets.tar:   2%|▏         | 7.34M/297M [00:00<00:09, 31.0MB/s][A
+
+thirdparty_models.tar:   0%|          | 1.05M/969M [00:00<01:44, 9.22MB/s][A[A
+LAM_assets.tar:   4%|▍         | 11.5M/297M [00:00<00:08, 32.6MB/s][A
+
+thirdparty_models.tar:   0%|          | 3.15M/969M [00:00<01:02, 15.5MB/s][A[A
+LAM_assets.tar:   5%|▌         | 15.7M/297M [00:00<00:08, 32.9MB/s][A
+
+thirdparty_models.tar:   1%|          | 6.29M/969M [00:00<00:50, 19.2MB/s][A[A
+LAM_assets.tar:   7%|▋         | 19.9M/297M [00:00<00:08, 34.2MB/s][A
+
+thirdparty_models.tar:   1%|          | 8.39M/969M [00:00<00:59, 16.1MB/s][A[A
+LAM_assets.tar:   8%|▊         | 24.1M/297M [00:00<00:12, 22.3MB/s][A
+
+thirdparty_models.tar:   1%|          | 10.5M/969M [00:00<01:28, 10.9MB/s][A[A
+LAM_assets.tar:   9%|▉         | 27.3M/297M [00:01<00:15, 17.8MB/s][A
+
+thirdparty_models.tar:   1%|▏         | 12.6M/969M [00:01<01:55, 8.27MB/s][A[A
+LAM_assets.tar:  10%|█         | 30.4M/297M [00:01<00:16, 16.2MB/s][A
+
+thirdparty_models.tar:   1%|▏         | 13.6M/969M [00:01<02:02, 7.83MB/s][A[A
+LAM_assets.tar:  11%|█         | 32.5M/297M [00:01<00:17, 15.0MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 14.7M/969M [00:01<02:11, 7.28MB/s][A[A
+LAM_assets.tar:  12%|█▏        | 34.6M/297M [00:01<00:18, 14.3MB/s][A
+LAM_assets.tar:  12%|█▏        | 36.7M/297M [00:01<00:18, 14.3MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 15.7M/969M [00:01<02:43, 5.84MB/s][A[A
+LAM_assets.tar:  13%|█▎        | 38.8M/297M [00:02<00:17, 14.6MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 16.8M/969M [00:02<02:45, 5.74MB/s][A[A
+LAM_assets.tar:  14%|█▍        | 40.9M/297M [00:02<00:19, 13.4MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 17.8M/969M [00:02<02:37, 6.05MB/s][A[A
+LAM_assets.tar:  14%|█▍        | 43.0M/297M [00:02<00:20, 12.4MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 18.9M/969M [00:02<02:25, 6.52MB/s][A[A
+LAM_assets.tar:  15%|█▌        | 45.1M/297M [00:02<00:20, 12.2MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 19.9M/969M [00:02<02:37, 6.03MB/s][A[A
+LAM_assets.tar:  16%|█▌        | 47.2M/297M [00:02<00:20, 12.3MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 21.0M/969M [00:02<02:47, 5.66MB/s][A[A
+LAM_assets.tar:  17%|█▋        | 49.3M/297M [00:02<00:19, 12.9MB/s][A
+LAM_assets.tar:  17%|█▋        | 51.4M/297M [00:03<00:18, 13.6MB/s][A
+LAM_assets.tar:  18%|█▊        | 53.5M/297M [00:03<00:17, 14.0MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 22.0M/969M [00:03<03:29, 4.53MB/s][A[A
+LAM_assets.tar:  19%|█▊        | 55.6M/297M [00:03<00:16, 14.2MB/s][A
+LAM_assets.tar:  19%|█▉        | 57.7M/297M [00:03<00:17, 13.6MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 23.1M/969M [00:03<03:40, 4.29MB/s][A[A
+LAM_assets.tar:  20%|██        | 59.8M/297M [00:03<00:16, 14.0MB/s][A
+
+thirdparty_models.tar:   2%|▏         | 24.1M/969M [00:03<03:42, 4.24MB/s][A[A
+LAM_assets.tar:  21%|██        | 61.9M/297M [00:03<00:16, 14.0MB/s][A
+LAM_assets.tar:  22%|██▏       | 64.0M/297M [00:03<00:16, 13.8MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 25.2M/969M [00:03<03:36, 4.35MB/s][A[A
+LAM_assets.tar:  22%|██▏       | 66.1M/297M [00:04<00:16, 14.0MB/s][A
+LAM_assets.tar:  23%|██▎       | 68.2M/297M [00:04<00:15, 14.7MB/s][A
+LAM_assets.tar:  24%|██▎       | 70.3M/297M [00:04<00:14, 15.3MB/s][A
+LAM_assets.tar:  24%|██▍       | 72.4M/297M [00:04<00:14, 15.6MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 26.2M/969M [00:04<05:00, 3.14MB/s][A[A
+LAM_assets.tar:  25%|██▌       | 74.4M/297M [00:04<00:14, 15.1MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 27.3M/969M [00:04<04:13, 3.71MB/s][A[A
+LAM_assets.tar:  26%|██▌       | 76.5M/297M [00:04<00:15, 14.2MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 28.3M/969M [00:04<04:00, 3.92MB/s][A[A
+LAM_assets.tar:  26%|██▋       | 78.6M/297M [00:04<00:15, 13.9MB/s][A
+LAM_assets.tar:  27%|██▋       | 80.7M/297M [00:05<00:15, 13.7MB/s][A
+LAM_assets.tar:  28%|██▊       | 82.8M/297M [00:05<00:14, 14.6MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 29.4M/969M [00:05<04:23, 3.57MB/s][A[A
+LAM_assets.tar:  29%|██▊       | 84.9M/297M [00:05<00:14, 14.8MB/s][A
+LAM_assets.tar:  29%|██▉       | 87.0M/297M [00:05<00:14, 14.6MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 30.4M/969M [00:05<04:20, 3.61MB/s][A[A
+LAM_assets.tar:  30%|██▉       | 89.1M/297M [00:05<00:14, 14.0MB/s][A
+LAM_assets.tar:  31%|███       | 91.2M/297M [00:05<00:14, 14.4MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 31.5M/969M [00:05<04:20, 3.60MB/s][A[A
+LAM_assets.tar:  31%|███▏      | 93.3M/297M [00:05<00:14, 14.5MB/s][A
+LAM_assets.tar:  32%|███▏      | 95.4M/297M [00:06<00:14, 14.3MB/s][A
+
+thirdparty_models.tar:   3%|▎         | 32.5M/969M [00:05<04:06, 3.80MB/s][A[A
+
+thirdparty_models.tar:   3%|▎         | 33.6M/969M [00:06<03:37, 4.30MB/s][A[A
+LAM_assets.tar:  33%|███▎      | 97.5M/297M [00:06<00:15, 13.3MB/s][A
+LAM_assets.tar:  34%|███▎      | 99.6M/297M [00:06<00:15, 13.0MB/s][A
+
+thirdparty_models.tar:   4%|▎         | 34.6M/969M [00:06<03:26, 4.52MB/s][A[A
+LAM_assets.tar:  34%|███▍      | 102M/297M [00:06<00:14, 13.3MB/s] [A
+LAM_assets.tar:  35%|███▍      | 104M/297M [00:06<00:13, 13.8MB/s][A
+LAM_assets.tar:  36%|███▌      | 106M/297M [00:06<00:13, 14.5MB/s][A
+
+thirdparty_models.tar:   4%|▎         | 35.7M/969M [00:06<04:10, 3.73MB/s][A[A
+LAM_assets.tar:  36%|███▋      | 108M/297M [00:07<00:12, 14.8MB/s][A
+LAM_assets.tar:  37%|███▋      | 110M/297M [00:07<00:12, 15.3MB/s][A
+LAM_assets.tar:  38%|███▊      | 112M/297M [00:07<00:12, 14.8MB/s][A
+
+thirdparty_models.tar:   4%|▍         | 36.7M/969M [00:07<04:45, 3.27MB/s][A[A
+LAM_assets.tar:  38%|███▊      | 114M/297M [00:07<00:12, 14.9MB/s][A
+
+thirdparty_models.tar:   4%|▍         | 37.7M/969M [00:07<04:14, 3.66MB/s][A[A
+LAM_assets.tar:  39%|███▉      | 116M/297M [00:07<00:13, 13.4MB/s][A
+
+thirdparty_models.tar:   4%|▍         | 38.8M/969M [00:07<03:42, 4.18MB/s][A[A
+LAM_assets.tar:  40%|███▉      | 118M/297M [00:07<00:13, 13.8MB/s][A
+LAM_assets.tar:  41%|████      | 121M/297M [00:07<00:12, 14.2MB/s][A
+LAM_assets.tar:  41%|████▏     | 123M/297M [00:08<00:11, 15.2MB/s][A
+LAM_assets.tar:  42%|████▏     | 125M/297M [00:08<00:11, 15.2MB/s][A
+
+thirdparty_models.tar:   4%|▍         | 39.8M/969M [00:08<04:45, 3.26MB/s][A[A
+LAM_assets.tar:  43%|████▎     | 127M/297M [00:08<00:10, 15.5MB/s][A
+LAM_assets.tar:  43%|████▎     | 129M/297M [00:08<00:10, 16.1MB/s][A
+LAM_assets.tar:  44%|████▍     | 131M/297M [00:08<00:09, 16.7MB/s][A
+LAM_assets.tar:  45%|████▍     | 133M/297M [00:08<00:10, 16.3MB/s][A
+
+thirdparty_models.tar:   4%|▍         | 40.9M/969M [00:08<06:09, 2.51MB/s][A[A
+LAM_assets.tar:  45%|████▌     | 135M/297M [00:08<00:10, 15.4MB/s][A
+LAM_assets.tar:  46%|████▌     | 137M/297M [00:08<00:10, 15.4MB/s][A
+
+thirdparty_models.tar:   4%|▍         | 41.9M/969M [00:08<05:32, 2.79MB/s][A[A
+LAM_assets.tar:  47%|████▋     | 139M/297M [00:09<00:11, 13.8MB/s][A
+
+thirdparty_models.tar:   5%|▍         | 44.0M/969M [00:09<03:35, 4.29MB/s][A[A
+
+thirdparty_models.tar:   5%|▍         | 45.1M/969M [00:09<03:05, 4.97MB/s][A[A
+LAM_assets.tar:  48%|████▊     | 142M/297M [00:09<00:13, 11.5MB/s][A
+
+thirdparty_models.tar:   5%|▍         | 46.1M/969M [00:09<02:48, 5.47MB/s][A[A
+LAM_assets.tar:  48%|████▊     | 144M/297M [00:09<00:13, 11.0MB/s][A
+
+thirdparty_models.tar:   5%|▍         | 47.2M/969M [00:09<02:36, 5.90MB/s][A[A
+LAM_assets.tar:  49%|████▉     | 146M/297M [00:09<00:13, 11.4MB/s][A
+
+thirdparty_models.tar:   5%|▍         | 48.2M/969M [00:09<02:49, 5.43MB/s][A[A
+LAM_assets.tar:  50%|████▉     | 148M/297M [00:09<00:12, 12.2MB/s][A
+LAM_assets.tar:  50%|█████     | 150M/297M [00:10<00:10, 13.4MB/s][A
+LAM_assets.tar:  51%|█████     | 152M/297M [00:10<00:10, 13.9MB/s][A
+LAM_assets.tar:  52%|█████▏    | 154M/297M [00:10<00:10, 13.9MB/s][A
+
+thirdparty_models.tar:   5%|▌         | 49.3M/969M [00:10<03:52, 3.96MB/s][A[A
+LAM_assets.tar:  53%|█████▎    | 156M/297M [00:10<00:09, 14.4MB/s][A
+LAM_assets.tar:  53%|█████▎    | 158M/297M [00:10<00:09, 15.0MB/s][A
+LAM_assets.tar:  54%|█████▍    | 160M/297M [00:10<00:08, 15.6MB/s][A
+
+thirdparty_models.tar:   5%|▌         | 50.3M/969M [00:10<04:47, 3.20MB/s][A[A
+LAM_assets.tar:  55%|█████▍    | 163M/297M [00:10<00:08, 15.0MB/s][A
+LAM_assets.tar:  55%|█████▌    | 165M/297M [00:11<00:09, 14.6MB/s][A
+
+thirdparty_models.tar:   5%|▌         | 51.4M/969M [00:10<04:18, 3.55MB/s][A[A
+LAM_assets.tar:  56%|█████▌    | 167M/297M [00:11<00:09, 14.1MB/s][A
+
+thirdparty_models.tar:   5%|▌         | 52.4M/969M [00:11<04:00, 3.80MB/s][A[A
+LAM_assets.tar:  57%|█████▋    | 169M/297M [00:11<00:09, 13.4MB/s][A
+LAM_assets.tar:  57%|█████▋    | 171M/297M [00:11<00:09, 13.8MB/s][A
+
+thirdparty_models.tar:   6%|▌         | 53.5M/969M [00:11<03:48, 4.00MB/s][A[A
+LAM_assets.tar:  58%|█████▊    | 173M/297M [00:11<00:08, 14.0MB/s][A
+LAM_assets.tar:  59%|█████▉    | 175M/297M [00:11<00:08, 14.2MB/s][A
+
+thirdparty_models.tar:   6%|▌         | 54.5M/969M [00:11<03:58, 3.83MB/s][A[A
+LAM_assets.tar:  60%|█████▉    | 177M/297M [00:11<00:08, 14.2MB/s][A
+
+thirdparty_models.tar:   6%|▌         | 55.6M/969M [00:11<03:54, 3.90MB/s][A[A
+LAM_assets.tar:  60%|██████    | 179M/297M [00:12<00:08, 14.2MB/s][A
+LAM_assets.tar:  61%|██████    | 181M/297M [00:12<00:08, 13.9MB/s][A
+
+thirdparty_models.tar:   6%|▌         | 56.6M/969M [00:12<03:44, 4.06MB/s][A[A
+LAM_assets.tar:  62%|██████▏   | 184M/297M [00:12<00:08, 13.4MB/s][A
+
+thirdparty_models.tar:   6%|▌         | 57.7M/969M [00:12<03:22, 4.51MB/s][A[A
+LAM_assets.tar:  62%|██████▏   | 186M/297M [00:12<00:08, 13.4MB/s][A
+
+thirdparty_models.tar:   6%|▌         | 58.7M/969M [00:12<03:19, 4.56MB/s][A[A
+LAM_assets.tar:  63%|██████▎   | 188M/297M [00:12<00:08, 13.3MB/s][A
+
+thirdparty_models.tar:   6%|▌         | 59.8M/969M [00:12<03:11, 4.75MB/s][A[A
+
+thirdparty_models.tar:   6%|▋         | 61.9M/969M [00:12<02:08, 7.06MB/s][A[A
+LAM_assets.tar:  64%|██████▍   | 190M/297M [00:13<00:11, 9.69MB/s][A
+
+thirdparty_models.tar:   7%|▋         | 64.0M/969M [00:12<01:36, 9.34MB/s][A[A
+
+thirdparty_models.tar:   7%|▋         | 66.1M/969M [00:13<01:24, 10.6MB/s][A[A
+
+thirdparty_models.tar:   7%|▋         | 68.2M/969M [00:13<01:19, 11.3MB/s][A[A
+
+thirdparty_models.tar:   7%|▋         | 70.3M/969M [00:13<01:12, 12.3MB/s][A[A
+
+thirdparty_models.tar:   7%|▋         | 72.4M/969M [00:13<01:07, 13.4MB/s][A[A
+LAM_assets.tar:  65%|██████▍   | 192M/297M [00:13<00:17, 6.10MB/s][A
+
+thirdparty_models.tar:   8%|▊         | 74.4M/969M [00:13<01:06, 13.4MB/s][A[A
+
+thirdparty_models.tar:   8%|▊         | 76.5M/969M [00:13<01:04, 13.9MB/s][A[A
+LAM_assets.tar:  65%|██████▍   | 193M/297M [00:14<00:20, 4.99MB/s][A
+
+thirdparty_models.tar:   8%|▊         | 78.6M/969M [00:13<01:01, 14.6MB/s][A[A
+
+thirdparty_models.tar:   8%|▊         | 80.7M/969M [00:14<00:59, 15.0MB/s][A[A
+LAM_assets.tar:  65%|██████▌   | 194M/297M [00:14<00:22, 4.64MB/s][A
+
+thirdparty_models.tar:   9%|▊         | 82.8M/969M [00:14<01:01, 14.5MB/s][A[A
+
+thirdparty_models.tar:   9%|▉         | 84.9M/969M [00:14<01:02, 14.2MB/s][A[A
+LAM_assets.tar:  66%|██████▌   | 195M/297M [00:14<00:23, 4.34MB/s][A
+
+thirdparty_models.tar:   9%|▉         | 87.0M/969M [00:14<01:01, 14.3MB/s][A[A
+
+thirdparty_models.tar:   9%|▉         | 89.1M/969M [00:14<01:01, 14.2MB/s][A[A
+LAM_assets.tar:  66%|██████▌   | 196M/297M [00:14<00:24, 4.13MB/s][A
+
+thirdparty_models.tar:   9%|▉         | 91.2M/969M [00:14<00:59, 14.8MB/s][A[A
+
+thirdparty_models.tar:  10%|▉         | 93.3M/969M [00:14<01:00, 14.5MB/s][A[A
+
+thirdparty_models.tar:  10%|▉         | 95.4M/969M [00:15<01:00, 14.5MB/s][A[A
+LAM_assets.tar:  66%|██████▋   | 197M/297M [00:15<00:26, 3.74MB/s][A
+
+thirdparty_models.tar:  10%|█         | 97.5M/969M [00:15<00:57, 15.2MB/s][A[A
+
+thirdparty_models.tar:  10%|█         | 99.6M/969M [00:15<00:58, 14.9MB/s][A[A
+LAM_assets.tar:  67%|██████▋   | 198M/297M [00:15<00:27, 3.56MB/s][A
+
+thirdparty_models.tar:  10%|█         | 102M/969M [00:15<00:57, 15.0MB/s] [A[A
+
+thirdparty_models.tar:  11%|█         | 104M/969M [00:15<00:59, 14.5MB/s][A[A
+LAM_assets.tar:  67%|██████▋   | 199M/297M [00:15<00:27, 3.52MB/s][A
+
+thirdparty_models.tar:  11%|█         | 106M/969M [00:15<01:00, 14.3MB/s][A[A
+
+thirdparty_models.tar:  11%|█         | 108M/969M [00:15<00:59, 14.4MB/s][A[A
+
+thirdparty_models.tar:  11%|█▏        | 110M/969M [00:16<00:57, 14.9MB/s][A[A
+LAM_assets.tar:  67%|██████▋   | 200M/297M [00:16<00:28, 3.45MB/s][A
+
+thirdparty_models.tar:  12%|█▏        | 112M/969M [00:16<00:57, 14.8MB/s][A[A
+
+thirdparty_models.tar:  12%|█▏        | 114M/969M [00:16<00:55, 15.3MB/s][A[A
+LAM_assets.tar:  68%|██████▊   | 201M/297M [00:16<00:29, 3.20MB/s][A
+
+thirdparty_models.tar:  12%|█▏        | 116M/969M [00:16<00:58, 14.6MB/s][A[A
+
+thirdparty_models.tar:  12%|█▏        | 118M/969M [00:16<00:55, 15.3MB/s][A[A
+
+thirdparty_models.tar:  12%|█▏        | 121M/969M [00:16<00:55, 15.3MB/s][A[A
+LAM_assets.tar:  68%|██████▊   | 202M/297M [00:16<00:28, 3.31MB/s][A
+
+thirdparty_models.tar:  13%|█▎        | 123M/969M [00:16<00:58, 14.4MB/s][A[A
+
+thirdparty_models.tar:  13%|█▎        | 125M/969M [00:17<00:56, 14.9MB/s][A[A
+LAM_assets.tar:  68%|██████▊   | 203M/297M [00:17<00:27, 3.40MB/s][A
+
+thirdparty_models.tar:  13%|█▎        | 127M/969M [00:17<00:57, 14.7MB/s][A[A
+LAM_assets.tar:  69%|██████▉   | 204M/297M [00:17<00:26, 3.44MB/s][A
+
+thirdparty_models.tar:  13%|█▎        | 129M/969M [00:17<00:58, 14.3MB/s][A[A
+
+thirdparty_models.tar:  14%|█▎        | 131M/969M [00:17<00:59, 14.1MB/s][A[A
+
+thirdparty_models.tar:  14%|█▎        | 133M/969M [00:17<00:55, 15.0MB/s][A[A
+LAM_assets.tar:  69%|██████▉   | 206M/297M [00:17<00:28, 3.27MB/s][A
+
+thirdparty_models.tar:  14%|█▍        | 135M/969M [00:17<00:56, 14.7MB/s][A[A
+
+thirdparty_models.tar:  14%|█▍        | 137M/969M [00:17<00:54, 15.4MB/s][A[A
+LAM_assets.tar:  69%|██████▉   | 207M/297M [00:18<00:27, 3.25MB/s][A
+
+thirdparty_models.tar:  14%|█▍        | 139M/969M [00:18<00:55, 15.1MB/s][A[A
+
+thirdparty_models.tar:  15%|█▍        | 142M/969M [00:18<00:55, 14.8MB/s][A[A
+
+thirdparty_models.tar:  15%|█▍        | 144M/969M [00:18<00:56, 14.6MB/s][A[A
+LAM_assets.tar:  70%|██████▉   | 208M/297M [00:18<00:27, 3.27MB/s][A
+
+thirdparty_models.tar:  15%|█▌        | 146M/969M [00:18<00:56, 14.6MB/s][A[A
+
+thirdparty_models.tar:  15%|█▌        | 148M/969M [00:18<00:55, 14.8MB/s][A[A
+LAM_assets.tar:  70%|███████   | 209M/297M [00:18<00:27, 3.25MB/s][A
+
+thirdparty_models.tar:  15%|█▌        | 150M/969M [00:18<00:55, 14.8MB/s][A[A
+
+thirdparty_models.tar:  16%|█▌        | 152M/969M [00:18<00:55, 14.7MB/s][A[A
+
+thirdparty_models.tar:  16%|█▌        | 154M/969M [00:19<00:55, 14.6MB/s][A[A
+LAM_assets.tar:  71%|███████   | 210M/297M [00:19<00:28, 3.09MB/s][ADownloading:  71%|███████▏  | 5/7 [00:19<00:00,  9.64file/s]
+
+thirdparty_models.tar:  16%|█▌        | 156M/969M [00:19<00:53, 15.3MB/s][A[A
+
+thirdparty_models.tar:  16%|█▋        | 158M/969M [00:19<00:54, 14.8MB/s][A[A
+LAM_assets.tar:  71%|███████   | 211M/297M [00:19<00:26, 3.23MB/s][A
+
+thirdparty_models.tar:  17%|█▋        | 160M/969M [00:19<00:54, 14.7MB/s][A[A
+
+thirdparty_models.tar:  17%|█▋        | 163M/969M [00:19<00:55, 14.5MB/s][A[A
+LAM_assets.tar:  71%|███████   | 212M/297M [00:19<00:25, 3.37MB/s][A
+
+thirdparty_models.tar:  17%|█▋        | 165M/969M [00:19<00:55, 14.4MB/s][A[A
+
+thirdparty_models.tar:  17%|█▋        | 167M/969M [00:19<00:55, 14.5MB/s][A[A
+LAM_assets.tar:  72%|███████▏  | 213M/297M [00:20<00:24, 3.44MB/s][A
+
+thirdparty_models.tar:  17%|█▋        | 169M/969M [00:20<00:56, 14.3MB/s][A[A
+
+thirdparty_models.tar:  18%|█▊        | 171M/969M [00:20<00:57, 13.8MB/s][A[A
+LAM_assets.tar:  72%|███████▏  | 214M/297M [00:20<00:25, 3.31MB/s][A
+
+thirdparty_models.tar:  18%|█▊        | 173M/969M [00:20<00:57, 13.8MB/s][A[A
+
+thirdparty_models.tar:  18%|█▊        | 175M/969M [00:20<00:53, 14.9MB/s][A[A
+LAM_assets.tar:  72%|███████▏  | 215M/297M [00:20<00:25, 3.28MB/s][A
+
+thirdparty_models.tar:  18%|█▊        | 177M/969M [00:20<00:50, 15.5MB/s][A[A
+
+thirdparty_models.tar:  19%|█▊        | 179M/969M [00:20<00:52, 15.1MB/s][A[A
+
+thirdparty_models.tar:  19%|█▊        | 181M/969M [00:20<00:51, 15.4MB/s][A[A
+LAM_assets.tar:  73%|███████▎  | 216M/297M [00:21<00:25, 3.23MB/s][A
+
+thirdparty_models.tar:  19%|█▉        | 184M/969M [00:21<00:52, 15.0MB/s][A[A
+
+thirdparty_models.tar:  19%|█▉        | 186M/969M [00:21<00:52, 15.0MB/s][A[A
+LAM_assets.tar:  73%|███████▎  | 217M/297M [00:21<00:24, 3.28MB/s][A
+
+thirdparty_models.tar:  19%|█▉        | 188M/969M [00:21<00:53, 14.7MB/s][A[A
+
+thirdparty_models.tar:  20%|█▉        | 190M/969M [00:21<00:52, 14.9MB/s][A[A
+
+thirdparty_models.tar:  20%|█▉        | 192M/969M [00:21<00:52, 14.9MB/s][A[A
+LAM_assets.tar:  73%|███████▎  | 218M/297M [00:21<00:25, 3.10MB/s][A
+
+thirdparty_models.tar:  20%|██        | 194M/969M [00:21<00:50, 15.3MB/s][A[A
+
+thirdparty_models.tar:  20%|██        | 196M/969M [00:21<00:51, 14.9MB/s][A[A
+LAM_assets.tar:  74%|███████▎  | 219M/297M [00:22<00:24, 3.24MB/s][A
+
+thirdparty_models.tar:  20%|██        | 198M/969M [00:22<00:52, 14.7MB/s][A[A
+LAM_assets.tar:  74%|███████▍  | 220M/297M [00:22<00:22, 3.36MB/s][A
+
+thirdparty_models.tar:  21%|██        | 200M/969M [00:22<00:54, 14.0MB/s][A[A
+
+thirdparty_models.tar:  21%|██        | 202M/969M [00:22<00:52, 14.7MB/s][A[A
+
+thirdparty_models.tar:  21%|██        | 204M/969M [00:22<00:52, 14.5MB/s][A[A
+LAM_assets.tar:  74%|███████▍  | 221M/297M [00:22<00:22, 3.41MB/s][A
+
+thirdparty_models.tar:  21%|██▏       | 207M/969M [00:22<00:51, 14.7MB/s][A[A
+
+thirdparty_models.tar:  22%|██▏       | 209M/969M [00:22<00:52, 14.4MB/s][A[A
+LAM_assets.tar:  75%|███████▍  | 222M/297M [00:23<00:22, 3.27MB/s][A
+
+thirdparty_models.tar:  22%|██▏       | 211M/969M [00:22<00:52, 14.5MB/s][A[A
+
+thirdparty_models.tar:  22%|██▏       | 213M/969M [00:23<00:52, 14.3MB/s][A[A
+LAM_assets.tar:  75%|███████▌  | 223M/297M [00:23<00:21, 3.37MB/s][A
+
+thirdparty_models.tar:  22%|██▏       | 215M/969M [00:23<00:50, 14.9MB/s][A[A
+
+thirdparty_models.tar:  22%|██▏       | 217M/969M [00:23<00:52, 14.2MB/s][A[A
+LAM_assets.tar:  75%|███████▌  | 224M/297M [00:23<00:21, 3.47MB/s][A
+
+thirdparty_models.tar:  23%|██▎       | 219M/969M [00:23<00:52, 14.2MB/s][A[A
+
+thirdparty_models.tar:  23%|██▎       | 221M/969M [00:23<00:51, 14.5MB/s][A[A
+LAM_assets.tar:  76%|███████▌  | 225M/297M [00:23<00:20, 3.52MB/s][A
+
+thirdparty_models.tar:  23%|██▎       | 223M/969M [00:23<00:50, 14.6MB/s][A[A
+
+thirdparty_models.tar:  23%|██▎       | 225M/969M [00:23<00:51, 14.4MB/s][A[A
+
+thirdparty_models.tar:  23%|██▎       | 228M/969M [00:24<00:49, 14.9MB/s][A[A
+
+thirdparty_models.tar:  24%|██▎       | 230M/969M [00:24<00:48, 15.4MB/s][A[A
+
+thirdparty_models.tar:  24%|██▍       | 232M/969M [00:24<00:47, 15.6MB/s][A[A
+LAM_assets.tar:  76%|███████▌  | 226M/297M [00:24<00:26, 2.63MB/s][A
+
+thirdparty_models.tar:  24%|██▍       | 234M/969M [00:24<00:50, 14.4MB/s][A[A
+
+thirdparty_models.tar:  24%|██▍       | 236M/969M [00:24<00:49, 14.8MB/s][A[A
+LAM_assets.tar:  77%|███████▋  | 229M/297M [00:24<00:19, 3.45MB/s][A
+
+thirdparty_models.tar:  25%|██▍       | 238M/969M [00:24<00:49, 14.7MB/s][A[A
+
+thirdparty_models.tar:  25%|██▍       | 240M/969M [00:24<00:48, 15.0MB/s][A[A
+LAM_assets.tar:  77%|███████▋  | 230M/297M [00:25<00:19, 3.40MB/s][A
+
+thirdparty_models.tar:  25%|██▍       | 242M/969M [00:25<00:49, 14.8MB/s][A[A
+
+thirdparty_models.tar:  25%|██▌       | 244M/969M [00:25<00:49, 14.7MB/s][A[A
+
+thirdparty_models.tar:  25%|██▌       | 246M/969M [00:25<00:49, 14.6MB/s][A[A
+LAM_assets.tar:  78%|███████▊  | 231M/297M [00:25<00:21, 3.12MB/s][A
+
+thirdparty_models.tar:  26%|██▌       | 249M/969M [00:25<00:47, 15.3MB/s][A[A
+
+thirdparty_models.tar:  26%|██▌       | 251M/969M [00:25<00:47, 15.0MB/s][A[A
+LAM_assets.tar:  78%|███████▊  | 232M/297M [00:25<00:20, 3.24MB/s][A
+
+thirdparty_models.tar:  26%|██▌       | 253M/969M [00:25<00:48, 14.6MB/s][A[A
+
+thirdparty_models.tar:  26%|██▋       | 255M/969M [00:25<00:49, 14.4MB/s][A[A
+LAM_assets.tar:  78%|███████▊  | 233M/297M [00:26<00:19, 3.35MB/s][A
+
+thirdparty_models.tar:  27%|██▋       | 257M/969M [00:26<00:48, 14.6MB/s][A[A
+
+thirdparty_models.tar:  27%|██▋       | 259M/969M [00:26<00:49, 14.5MB/s][A[A
+LAM_assets.tar:  79%|███████▊  | 234M/297M [00:26<00:18, 3.37MB/s][A
+
+thirdparty_models.tar:  27%|██▋       | 261M/969M [00:26<00:49, 14.3MB/s][A[A
+
+thirdparty_models.tar:  27%|██▋       | 263M/969M [00:26<00:47, 15.0MB/s][A[A
+
+thirdparty_models.tar:  27%|██▋       | 265M/969M [00:26<00:48, 14.6MB/s][A[A
+LAM_assets.tar:  79%|███████▉  | 235M/297M [00:26<00:18, 3.35MB/s][A
+
+thirdparty_models.tar:  28%|██▊       | 267M/969M [00:26<00:46, 15.1MB/s][A[A
+
+thirdparty_models.tar:  28%|██▊       | 269M/969M [00:26<00:47, 14.8MB/s][A[A
+LAM_assets.tar:  79%|███████▉  | 236M/297M [00:27<00:18, 3.26MB/s][A
+
+thirdparty_models.tar:  28%|██▊       | 272M/969M [00:27<00:47, 14.7MB/s][A[A
+
+thirdparty_models.tar:  28%|██▊       | 274M/969M [00:27<00:46, 14.9MB/s][A[A
+LAM_assets.tar:  80%|███████▉  | 237M/297M [00:27<00:18, 3.25MB/s][A
+
+thirdparty_models.tar:  28%|██▊       | 276M/969M [00:27<00:46, 14.8MB/s][A[A
+
+thirdparty_models.tar:  29%|██▊       | 278M/969M [00:27<00:45, 15.0MB/s][A[A
+
+thirdparty_models.tar:  29%|██▉       | 280M/969M [00:27<00:46, 14.8MB/s][A[A
+LAM_assets.tar:  80%|████████  | 238M/297M [00:27<00:18, 3.25MB/s][A
+
+thirdparty_models.tar:  29%|██▉       | 282M/969M [00:27<00:46, 14.6MB/s][A[A
+
+thirdparty_models.tar:  29%|██▉       | 284M/969M [00:27<00:47, 14.5MB/s][A[A
+LAM_assets.tar:  80%|████████  | 239M/297M [00:28<00:18, 3.09MB/s][A
+
+thirdparty_models.tar:  30%|██▉       | 286M/969M [00:28<00:46, 14.6MB/s][A[A
+
+thirdparty_models.tar:  30%|██▉       | 288M/969M [00:28<00:43, 15.8MB/s][A[A
+
+thirdparty_models.tar:  30%|██▉       | 290M/969M [00:28<00:44, 15.2MB/s][A[A
+LAM_assets.tar:  81%|████████  | 240M/297M [00:28<00:18, 3.09MB/s][A
+
+thirdparty_models.tar:  30%|███       | 293M/969M [00:28<00:46, 14.7MB/s][A[A
+
+thirdparty_models.tar:  30%|███       | 295M/969M [00:28<00:45, 14.7MB/s][A[A
+LAM_assets.tar:  81%|████████  | 241M/297M [00:28<00:17, 3.14MB/s][A
+
+thirdparty_models.tar:  31%|███       | 297M/969M [00:28<00:43, 15.3MB/s][A[A
+
+thirdparty_models.tar:  31%|███       | 299M/969M [00:28<00:44, 15.1MB/s][A[A
+
+thirdparty_models.tar:  31%|███       | 301M/969M [00:29<00:46, 14.5MB/s][A[A
+LAM_assets.tar:  81%|████████▏ | 242M/297M [00:29<00:17, 3.13MB/s][A
+
+thirdparty_models.tar:  31%|███▏      | 303M/969M [00:29<00:45, 14.6MB/s][A[A
+
+thirdparty_models.tar:  31%|███▏      | 305M/969M [00:29<00:46, 14.4MB/s][A[A
+LAM_assets.tar:  82%|████████▏ | 243M/297M [00:29<00:17, 3.00MB/s][A
+
+thirdparty_models.tar:  32%|███▏      | 307M/969M [00:29<00:42, 15.5MB/s][A[A
+
+thirdparty_models.tar:  32%|███▏      | 309M/969M [00:29<00:43, 15.1MB/s][A[A
+LAM_assets.tar:  82%|████████▏ | 244M/297M [00:29<00:16, 3.14MB/s][A
+
+thirdparty_models.tar:  32%|███▏      | 311M/969M [00:29<00:44, 14.7MB/s][A[A
+
+thirdparty_models.tar:  32%|███▏      | 314M/969M [00:29<00:44, 14.6MB/s][A[A
+LAM_assets.tar:  83%|████████▎ | 245M/297M [00:30<00:15, 3.25MB/s][A
+
+thirdparty_models.tar:  33%|███▎      | 316M/969M [00:30<00:44, 14.6MB/s][A[A
+
+thirdparty_models.tar:  33%|███▎      | 318M/969M [00:30<00:44, 14.6MB/s][A[A
+LAM_assets.tar:  83%|████████▎ | 246M/297M [00:30<00:15, 3.37MB/s][A
+
+thirdparty_models.tar:  33%|███▎      | 320M/969M [00:30<00:46, 14.0MB/s][A[A
+
+thirdparty_models.tar:  33%|███▎      | 322M/969M [00:30<00:45, 14.4MB/s][A[A
+
+thirdparty_models.tar:  33%|███▎      | 324M/969M [00:30<00:43, 14.7MB/s][A[A
+LAM_assets.tar:  83%|████████▎ | 247M/297M [00:30<00:15, 3.26MB/s][A
+
+thirdparty_models.tar:  34%|███▎      | 326M/969M [00:30<00:42, 15.1MB/s][A[A
+
+thirdparty_models.tar:  34%|███▍      | 328M/969M [00:30<00:44, 14.5MB/s][A[A
+LAM_assets.tar:  84%|████████▎ | 249M/297M [00:31<00:14, 3.27MB/s][A
+
+thirdparty_models.tar:  34%|███▍      | 330M/969M [00:31<00:42, 15.1MB/s][A[A
+
+thirdparty_models.tar:  34%|███▍      | 332M/969M [00:31<00:42, 15.0MB/s][A[A
+LAM_assets.tar:  84%|████████▍ | 250M/297M [00:31<00:14, 3.27MB/s][A
+
+thirdparty_models.tar:  35%|███▍      | 334M/969M [00:31<00:43, 14.6MB/s][A[A
+
+thirdparty_models.tar:  35%|███▍      | 337M/969M [00:31<00:43, 14.6MB/s][A[A
+
+thirdparty_models.tar:  35%|███▍      | 339M/969M [00:31<00:43, 14.4MB/s][A[A
+LAM_assets.tar:  84%|████████▍ | 251M/297M [00:31<00:14, 3.27MB/s][A
+
+thirdparty_models.tar:  35%|███▌      | 341M/969M [00:31<00:40, 15.4MB/s][A[A
+
+thirdparty_models.tar:  35%|███▌      | 343M/969M [00:31<00:41, 14.9MB/s][A[A
+LAM_assets.tar:  85%|████████▍ | 252M/297M [00:32<00:14, 3.10MB/s][A
+
+thirdparty_models.tar:  36%|███▌      | 345M/969M [00:32<00:40, 15.3MB/s][A[A
+
+thirdparty_models.tar:  36%|███▌      | 347M/969M [00:32<00:41, 14.9MB/s][A[A
+LAM_assets.tar:  85%|████████▍ | 253M/297M [00:32<00:13, 3.21MB/s][A
+
+thirdparty_models.tar:  36%|███▌      | 349M/969M [00:32<00:43, 14.4MB/s][A[A
+
+thirdparty_models.tar:  36%|███▌      | 351M/969M [00:32<00:42, 14.5MB/s][A[A
+LAM_assets.tar:  85%|████████▌ | 254M/297M [00:32<00:12, 3.39MB/s][A
+
+thirdparty_models.tar:  36%|███▋      | 353M/969M [00:32<00:42, 14.6MB/s][A[A
+
+thirdparty_models.tar:  37%|███▋      | 355M/969M [00:32<00:42, 14.4MB/s][A[A
+LAM_assets.tar:  86%|████████▌ | 255M/297M [00:33<00:12, 3.45MB/s][A
+
+thirdparty_models.tar:  37%|███▋      | 358M/969M [00:32<00:42, 14.4MB/s][A[A
+
+thirdparty_models.tar:  37%|███▋      | 360M/969M [00:33<00:42, 14.2MB/s][A[A
+
+thirdparty_models.tar:  37%|███▋      | 362M/969M [00:33<00:41, 14.5MB/s][A[A
+LAM_assets.tar:  86%|████████▌ | 256M/297M [00:33<00:12, 3.33MB/s][A
+
+thirdparty_models.tar:  38%|███▊      | 364M/969M [00:33<00:41, 14.7MB/s][A[A
+
+thirdparty_models.tar:  38%|███▊      | 366M/969M [00:33<00:41, 14.6MB/s][A[A
+LAM_assets.tar:  86%|████████▋ | 257M/297M [00:33<00:11, 3.42MB/s][A
+
+thirdparty_models.tar:  38%|███▊      | 368M/969M [00:33<00:40, 14.8MB/s][A[A
+
+thirdparty_models.tar:  38%|███▊      | 370M/969M [00:33<00:41, 14.5MB/s][A[A
+LAM_assets.tar:  87%|████████▋ | 258M/297M [00:33<00:11, 3.49MB/s][A
+
+thirdparty_models.tar:  38%|███▊      | 372M/969M [00:33<00:41, 14.5MB/s][A[A
+
+thirdparty_models.tar:  39%|███▊      | 374M/969M [00:34<00:41, 14.5MB/s][A[A
+LAM_assets.tar:  87%|████████▋ | 259M/297M [00:34<00:10, 3.50MB/s][A
+
+thirdparty_models.tar:  39%|███▉      | 376M/969M [00:34<00:41, 14.4MB/s][A[A
+
+thirdparty_models.tar:  39%|███▉      | 379M/969M [00:34<00:40, 14.5MB/s][A[A
+LAM_assets.tar:  87%|████████▋ | 260M/297M [00:34<00:11, 3.24MB/s][A
+
+thirdparty_models.tar:  39%|███▉      | 381M/969M [00:34<00:38, 15.2MB/s][A[A
+
+thirdparty_models.tar:  39%|███▉      | 383M/969M [00:34<00:39, 14.9MB/s][A[A
+
+thirdparty_models.tar:  40%|███▉      | 385M/969M [00:34<00:39, 14.8MB/s][A[A
+LAM_assets.tar:  88%|████████▊ | 261M/297M [00:34<00:11, 3.26MB/s][A
+
+thirdparty_models.tar:  40%|███▉      | 387M/969M [00:34<00:39, 14.7MB/s][A[A
+LAM_assets.tar:  88%|████████▊ | 262M/297M [00:35<00:17, 2.07MB/s][A
+
+thirdparty_models.tar:  40%|████      | 389M/969M [00:35<01:34, 6.12MB/s][A[A
+
+thirdparty_models.tar:  41%|████      | 395M/969M [00:35<00:48, 11.7MB/s][A[A
+
+thirdparty_models.tar:  41%|████      | 397M/969M [00:35<00:45, 12.6MB/s][A[A
+LAM_assets.tar:  89%|████████▉ | 265M/297M [00:36<00:08, 3.60MB/s][A
+
+thirdparty_models.tar:  41%|████      | 400M/969M [00:36<00:42, 13.4MB/s][A[A
+
+thirdparty_models.tar:  41%|████▏     | 402M/969M [00:36<00:39, 14.4MB/s][A[A
+
+thirdparty_models.tar:  42%|████▏     | 404M/969M [00:36<00:37, 15.2MB/s][A[A
+LAM_assets.tar:  90%|████████▉ | 266M/297M [00:36<00:08, 3.55MB/s][A
+
+thirdparty_models.tar:  42%|████▏     | 406M/969M [00:36<00:35, 15.8MB/s][A[A
+
+thirdparty_models.tar:  42%|████▏     | 408M/969M [00:36<00:34, 16.1MB/s][A[A
+LAM_assets.tar:  90%|████████▉ | 267M/297M [00:36<00:08, 3.58MB/s][A
+
+thirdparty_models.tar:  42%|████▏     | 410M/969M [00:36<00:33, 16.7MB/s][A[A
+
+thirdparty_models.tar:  43%|████▎     | 412M/969M [00:36<00:33, 16.8MB/s][A[A
+
+thirdparty_models.tar:  43%|████▎     | 414M/969M [00:36<00:32, 17.1MB/s][A[A
+LAM_assets.tar:  90%|█████████ | 268M/297M [00:37<00:08, 3.39MB/s][A
+
+thirdparty_models.tar:  43%|████▎     | 416M/969M [00:37<00:31, 17.5MB/s][A[A
+
+thirdparty_models.tar:  43%|████▎     | 418M/969M [00:37<00:31, 17.5MB/s][A[A
+
+thirdparty_models.tar:  43%|████▎     | 420M/969M [00:37<00:30, 17.8MB/s][A[A
+LAM_assets.tar:  91%|█████████ | 269M/297M [00:37<00:08, 3.35MB/s][A
+
+thirdparty_models.tar:  44%|████▎     | 423M/969M [00:37<00:30, 17.7MB/s][A[A
+
+thirdparty_models.tar:  44%|████▍     | 425M/969M [00:37<00:31, 17.4MB/s][A[A
+
+thirdparty_models.tar:  44%|████▍     | 427M/969M [00:37<00:30, 17.8MB/s][A[A
+LAM_assets.tar:  91%|█████████ | 271M/297M [00:37<00:08, 3.30MB/s][A
+
+thirdparty_models.tar:  44%|████▍     | 429M/969M [00:37<00:30, 17.7MB/s][A[A
+
+thirdparty_models.tar:  44%|████▍     | 431M/969M [00:37<00:30, 17.6MB/s][A[A
+LAM_assets.tar:  91%|█████████▏| 272M/297M [00:38<00:07, 3.31MB/s][A
+
+thirdparty_models.tar:  45%|████▍     | 433M/969M [00:38<00:32, 16.4MB/s][A[A
+
+thirdparty_models.tar:  45%|████▍     | 435M/969M [00:38<00:34, 15.5MB/s][A[A
+
+thirdparty_models.tar:  45%|████▌     | 437M/969M [00:38<00:34, 15.3MB/s][A[A
+LAM_assets.tar:  92%|█████████▏| 273M/297M [00:38<00:07, 3.13MB/s][A
+
+thirdparty_models.tar:  45%|████▌     | 439M/969M [00:38<00:33, 15.6MB/s][A[A
+
+thirdparty_models.tar:  46%|████▌     | 441M/969M [00:38<00:34, 15.4MB/s][A[A
+LAM_assets.tar:  92%|█████████▏| 274M/297M [00:38<00:07, 3.27MB/s][A
+
+thirdparty_models.tar:  46%|████▌     | 444M/969M [00:38<00:34, 15.4MB/s][A[A
+
+thirdparty_models.tar:  46%|████▌     | 446M/969M [00:38<00:35, 14.9MB/s][A[A
+LAM_assets.tar:  92%|█████████▏| 275M/297M [00:39<00:06, 3.38MB/s][A
+
+thirdparty_models.tar:  46%|████▌     | 448M/969M [00:39<00:35, 14.8MB/s][A[A
+
+thirdparty_models.tar:  46%|████▋     | 450M/969M [00:39<00:36, 14.3MB/s][A[A
+LAM_assets.tar:  93%|█████████▎| 276M/297M [00:39<00:06, 3.46MB/s][A
+
+thirdparty_models.tar:  47%|████▋     | 452M/969M [00:39<00:36, 14.3MB/s][A[A
+
+thirdparty_models.tar:  47%|████▋     | 454M/969M [00:39<00:36, 14.3MB/s][A[A
+LAM_assets.tar:  93%|█████████▎| 277M/297M [00:39<00:06, 3.31MB/s][A
+
+thirdparty_models.tar:  47%|████▋     | 456M/969M [00:39<00:35, 14.6MB/s][A[A
+
+thirdparty_models.tar:  47%|████▋     | 458M/969M [00:39<00:34, 14.9MB/s][A[A
+
+thirdparty_models.tar:  48%|████▊     | 460M/969M [00:39<00:34, 14.6MB/s][A[A
+LAM_assets.tar:  93%|█████████▎| 278M/297M [00:40<00:05, 3.29MB/s][A
+
+thirdparty_models.tar:  48%|████▊     | 462M/969M [00:40<00:33, 15.1MB/s][A[A
+
+thirdparty_models.tar:  48%|████▊     | 465M/969M [00:40<00:33, 15.3MB/s][A[A
+LAM_assets.tar:  94%|█████████▍| 279M/297M [00:40<00:05, 3.28MB/s][A
+
+thirdparty_models.tar:  48%|████▊     | 467M/969M [00:40<00:33, 15.0MB/s][A[A
+
+thirdparty_models.tar:  48%|████▊     | 469M/969M [00:40<00:34, 14.7MB/s][A[A
+LAM_assets.tar:  94%|█████████▍| 280M/297M [00:40<00:05, 3.27MB/s][A
+
+thirdparty_models.tar:  49%|████▊     | 471M/969M [00:40<00:34, 14.4MB/s][A[A
+
+thirdparty_models.tar:  49%|████▉     | 473M/969M [00:40<00:32, 15.2MB/s][A[A
+
+thirdparty_models.tar:  49%|████▉     | 475M/969M [00:40<00:32, 15.1MB/s][A[A
+LAM_assets.tar:  95%|█████████▍| 281M/297M [00:41<00:05, 3.11MB/s][A
+
+thirdparty_models.tar:  49%|████▉     | 477M/969M [00:41<00:33, 14.8MB/s][A[A
+
+thirdparty_models.tar:  49%|████▉     | 479M/969M [00:41<00:33, 14.7MB/s][A[A
+LAM_assets.tar:  95%|█████████▍| 282M/297M [00:41<00:04, 3.21MB/s][A
+
+thirdparty_models.tar:  50%|████▉     | 481M/969M [00:41<00:33, 14.5MB/s][A[A
+
+thirdparty_models.tar:  50%|████▉     | 483M/969M [00:41<00:32, 14.9MB/s][A[A
+LAM_assets.tar:  95%|█████████▌| 283M/297M [00:41<00:04, 3.34MB/s][A
+
+thirdparty_models.tar:  50%|█████     | 485M/969M [00:41<00:34, 14.2MB/s][A[A
+
+thirdparty_models.tar:  50%|█████     | 488M/969M [00:41<00:33, 14.5MB/s][A[A
+LAM_assets.tar:  96%|█████████▌| 284M/297M [00:41<00:03, 3.42MB/s][A
+
+thirdparty_models.tar:  51%|█████     | 490M/969M [00:41<00:33, 14.3MB/s][A[A
+
+thirdparty_models.tar:  51%|█████     | 492M/969M [00:42<00:32, 14.8MB/s][A[A
+LAM_assets.tar:  96%|█████████▌| 285M/297M [00:42<00:03, 3.30MB/s][A
+
+thirdparty_models.tar:  51%|█████     | 494M/969M [00:42<00:32, 14.6MB/s][A[A
+
+thirdparty_models.tar:  51%|█████     | 496M/969M [00:42<00:31, 14.8MB/s][A[A
+LAM_assets.tar:  96%|█████████▋| 286M/297M [00:42<00:03, 3.32MB/s][A
+
+thirdparty_models.tar:  51%|█████▏    | 498M/969M [00:42<00:33, 14.2MB/s][A[A
+
+thirdparty_models.tar:  52%|█████▏    | 500M/969M [00:42<00:30, 15.2MB/s][A[A
+
+thirdparty_models.tar:  52%|█████▏    | 502M/969M [00:42<00:31, 14.8MB/s][A[A
+LAM_assets.tar:  97%|█████████▋| 287M/297M [00:42<00:02, 3.44MB/s][A
+
+thirdparty_models.tar:  52%|█████▏    | 504M/969M [00:42<00:33, 14.0MB/s][A[A
+LAM_assets.tar:  97%|█████████▋| 288M/297M [00:43<00:02, 3.47MB/s][A
+
+thirdparty_models.tar:  52%|█████▏    | 506M/969M [00:43<00:32, 14.1MB/s][A[A
+
+thirdparty_models.tar:  52%|█████▏    | 509M/969M [00:43<00:31, 14.7MB/s][A[A
+
+thirdparty_models.tar:  53%|█████▎    | 511M/969M [00:43<00:31, 14.5MB/s][A[A
+LAM_assets.tar:  97%|█████████▋| 289M/297M [00:43<00:02, 3.17MB/s][A
+
+thirdparty_models.tar:  53%|█████▎    | 513M/969M [00:43<00:31, 14.7MB/s][A[A
+LAM_assets.tar:  98%|█████████▊| 290M/297M [00:43<00:01, 3.84MB/s][A
+
+thirdparty_models.tar:  53%|█████▎    | 515M/969M [00:43<00:37, 12.3MB/s][A[A
+LAM_assets.tar:  98%|█████████▊| 293M/297M [00:43<00:00, 5.59MB/s][A
+LAM_assets.tar:  99%|█████████▉| 295M/297M [00:44<00:00, 6.72MB/s][A
+
+thirdparty_models.tar:  53%|█████▎    | 517M/969M [00:43<00:43, 10.5MB/s][A[A
+
+thirdparty_models.tar:  54%|█████▎    | 519M/969M [00:44<00:39, 11.5MB/s][A[A
+LAM_assets.tar:  99%|█████████▉| 296M/297M [00:44<00:00, 5.69MB/s][A
+
+thirdparty_models.tar:  54%|█████▍    | 521M/969M [00:44<00:37, 12.0MB/s][A[A
+
+thirdparty_models.tar:  54%|█████▍    | 523M/969M [00:44<00:34, 12.7MB/s][A[A
+LAM_assets.tar: 100%|█████████▉| 297M/297M [00:44<00:00, 5.03MB/s][A
+
+thirdparty_models.tar:  54%|█████▍    | 525M/969M [00:44<00:33, 13.1MB/s][A[A
+
+thirdparty_models.tar:  54%|█████▍    | 527M/969M [00:44<00:32, 13.7MB/s][A[A
+LAM_assets.tar: 100%|██████████| 297M/297M [00:44<00:00, 4.73MB/s][A
+                                                                  [A
+
+thirdparty_models.tar:  55%|█████▍    | 530M/969M [00:44<00:29, 14.7MB/s][A[ADownloading:  86%|████████▌ | 6/7 [00:45<00:10, 10.59s/file]
+
+thirdparty_models.tar:  55%|█████▍    | 532M/969M [00:44<00:28, 15.3MB/s][A[A
+
+thirdparty_models.tar:  55%|█████▌    | 534M/969M [00:45<00:27, 16.0MB/s][A[A
+
+thirdparty_models.tar:  55%|█████▌    | 536M/969M [00:45<00:26, 16.3MB/s][A[A
+
+thirdparty_models.tar:  56%|█████▌    | 538M/969M [00:45<00:25, 16.6MB/s][A[A
+
+thirdparty_models.tar:  56%|█████▌    | 540M/969M [00:45<00:25, 16.8MB/s][A[A
+
+thirdparty_models.tar:  56%|█████▌    | 542M/969M [00:45<00:24, 17.4MB/s][A[A
+
+thirdparty_models.tar:  56%|█████▌    | 544M/969M [00:45<00:24, 17.3MB/s][A[A
+
+thirdparty_models.tar:  56%|█████▋    | 546M/969M [00:45<00:24, 17.4MB/s][A[A
+
+thirdparty_models.tar:  57%|█████▋    | 548M/969M [00:45<00:24, 17.4MB/s][A[A
+
+thirdparty_models.tar:  57%|█████▋    | 551M/969M [00:46<00:23, 17.8MB/s][A[A
+
+thirdparty_models.tar:  57%|█████▋    | 553M/969M [00:46<00:23, 17.7MB/s][A[A
+
+thirdparty_models.tar:  57%|█████▋    | 555M/969M [00:46<00:23, 17.6MB/s][A[A
+
+thirdparty_models.tar:  57%|█████▋    | 557M/969M [00:46<00:23, 17.5MB/s][A[A
+
+thirdparty_models.tar:  58%|█████▊    | 559M/969M [00:46<00:23, 17.4MB/s][A[A
+
+thirdparty_models.tar:  58%|█████▊    | 561M/969M [00:46<00:23, 17.4MB/s][A[A
+
+thirdparty_models.tar:  58%|█████▊    | 563M/969M [00:46<00:23, 17.5MB/s][A[A
+
+thirdparty_models.tar:  58%|█████▊    | 565M/969M [00:46<00:23, 17.4MB/s][A[A
+
+thirdparty_models.tar:  59%|█████▊    | 567M/969M [00:46<00:22, 17.9MB/s][A[A
+
+thirdparty_models.tar:  59%|█████▉    | 569M/969M [00:47<00:22, 17.6MB/s][A[A
+
+thirdparty_models.tar:  59%|█████▉    | 571M/969M [00:47<00:22, 17.6MB/s][A[A
+
+thirdparty_models.tar:  59%|█████▉    | 574M/969M [00:47<00:22, 17.5MB/s][A[A
+
+thirdparty_models.tar:  59%|█████▉    | 576M/969M [00:47<00:22, 17.6MB/s][A[A
+
+thirdparty_models.tar:  60%|█████▉    | 578M/969M [00:47<00:22, 17.5MB/s][A[A
+
+thirdparty_models.tar:  60%|█████▉    | 580M/969M [00:47<00:22, 17.4MB/s][A[A
+
+thirdparty_models.tar:  60%|██████    | 582M/969M [00:47<00:21, 17.9MB/s][A[A
+
+thirdparty_models.tar:  60%|██████    | 584M/969M [00:47<00:21, 17.6MB/s][A[A
+
+thirdparty_models.tar:  60%|██████    | 586M/969M [00:48<00:21, 17.6MB/s][A[A
+
+thirdparty_models.tar:  61%|██████    | 588M/969M [00:48<00:21, 17.5MB/s][A[A
+
+thirdparty_models.tar:  61%|██████    | 590M/969M [00:48<00:21, 17.6MB/s][A[A
+
+thirdparty_models.tar:  61%|██████    | 592M/969M [00:48<00:21, 17.5MB/s][A[A
+
+thirdparty_models.tar:  61%|██████▏   | 595M/969M [00:48<00:20, 17.9MB/s][A[A
+
+thirdparty_models.tar:  62%|██████▏   | 597M/969M [00:48<00:22, 16.8MB/s][A[A
+
+thirdparty_models.tar:  62%|██████▏   | 599M/969M [00:48<00:21, 17.0MB/s][A[A
+
+thirdparty_models.tar:  62%|██████▏   | 601M/969M [00:48<00:21, 17.1MB/s][A[A
+
+thirdparty_models.tar:  62%|██████▏   | 603M/969M [00:49<00:21, 17.1MB/s][A[A
+
+thirdparty_models.tar:  62%|██████▏   | 605M/969M [00:49<00:20, 17.8MB/s][A[A
+
+thirdparty_models.tar:  63%|██████▎   | 607M/969M [00:49<00:20, 17.6MB/s][A[A
+
+thirdparty_models.tar:  63%|██████▎   | 609M/969M [00:49<00:20, 17.5MB/s][A[A
+
+thirdparty_models.tar:  63%|██████▎   | 611M/969M [00:49<00:20, 17.4MB/s][A[A
+
+thirdparty_models.tar:  63%|██████▎   | 613M/969M [00:49<00:20, 17.4MB/s][A[A
+
+thirdparty_models.tar:  64%|██████▎   | 616M/969M [00:49<00:19, 17.9MB/s][A[A
+
+thirdparty_models.tar:  64%|██████▎   | 618M/969M [00:49<00:19, 17.7MB/s][A[A
+
+thirdparty_models.tar:  64%|██████▍   | 620M/969M [00:49<00:19, 17.6MB/s][A[A
+
+thirdparty_models.tar:  64%|██████▍   | 622M/969M [00:50<00:19, 17.5MB/s][A[A
+
+thirdparty_models.tar:  64%|██████▍   | 624M/969M [00:50<00:19, 17.5MB/s][A[A
+
+thirdparty_models.tar:  65%|██████▍   | 626M/969M [00:50<00:19, 17.5MB/s][A[A
+
+thirdparty_models.tar:  65%|██████▍   | 628M/969M [00:50<00:19, 17.4MB/s][A[A
+
+thirdparty_models.tar:  65%|██████▌   | 630M/969M [00:50<00:19, 17.4MB/s][A[A
+
+thirdparty_models.tar:  65%|██████▌   | 632M/969M [00:50<00:18, 17.9MB/s][A[A
+
+thirdparty_models.tar:  65%|██████▌   | 634M/969M [00:50<00:18, 17.7MB/s][A[A
+
+thirdparty_models.tar:  66%|██████▌   | 636M/969M [00:50<00:18, 17.5MB/s][A[A
+
+thirdparty_models.tar:  66%|██████▌   | 639M/969M [00:51<00:19, 17.3MB/s][A[A
+
+thirdparty_models.tar:  66%|██████▌   | 641M/969M [00:51<00:18, 17.3MB/s][A[A
+
+thirdparty_models.tar:  66%|██████▋   | 643M/969M [00:51<00:18, 17.9MB/s][A[A
+
+thirdparty_models.tar:  67%|██████▋   | 645M/969M [00:51<00:18, 17.7MB/s][A[A
+
+thirdparty_models.tar:  67%|██████▋   | 647M/969M [00:51<00:18, 17.5MB/s][A[A
+
+thirdparty_models.tar:  67%|██████▋   | 649M/969M [00:51<00:17, 18.0MB/s][A[A
+
+thirdparty_models.tar:  67%|██████▋   | 651M/969M [00:51<00:17, 17.8MB/s][A[A
+
+thirdparty_models.tar:  67%|██████▋   | 653M/969M [00:51<00:17, 17.6MB/s][A[A
+
+thirdparty_models.tar:  68%|██████▊   | 655M/969M [00:51<00:17, 17.5MB/s][A[A
+
+thirdparty_models.tar:  68%|██████▊   | 657M/969M [00:52<00:17, 17.5MB/s][A[A
+
+thirdparty_models.tar:  68%|██████▊   | 660M/969M [00:52<00:17, 17.4MB/s][A[A
+
+thirdparty_models.tar:  68%|██████▊   | 662M/969M [00:52<00:17, 17.4MB/s][A[A
+
+thirdparty_models.tar:  68%|██████▊   | 664M/969M [00:52<00:17, 17.4MB/s][A[A
+
+thirdparty_models.tar:  69%|██████▊   | 666M/969M [00:52<00:17, 17.4MB/s][A[A
+
+thirdparty_models.tar:  69%|██████▉   | 668M/969M [00:52<00:16, 17.8MB/s][A[A
+
+thirdparty_models.tar:  69%|██████▉   | 670M/969M [00:52<00:16, 17.6MB/s][A[A
+
+thirdparty_models.tar:  69%|██████▉   | 672M/969M [00:52<00:16, 17.5MB/s][A[A
+
+thirdparty_models.tar:  70%|██████▉   | 674M/969M [00:53<00:16, 17.5MB/s][A[A
+
+thirdparty_models.tar:  70%|██████▉   | 676M/969M [00:53<00:16, 17.4MB/s][A[A
+
+thirdparty_models.tar:  70%|███████   | 678M/969M [00:53<00:16, 17.5MB/s][A[A
+
+thirdparty_models.tar:  70%|███████   | 681M/969M [00:53<00:16, 17.5MB/s][A[A
+
+thirdparty_models.tar:  70%|███████   | 683M/969M [00:53<00:16, 17.4MB/s][A[A
+
+thirdparty_models.tar:  71%|███████   | 685M/969M [00:53<00:15, 17.8MB/s][A[A
+
+thirdparty_models.tar:  71%|███████   | 687M/969M [00:53<00:16, 17.6MB/s][A[A
+
+thirdparty_models.tar:  71%|███████   | 689M/969M [00:53<00:15, 17.5MB/s][A[A
+
+thirdparty_models.tar:  71%|███████▏  | 691M/969M [00:54<00:15, 17.7MB/s][A[A
+
+thirdparty_models.tar:  72%|███████▏  | 693M/969M [00:54<00:15, 17.6MB/s][A[A
+
+thirdparty_models.tar:  72%|███████▏  | 695M/969M [00:54<00:15, 17.5MB/s][A[A
+
+thirdparty_models.tar:  72%|███████▏  | 697M/969M [00:54<00:15, 17.4MB/s][A[A
+
+thirdparty_models.tar:  72%|███████▏  | 699M/969M [00:54<00:15, 17.8MB/s][A[A
+
+thirdparty_models.tar:  72%|███████▏  | 701M/969M [00:54<00:15, 17.7MB/s][A[A
+
+thirdparty_models.tar:  73%|███████▎  | 704M/969M [00:54<00:15, 17.6MB/s][A[A
+
+thirdparty_models.tar:  73%|███████▎  | 706M/969M [00:54<00:14, 17.6MB/s][A[A
+
+thirdparty_models.tar:  73%|███████▎  | 708M/969M [00:54<00:14, 17.6MB/s][A[A
+
+thirdparty_models.tar:  73%|███████▎  | 710M/969M [00:55<00:14, 17.5MB/s][A[A
+
+thirdparty_models.tar:  73%|███████▎  | 712M/969M [00:55<00:14, 17.9MB/s][A[A
+
+thirdparty_models.tar:  74%|███████▎  | 714M/969M [00:55<00:14, 17.7MB/s][A[A
+
+thirdparty_models.tar:  74%|███████▍  | 716M/969M [00:55<00:14, 17.6MB/s][A[A
+
+thirdparty_models.tar:  74%|███████▍  | 718M/969M [00:55<00:14, 17.5MB/s][A[A
+
+thirdparty_models.tar:  74%|███████▍  | 720M/969M [00:55<00:14, 17.6MB/s][A[A
+
+thirdparty_models.tar:  75%|███████▍  | 722M/969M [00:55<00:14, 17.5MB/s][A[A
+
+thirdparty_models.tar:  75%|███████▍  | 725M/969M [00:55<00:14, 17.5MB/s][A[A
+
+thirdparty_models.tar:  75%|███████▍  | 727M/969M [00:56<00:13, 17.4MB/s][A[A
+
+thirdparty_models.tar:  75%|███████▌  | 729M/969M [00:56<00:13, 17.8MB/s][A[A
+
+thirdparty_models.tar:  75%|███████▌  | 731M/969M [00:56<00:13, 17.7MB/s][A[A
+
+thirdparty_models.tar:  76%|███████▌  | 733M/969M [00:56<00:13, 17.6MB/s][A[A
+
+thirdparty_models.tar:  76%|███████▌  | 735M/969M [00:56<00:13, 17.5MB/s][A[A
+
+thirdparty_models.tar:  76%|███████▌  | 737M/969M [00:56<00:13, 17.4MB/s][A[A
+
+thirdparty_models.tar:  76%|███████▋  | 739M/969M [00:56<00:13, 17.5MB/s][A[A
+
+thirdparty_models.tar:  77%|███████▋  | 741M/969M [00:56<00:13, 17.5MB/s][A[A
+
+thirdparty_models.tar:  77%|███████▋  | 743M/969M [00:57<00:12, 17.4MB/s][A[A
+
+thirdparty_models.tar:  77%|███████▋  | 746M/969M [00:57<00:12, 17.9MB/s][A[A
+
+thirdparty_models.tar:  77%|███████▋  | 748M/969M [00:57<00:12, 17.7MB/s][A[A
+
+thirdparty_models.tar:  77%|███████▋  | 750M/969M [00:57<00:12, 17.6MB/s][A[A
+
+thirdparty_models.tar:  78%|███████▊  | 752M/969M [00:57<00:12, 17.5MB/s][A[A
+
+thirdparty_models.tar:  78%|███████▊  | 754M/969M [00:57<00:12, 17.6MB/s][A[A
+
+thirdparty_models.tar:  78%|███████▊  | 756M/969M [00:57<00:12, 17.5MB/s][A[A
+
+thirdparty_models.tar:  78%|███████▊  | 758M/969M [00:57<00:12, 17.4MB/s][A[A
+
+thirdparty_models.tar:  78%|███████▊  | 760M/969M [00:57<00:11, 17.9MB/s][A[A
+
+thirdparty_models.tar:  79%|███████▊  | 762M/969M [00:58<00:11, 17.7MB/s][A[A
+
+thirdparty_models.tar:  79%|███████▉  | 764M/969M [00:58<00:11, 17.6MB/s][A[A
+
+thirdparty_models.tar:  79%|███████▉  | 767M/969M [00:58<00:11, 17.6MB/s][A[A
+
+thirdparty_models.tar:  79%|███████▉  | 769M/969M [00:58<00:11, 17.5MB/s][A[A
+
+thirdparty_models.tar:  80%|███████▉  | 771M/969M [00:58<00:11, 17.5MB/s][A[A
+
+thirdparty_models.tar:  80%|███████▉  | 773M/969M [00:58<00:10, 17.9MB/s][A[A
+
+thirdparty_models.tar:  80%|███████▉  | 775M/969M [00:58<00:10, 17.7MB/s][A[A
+
+thirdparty_models.tar:  80%|████████  | 777M/969M [00:58<00:10, 17.8MB/s][A[A
+
+thirdparty_models.tar:  80%|████████  | 779M/969M [00:59<00:10, 17.7MB/s][A[A
+
+thirdparty_models.tar:  81%|████████  | 781M/969M [00:59<00:10, 17.5MB/s][A[A
+
+thirdparty_models.tar:  81%|████████  | 783M/969M [00:59<00:10, 17.9MB/s][A[A
+
+thirdparty_models.tar:  81%|████████  | 785M/969M [00:59<00:10, 17.6MB/s][A[A
+
+thirdparty_models.tar:  81%|████████▏ | 787M/969M [00:59<00:10, 17.8MB/s][A[A
+
+thirdparty_models.tar:  81%|████████▏ | 790M/969M [00:59<00:10, 17.7MB/s][A[A
+
+thirdparty_models.tar:  82%|████████▏ | 792M/969M [00:59<00:10, 17.6MB/s][A[A
+
+thirdparty_models.tar:  82%|████████▏ | 794M/969M [00:59<00:09, 17.8MB/s][A[A
+
+thirdparty_models.tar:  82%|████████▏ | 796M/969M [01:00<00:10, 16.3MB/s][A[A
+
+thirdparty_models.tar:  82%|████████▏ | 798M/969M [01:00<00:10, 16.6MB/s][A[A
+
+thirdparty_models.tar:  83%|████████▎ | 800M/969M [01:00<00:10, 16.8MB/s][A[A
+
+thirdparty_models.tar:  83%|████████▎ | 802M/969M [01:00<00:09, 17.0MB/s][A[A
+
+thirdparty_models.tar:  83%|████████▎ | 804M/969M [01:00<00:09, 17.0MB/s][A[A
+
+thirdparty_models.tar:  83%|████████▎ | 806M/969M [01:00<00:09, 17.7MB/s][A[A
+
+thirdparty_models.tar:  83%|████████▎ | 808M/969M [01:00<00:09, 17.6MB/s][A[A
+
+thirdparty_models.tar:  84%|████████▎ | 811M/969M [01:00<00:09, 17.5MB/s][A[A
+
+thirdparty_models.tar:  84%|████████▍ | 813M/969M [01:00<00:08, 17.5MB/s][A[A
+
+thirdparty_models.tar:  84%|████████▍ | 815M/969M [01:01<00:08, 17.5MB/s][A[A
+
+thirdparty_models.tar:  84%|████████▍ | 817M/969M [01:01<00:08, 17.4MB/s][A[A
+
+thirdparty_models.tar:  85%|████████▍ | 819M/969M [01:01<00:08, 17.4MB/s][A[A
+
+thirdparty_models.tar:  85%|████████▍ | 821M/969M [01:01<00:08, 18.0MB/s][A[A
+
+thirdparty_models.tar:  85%|████████▍ | 823M/969M [01:01<00:08, 17.8MB/s][A[A
+
+thirdparty_models.tar:  85%|████████▌ | 825M/969M [01:01<00:08, 17.7MB/s][A[A
+
+thirdparty_models.tar:  85%|████████▌ | 827M/969M [01:01<00:08, 17.7MB/s][A[A
+
+thirdparty_models.tar:  86%|████████▌ | 829M/969M [01:01<00:07, 17.6MB/s][A[A
+
+thirdparty_models.tar:  86%|████████▌ | 832M/969M [01:02<00:07, 18.0MB/s][A[A
+
+thirdparty_models.tar:  86%|████████▌ | 834M/969M [01:02<00:07, 17.8MB/s][A[A
+
+thirdparty_models.tar:  86%|████████▌ | 836M/969M [01:02<00:07, 17.6MB/s][A[A
+
+thirdparty_models.tar:  86%|████████▋ | 838M/969M [01:02<00:07, 17.7MB/s][A[A
+
+thirdparty_models.tar:  87%|████████▋ | 840M/969M [01:02<00:07, 17.6MB/s][A[A
+
+thirdparty_models.tar:  87%|████████▋ | 842M/969M [01:02<00:07, 17.5MB/s][A[A
+
+thirdparty_models.tar:  87%|████████▋ | 844M/969M [01:02<00:07, 17.4MB/s][A[A
+
+thirdparty_models.tar:  87%|████████▋ | 846M/969M [01:02<00:06, 18.0MB/s][A[A
+
+thirdparty_models.tar:  88%|████████▊ | 848M/969M [01:02<00:06, 17.8MB/s][A[A
+
+thirdparty_models.tar:  88%|████████▊ | 850M/969M [01:03<00:06, 17.7MB/s][A[A
+
+thirdparty_models.tar:  88%|████████▊ | 852M/969M [01:03<00:06, 17.6MB/s][A[A
+
+thirdparty_models.tar:  88%|████████▊ | 855M/969M [01:03<00:06, 17.4MB/s][A[A
+
+thirdparty_models.tar:  88%|████████▊ | 857M/969M [01:03<00:06, 18.0MB/s][A[A
+
+thirdparty_models.tar:  89%|████████▊ | 859M/969M [01:03<00:06, 17.8MB/s][A[A
+
+thirdparty_models.tar:  89%|████████▉ | 861M/969M [01:03<00:06, 17.6MB/s][A[A
+
+thirdparty_models.tar:  89%|████████▉ | 863M/969M [01:03<00:05, 18.1MB/s][A[A
+
+thirdparty_models.tar:  89%|████████▉ | 865M/969M [01:03<00:05, 17.8MB/s][A[A
+
+thirdparty_models.tar:  89%|████████▉ | 867M/969M [01:04<00:05, 17.6MB/s][A[A
+
+thirdparty_models.tar:  90%|████████▉ | 869M/969M [01:04<00:05, 17.6MB/s][A[A
+
+thirdparty_models.tar:  90%|████████▉ | 871M/969M [01:04<00:05, 17.5MB/s][A[A
+
+thirdparty_models.tar:  90%|█████████ | 873M/969M [01:04<00:05, 17.4MB/s][A[A
+
+thirdparty_models.tar:  90%|█████████ | 876M/969M [01:04<00:05, 18.0MB/s][A[A
+
+thirdparty_models.tar:  91%|█████████ | 878M/969M [01:04<00:05, 17.7MB/s][A[A
+
+thirdparty_models.tar:  91%|█████████ | 880M/969M [01:04<00:05, 17.6MB/s][A[A
+
+thirdparty_models.tar:  91%|█████████ | 882M/969M [01:04<00:04, 17.5MB/s][A[A
+
+thirdparty_models.tar:  91%|█████████ | 884M/969M [01:04<00:04, 17.4MB/s][A[A
+
+thirdparty_models.tar:  91%|█████████▏| 886M/969M [01:05<00:04, 18.0MB/s][A[A
+
+thirdparty_models.tar:  92%|█████████▏| 888M/969M [01:05<00:04, 17.8MB/s][A[A
+
+thirdparty_models.tar:  92%|█████████▏| 890M/969M [01:05<00:04, 17.6MB/s][A[A
+
+thirdparty_models.tar:  92%|█████████▏| 892M/969M [01:05<00:04, 17.6MB/s][A[A
+
+thirdparty_models.tar:  92%|█████████▏| 894M/969M [01:05<00:04, 17.5MB/s][A[A
+
+thirdparty_models.tar:  93%|█████████▎| 897M/969M [01:05<00:04, 17.5MB/s][A[A
+
+thirdparty_models.tar:  93%|█████████▎| 899M/969M [01:05<00:04, 17.4MB/s][A[A
+
+thirdparty_models.tar:  93%|█████████▎| 901M/969M [01:05<00:03, 17.4MB/s][A[A
+
+thirdparty_models.tar:  93%|█████████▎| 903M/969M [01:06<00:03, 18.0MB/s][A[A
+
+thirdparty_models.tar:  93%|█████████▎| 905M/969M [01:06<00:03, 17.8MB/s][A[A
+
+thirdparty_models.tar:  94%|█████████▎| 907M/969M [01:06<00:03, 17.7MB/s][A[A
+
+thirdparty_models.tar:  94%|█████████▍| 909M/969M [01:06<00:03, 17.6MB/s][A[A
+
+thirdparty_models.tar:  94%|█████████▍| 911M/969M [01:06<00:03, 17.5MB/s][A[A
+
+thirdparty_models.tar:  94%|█████████▍| 913M/969M [01:06<00:03, 17.9MB/s][A[A
+
+thirdparty_models.tar:  94%|█████████▍| 915M/969M [01:06<00:03, 17.7MB/s][A[A
+
+thirdparty_models.tar:  95%|█████████▍| 918M/969M [01:06<00:02, 17.6MB/s][A[A
+
+thirdparty_models.tar:  95%|█████████▍| 920M/969M [01:07<00:02, 17.7MB/s][A[A
+
+thirdparty_models.tar:  95%|█████████▌| 922M/969M [01:07<00:02, 17.6MB/s][A[A
+
+thirdparty_models.tar:  95%|█████████▌| 924M/969M [01:07<00:02, 17.5MB/s][A[A
+
+thirdparty_models.tar:  96%|█████████▌| 926M/969M [01:07<00:02, 16.1MB/s][A[A
+
+thirdparty_models.tar:  96%|█████████▌| 928M/969M [01:07<00:02, 16.9MB/s][A[A
+
+thirdparty_models.tar:  96%|█████████▌| 930M/969M [01:07<00:02, 17.2MB/s][A[A
+
+thirdparty_models.tar:  96%|█████████▌| 932M/969M [01:07<00:02, 17.2MB/s][A[A
+
+thirdparty_models.tar:  96%|█████████▋| 934M/969M [01:07<00:02, 17.3MB/s][A[A
+
+thirdparty_models.tar:  97%|█████████▋| 936M/969M [01:07<00:01, 17.8MB/s][A[A
+
+thirdparty_models.tar:  97%|█████████▋| 938M/969M [01:08<00:01, 17.7MB/s][A[A
+
+thirdparty_models.tar:  97%|█████████▋| 941M/969M [01:08<00:01, 17.6MB/s][A[A
+
+thirdparty_models.tar:  97%|█████████▋| 943M/969M [01:08<00:01, 17.6MB/s][A[A
+
+thirdparty_models.tar:  97%|█████████▋| 945M/969M [01:08<00:01, 17.5MB/s][A[A
+
+thirdparty_models.tar:  98%|█████████▊| 947M/969M [01:08<00:01, 17.4MB/s][A[A
+
+thirdparty_models.tar:  98%|█████████▊| 949M/969M [01:08<00:01, 17.9MB/s][A[A
+
+thirdparty_models.tar:  98%|█████████▊| 951M/969M [01:08<00:01, 17.7MB/s][A[A
+
+thirdparty_models.tar:  98%|█████████▊| 953M/969M [01:08<00:00, 17.6MB/s][A[A
+
+thirdparty_models.tar:  99%|█████████▊| 955M/969M [01:09<00:00, 17.7MB/s][A[A
+
+thirdparty_models.tar:  99%|█████████▉| 957M/969M [01:09<00:00, 17.5MB/s][A[A
+
+thirdparty_models.tar:  99%|█████████▉| 959M/969M [01:09<00:00, 17.5MB/s][A[A
+
+thirdparty_models.tar:  99%|█████████▉| 962M/969M [01:09<00:00, 18.0MB/s][A[A
+
+thirdparty_models.tar:  99%|█████████▉| 964M/969M [01:09<00:00, 17.8MB/s][A[A
+
+thirdparty_models.tar: 100%|█████████▉| 966M/969M [01:09<00:00, 17.6MB/s][A[A
+
+thirdparty_models.tar: 100%|█████████▉| 968M/969M [01:10<00:00, 5.98MB/s][A[A
+
+                                                                         [A[ADownloading: 100%|██████████| 7/7 [01:12<00:00, 14.52s/file]Downloading: 100%|██████████| 7/7 [01:12<00:00, 10.29s/file]
+Snapshot ready at tmp
++ echo EXIT_ASSETS=0
+EXIT_ASSETS=0
++ ls -la ./tmp/
+total 1236756
+drwxr-xr-x  2 root root      4096 Sep 28 13:43 .
+drwxr-xr-x 12 root root      4096 Sep 28 13:41 ..
+-rw-r--r--  1 root root      2075 Sep 28 13:41 .gitattributes
+-rw-r--r--  1 root root       165 Sep 28 13:41 .msc
+-rw-r--r--  1 root root        36 Sep 28 13:41 .mv
+-rw-r--r--  1 root root 297328640 Sep 28 13:42 LAM_assets.tar
+-rw-r--r--  1 root root      2722 Sep 28 13:41 README.md
+-rw-r--r--  1 root root        52 Sep 28 13:41 configuration.json
+-rw-r--r--  1 root root 969072640 Sep 28 13:43 thirdparty_models.tar
++ tar -xf ./tmp/LAM_assets.tar
++ echo TAR1_OK
+TAR1_OK
++ tar -xf ./tmp/thirdparty_models.tar
++ echo TAR2_OK
+TAR2_OK
++ /usr/local/miniconda3/envs/lam/bin/modelscope download --repo-type model Damo_XR_Lab/LAM-20K --local-dir ./model_zoo/lam_models/releases/lam/lam-20k/step_045500/
+
+ _   .-')                _ .-') _     ('-.             .-')                              _ (`-.    ('-.
+( '.( OO )_             ( (  OO) )  _(  OO)           ( OO ).                           ( (OO  ) _(  OO)
+ ,--.   ,--.).-'),-----. \     .'_ (,------.,--.     (_)---\_)   .-----.  .-'),-----.  _.`     \(,------.
+ |   `.'   |( OO'  .-.  ',`'--..._) |  .---'|  |.-') /    _ |   '  .--./ ( OO'  .-.  '(__...--'' |  .---'
+ |         |/   |  | |  ||  |  \  ' |  |    |  | OO )\  :` `.   |  |('-. /   |  | |  | |  /  | | |  |
+ |  |'.'|  |\_) |  |\|  ||  |   ' |(|  '--. |  |`-' | '..`''.) /_) |OO  )\_) |  |\|  | |  |_.' |(|  '--.
+ |  |   |  |  \ |  | |  ||  |   / : |  .--'(|  '---.'.-._)   \ ||  |`-'|   \ |  | |  | |  .___.' |  .--'
+ |  |   |  |   `'  '-'  '|  '--'  / |  `---.|      | \       /(_'  '--'\    `'  '-'  ' |  |      |  `---.
+ `--'   `--'     `-----' `-------'  `------'`------'  `-----'    `-----'      `-----'  `--'      `------'
+
+2026-09-28 13:43:14,081 | INFO    | modelscope_hub.download | Downloading 7 files from Damo_XR_Lab/LAM-20K@master
+Downloading snapshot of Damo_XR_Lab/LAM-20K (model)…
+Downloading:   0%|          | 0/7 [00:00<?, ?file/s]
+config.json:   0%|          | 0.00/1.11k [00:00<?, ?B/s][A
+                                                        [ADownloading:  14%|█▍        | 1/7 [00:00<00:02,  2.01file/s]
+.msc:   0%|          | 0.00/165 [00:00<?, ?B/s][A
+                                               [A
+.gitattributes:   0%|          | 0.00/2.08k [00:00<?, ?B/s][A
+                                                           [A
+.mv:   0%|          | 0.00/36.0 [00:00<?, ?B/s][A
+                                               [ADownloading:  57%|█████▋    | 4/7 [00:00<00:00,  7.59file/s]
+configuration.json:   0%|          | 0.00/52.0 [00:00<?, ?B/s][A
+                                                              [A
+README.md:   0%|          | 0.00/2.66k [00:00<?, ?B/s][A
+                                                      [A
+model.safetensors:   0%|          | 0.00/2.36G [00:00<?, ?B/s][A
+model.safetensors:   0%|          | 1.05M/2.36G [00:00<05:25, 7.24MB/s][A
+model.safetensors:   0%|          | 4.19M/2.36G [00:00<02:52, 13.6MB/s][A
+model.safetensors:   0%|          | 8.39M/2.36G [00:00<02:21, 16.5MB/s][A
+model.safetensors:   0%|          | 10.5M/2.36G [00:00<02:44, 14.2MB/s][A
+model.safetensors:   1%|          | 12.6M/2.36G [00:00<02:52, 13.6MB/s][A
+model.safetensors:   1%|          | 16.8M/2.36G [00:01<02:24, 16.2MB/s][A
+model.safetensors:   1%|          | 18.9M/2.36G [00:01<03:04, 12.7MB/s][A
+model.safetensors:   1%|          | 21.0M/2.36G [00:01<04:01, 9.69MB/s][A
+model.safetensors:   1%|          | 23.1M/2.36G [00:01<03:43, 10.5MB/s][A
+model.safetensors:   1%|          | 25.2M/2.36G [00:02<03:35, 10.8MB/s][A
+model.safetensors:   1%|          | 27.3M/2.36G [00:02<04:07, 9.42MB/s][A
+model.safetensors:   1%|          | 28.3M/2.36G [00:02<04:06, 9.46MB/s][A
+model.safetensors:   1%|          | 29.4M/2.36G [00:02<04:46, 8.14MB/s][A
+model.safetensors:   1%|▏         | 30.4M/2.36G [00:02<04:45, 8.15MB/s][A
+model.safetensors:   1%|▏         | 33.6M/2.36G [00:03<03:41, 10.5MB/s][A
+model.safetensors:   2%|▏         | 35.7M/2.36G [00:03<03:42, 10.4MB/s][A
+model.safetensors:   2%|▏         | 37.7M/2.36G [00:03<04:09, 9.30MB/s][A
+model.safetensors:   2%|▏         | 41.9M/2.36G [00:03<03:07, 12.3MB/s][A
+model.safetensors:   2%|▏         | 44.0M/2.36G [00:03<03:09, 12.2MB/s][A
+model.safetensors:   2%|▏         | 46.1M/2.36G [00:04<02:55, 13.2MB/s][A
+model.safetensors:   2%|▏         | 50.3M/2.36G [00:04<02:21, 16.3MB/s][A
+model.safetensors:   2%|▏         | 54.5M/2.36G [00:04<02:13, 17.3MB/s][A
+model.safetensors:   2%|▏         | 56.6M/2.36G [00:04<02:20, 16.4MB/s][A
+model.safetensors:   2%|▏         | 58.7M/2.36G [00:04<02:28, 15.5MB/s][A
+model.safetensors:   3%|▎         | 60.8M/2.36G [00:04<02:53, 13.2MB/s][A
+model.safetensors:   3%|▎         | 62.9M/2.36G [00:05<03:24, 11.2MB/s][A
+model.safetensors:   3%|▎         | 66.1M/2.36G [00:05<02:41, 14.2MB/s][A
+model.safetensors:   3%|▎         | 68.2M/2.36G [00:05<02:43, 14.0MB/s][A
+model.safetensors:   3%|▎         | 70.3M/2.36G [00:05<02:46, 13.8MB/s][A
+model.safetensors:   3%|▎         | 72.4M/2.36G [00:05<03:04, 12.4MB/s][A
+model.safetensors:   3%|▎         | 75.5M/2.36G [00:06<02:37, 14.5MB/s][A
+model.safetensors:   3%|▎         | 77.6M/2.36G [00:06<02:47, 13.6MB/s][A
+model.safetensors:   3%|▎         | 79.7M/2.36G [00:06<03:02, 12.5MB/s][A
+model.safetensors:   4%|▎         | 82.8M/2.36G [00:06<02:28, 15.3MB/s][A
+model.safetensors:   4%|▎         | 84.9M/2.36G [00:07<04:16, 8.85MB/s][A
+model.safetensors:   4%|▎         | 87.0M/2.36G [00:07<05:42, 6.62MB/s][A
+model.safetensors:   4%|▎         | 88.1M/2.36G [00:07<06:34, 5.75MB/s][A
+model.safetensors:   4%|▍         | 89.1M/2.36G [00:08<06:24, 5.89MB/s][A
+model.safetensors:   4%|▍         | 92.3M/2.36G [00:08<04:22, 8.63MB/s][A
+model.safetensors:   4%|▍         | 94.4M/2.36G [00:08<04:59, 7.55MB/s][A
+model.safetensors:   4%|▍         | 95.4M/2.36G [00:08<05:03, 7.44MB/s][A
+model.safetensors:   4%|▍         | 96.5M/2.36G [00:08<05:42, 6.61MB/s][A
+model.safetensors:   4%|▍         | 101M/2.36G [00:09<03:32, 10.6MB/s] [A
+model.safetensors:   4%|▍         | 103M/2.36G [00:09<03:42, 10.1MB/s][A
+model.safetensors:   4%|▍         | 105M/2.36G [00:09<04:05, 9.18MB/s][A
+model.safetensors:   4%|▍         | 106M/2.36G [00:09<04:25, 8.48MB/s][A
+model.safetensors:   5%|▍         | 109M/2.36G [00:09<03:26, 10.9MB/s][A
+model.safetensors:   5%|▍         | 111M/2.36G [00:10<03:24, 11.0MB/s][A
+model.safetensors:   5%|▍         | 113M/2.36G [00:10<03:15, 11.5MB/s][A
+model.safetensors:   5%|▍         | 117M/2.36G [00:10<02:24, 15.5MB/s][A
+model.safetensors:   5%|▌         | 120M/2.36G [00:10<02:28, 15.1MB/s][A
+model.safetensors:   5%|▌         | 122M/2.36G [00:10<02:48, 13.3MB/s][A
+model.safetensors:   5%|▌         | 125M/2.36G [00:10<02:13, 16.7MB/s][A
+model.safetensors:   5%|▌         | 127M/2.36G [00:11<02:34, 14.5MB/s][A
+model.safetensors:   5%|▌         | 129M/2.36G [00:11<02:26, 15.2MB/s][A
+model.safetensors:   6%|▌         | 131M/2.36G [00:11<02:45, 13.4MB/s][A
+model.safetensors:   6%|▌         | 134M/2.36G [00:11<02:16, 16.2MB/s][A
+model.safetensors:   6%|▌         | 137M/2.36G [00:11<02:00, 18.4MB/s][A
+model.safetensors:   6%|▌         | 139M/2.36G [00:12<02:40, 13.8MB/s][A
+model.safetensors:   6%|▌         | 142M/2.36G [00:12<03:08, 11.8MB/s][A
+model.safetensors:   6%|▌         | 144M/2.36G [00:12<04:06, 8.99MB/s][A
+model.safetensors:   6%|▌         | 147M/2.36G [00:12<03:08, 11.7MB/s][A
+model.safetensors:   6%|▋         | 149M/2.36G [00:13<03:24, 10.8MB/s][A
+model.safetensors:   6%|▋         | 151M/2.36G [00:13<03:50, 9.57MB/s][A
+model.safetensors:   7%|▋         | 154M/2.36G [00:13<02:51, 12.8MB/s][A
+model.safetensors:   7%|▋         | 156M/2.36G [00:13<02:35, 14.1MB/s][A
+model.safetensors:   7%|▋         | 159M/2.36G [00:13<02:44, 13.4MB/s][A
+model.safetensors:   7%|▋         | 161M/2.36G [00:13<02:52, 12.7MB/s][A
+model.safetensors:   7%|▋         | 164M/2.36G [00:14<03:17, 11.1MB/s][A
+model.safetensors:   7%|▋         | 166M/2.36G [00:14<03:10, 11.5MB/s][A
+model.safetensors:   7%|▋         | 168M/2.36G [00:14<03:31, 10.4MB/s][A
+model.safetensors:   7%|▋         | 172M/2.36G [00:14<02:33, 14.2MB/s][A
+model.safetensors:   7%|▋         | 175M/2.36G [00:14<02:10, 16.7MB/s][A
+model.safetensors:   8%|▊         | 177M/2.36G [00:15<02:11, 16.6MB/s][A
+model.safetensors:   8%|▊         | 180M/2.36G [00:15<02:02, 17.8MB/s][A
+model.safetensors:   8%|▊         | 182M/2.36G [00:15<02:29, 14.6MB/s][A
+model.safetensors:   8%|▊         | 185M/2.36G [00:15<03:03, 11.8MB/s][A
+model.safetensors:   8%|▊         | 187M/2.36G [00:15<03:21, 10.7MB/s][A
+model.safetensors:   8%|▊         | 189M/2.36G [00:16<03:33, 10.1MB/s][A
+model.safetensors:   8%|▊         | 191M/2.36G [00:16<03:19, 10.9MB/s][A
+model.safetensors:   8%|▊         | 193M/2.36G [00:16<02:59, 12.0MB/s][A
+model.safetensors:   8%|▊         | 195M/2.36G [00:16<03:09, 11.4MB/s][A
+model.safetensors:   8%|▊         | 197M/2.36G [00:16<03:16, 11.0MB/s][A
+model.safetensors:   8%|▊         | 199M/2.36G [00:16<02:58, 12.1MB/s][A
+model.safetensors:   9%|▊         | 201M/2.36G [00:17<03:09, 11.3MB/s][A
+model.safetensors:   9%|▊         | 203M/2.36G [00:17<03:13, 11.1MB/s][A
+model.safetensors:   9%|▊         | 206M/2.36G [00:17<02:46, 12.9MB/s][A
+model.safetensors:   9%|▉         | 208M/2.36G [00:17<02:36, 13.8MB/s][A
+model.safetensors:   9%|▉         | 210M/2.36G [00:17<02:54, 12.3MB/s][A
+model.safetensors:   9%|▉         | 212M/2.36G [00:18<02:55, 12.2MB/s][A
+model.safetensors:   9%|▉         | 214M/2.36G [00:18<02:41, 13.2MB/s][A
+model.safetensors:   9%|▉         | 216M/2.36G [00:18<03:02, 11.7MB/s][A
+model.safetensors:   9%|▉         | 218M/2.36G [00:18<02:42, 13.2MB/s][A
+model.safetensors:   9%|▉         | 220M/2.36G [00:18<02:27, 14.4MB/s][A
+model.safetensors:   9%|▉         | 222M/2.36G [00:18<02:23, 14.9MB/s][A
+model.safetensors:  10%|▉         | 224M/2.36G [00:18<02:33, 13.9MB/s][ADownloading:  86%|████████▌ | 6/7 [00:19<00:00,  7.59file/s]
+model.safetensors:  10%|▉         | 226M/2.36G [00:19<02:41, 13.2MB/s][A
+model.safetensors:  10%|▉         | 229M/2.36G [00:19<02:51, 12.4MB/s][A
+model.safetensors:  10%|▉         | 231M/2.36G [00:19<02:51, 12.4MB/s][A
+model.safetensors:  10%|▉         | 233M/2.36G [00:19<03:01, 11.7MB/s][A
+model.safetensors:  10%|▉         | 235M/2.36G [00:19<03:13, 11.0MB/s][A
+model.safetensors:  10%|█         | 237M/2.36G [00:20<07:35, 4.65MB/s][A
+model.safetensors:  10%|█         | 238M/2.36G [00:21<07:49, 4.51MB/s][A
+model.safetensors:  10%|█         | 239M/2.36G [00:21<08:15, 4.28MB/s][A
+model.safetensors:  10%|█         | 240M/2.36G [00:21<07:58, 4.43MB/s][A
+model.safetensors:  10%|█         | 241M/2.36G [00:21<07:20, 4.81MB/s][A
+model.safetensors:  10%|█         | 242M/2.36G [00:22<06:48, 5.18MB/s][A
+model.safetensors:  10%|█         | 243M/2.36G [00:22<08:34, 4.11MB/s][A
+model.safetensors:  11%|█         | 247M/2.36G [00:22<04:12, 8.36MB/s][A
+model.safetensors:  11%|█         | 250M/2.36G [00:22<04:20, 8.10MB/s][A
+model.safetensors:  11%|█         | 251M/2.36G [00:22<04:17, 8.19MB/s][A
+model.safetensors:  11%|█         | 252M/2.36G [00:23<04:52, 7.19MB/s][A
+model.safetensors:  11%|█         | 255M/2.36G [00:23<03:11, 11.0MB/s][A
+model.safetensors:  11%|█         | 257M/2.36G [00:23<03:06, 11.3MB/s][A
+model.safetensors:  11%|█         | 259M/2.36G [00:23<03:16, 10.7MB/s][A
+model.safetensors:  11%|█         | 261M/2.36G [00:23<03:30, 9.96MB/s][A
+model.safetensors:  11%|█         | 264M/2.36G [00:24<02:37, 13.3MB/s][A
+model.safetensors:  11%|█▏        | 266M/2.36G [00:24<03:04, 11.3MB/s][A
+model.safetensors:  11%|█▏        | 268M/2.36G [00:24<03:35, 9.68MB/s][A
+model.safetensors:  12%|█▏        | 273M/2.36G [00:24<02:31, 13.8MB/s][A
+model.safetensors:  12%|█▏        | 275M/2.36G [00:24<02:40, 13.0MB/s][A
+model.safetensors:  12%|█▏        | 277M/2.36G [00:25<03:09, 11.0MB/s][A
+model.safetensors:  12%|█▏        | 279M/2.36G [00:25<03:03, 11.3MB/s][A
+model.safetensors:  12%|█▏        | 282M/2.36G [00:25<02:39, 13.0MB/s][A
+model.safetensors:  12%|█▏        | 284M/2.36G [00:25<02:37, 13.1MB/s][A
+model.safetensors:  12%|█▏        | 286M/2.36G [00:25<03:01, 11.4MB/s][A
+model.safetensors:  12%|█▏        | 289M/2.36G [00:26<02:28, 14.0MB/s][A
+model.safetensors:  12%|█▏        | 292M/2.36G [00:26<02:29, 13.8MB/s][A
+model.safetensors:  12%|█▏        | 294M/2.36G [00:26<03:14, 10.6MB/s][A
+model.safetensors:  13%|█▎        | 298M/2.36G [00:26<02:30, 13.7MB/s][A
+model.safetensors:  13%|█▎        | 301M/2.36G [00:26<02:03, 16.7MB/s][A
+model.safetensors:  13%|█▎        | 303M/2.36G [00:26<02:01, 16.9MB/s][A
+model.safetensors:  13%|█▎        | 306M/2.36G [00:27<01:49, 18.7MB/s][A
+model.safetensors:  13%|█▎        | 310M/2.36G [00:27<01:39, 20.5MB/s][A
+model.safetensors:  13%|█▎        | 314M/2.36G [00:27<01:40, 20.3MB/s][A
+model.safetensors:  13%|█▎        | 317M/2.36G [00:28<04:24, 7.72MB/s][A
+model.safetensors:  14%|█▎        | 323M/2.36G [00:28<02:52, 11.8MB/s][A
+model.safetensors:  14%|█▍        | 325M/2.36G [00:28<02:40, 12.7MB/s][A
+model.safetensors:  14%|█▍        | 327M/2.36G [00:28<02:49, 12.0MB/s][A
+model.safetensors:  14%|█▍        | 329M/2.36G [00:29<02:51, 11.8MB/s][A
+model.safetensors:  14%|█▍        | 331M/2.36G [00:29<02:34, 13.1MB/s][A
+model.safetensors:  14%|█▍        | 333M/2.36G [00:29<02:21, 14.3MB/s][A
+model.safetensors:  14%|█▍        | 336M/2.36G [00:29<02:41, 12.5MB/s][A
+model.safetensors:  14%|█▍        | 340M/2.36G [00:29<02:05, 16.1MB/s][A
+model.safetensors:  15%|█▍        | 343M/2.36G [00:29<01:47, 18.8MB/s][A
+model.safetensors:  15%|█▍        | 346M/2.36G [00:30<01:43, 19.4MB/s][A
+model.safetensors:  15%|█▍        | 349M/2.36G [00:30<01:45, 19.0MB/s][A
+model.safetensors:  15%|█▍        | 352M/2.36G [00:30<01:50, 18.2MB/s][A
+model.safetensors:  15%|█▌        | 354M/2.36G [00:30<01:59, 16.8MB/s][A
+model.safetensors:  15%|█▌        | 357M/2.36G [00:30<02:02, 16.3MB/s][A
+model.safetensors:  15%|█▌        | 359M/2.36G [00:30<02:02, 16.3MB/s][A
+model.safetensors:  15%|█▌        | 361M/2.36G [00:30<02:10, 15.3MB/s][A
+model.safetensors:  15%|█▌        | 363M/2.36G [00:31<02:26, 13.6MB/s][A
+model.safetensors:  15%|█▌        | 365M/2.36G [00:31<02:28, 13.4MB/s][A
+model.safetensors:  16%|█▌        | 368M/2.36G [00:31<01:56, 17.1MB/s][A
+model.safetensors:  16%|█▌        | 370M/2.36G [00:31<02:40, 12.4MB/s][A
+model.safetensors:  16%|█▌        | 373M/2.36G [00:31<02:33, 12.9MB/s][A
+model.safetensors:  16%|█▌        | 377M/2.36G [00:32<02:07, 15.5MB/s][A
+model.safetensors:  16%|█▌        | 382M/2.36G [00:32<01:54, 17.3MB/s][A
+model.safetensors:  16%|█▋        | 384M/2.36G [00:32<02:05, 15.7MB/s][A
+model.safetensors:  16%|█▋        | 386M/2.36G [00:32<02:01, 16.2MB/s][A
+model.safetensors:  16%|█▋        | 388M/2.36G [00:33<04:47, 6.84MB/s][A
+model.safetensors:  17%|█▋        | 395M/2.36G [00:34<03:26, 9.49MB/s][A
+model.safetensors:  17%|█▋        | 397M/2.36G [00:34<03:35, 9.10MB/s][A
+model.safetensors:  17%|█▋        | 400M/2.36G [00:34<03:33, 9.18MB/s][A
+model.safetensors:  17%|█▋        | 403M/2.36G [00:34<02:58, 11.0MB/s][A
+model.safetensors:  17%|█▋        | 407M/2.36G [00:34<02:24, 13.4MB/s][A
+model.safetensors:  17%|█▋        | 409M/2.36G [00:35<02:25, 13.4MB/s][A
+model.safetensors:  17%|█▋        | 411M/2.36G [00:35<02:14, 14.5MB/s][A
+model.safetensors:  18%|█▊        | 413M/2.36G [00:35<02:09, 15.0MB/s][A
+model.safetensors:  18%|█▊        | 415M/2.36G [00:35<02:34, 12.6MB/s][A
+model.safetensors:  18%|█▊        | 417M/2.36G [00:35<02:33, 12.6MB/s][A
+model.safetensors:  18%|█▊        | 419M/2.36G [00:35<02:19, 13.9MB/s][A
+model.safetensors:  18%|█▊        | 422M/2.36G [00:35<02:10, 14.9MB/s][A
+model.safetensors:  18%|█▊        | 424M/2.36G [00:36<02:34, 12.6MB/s][A
+model.safetensors:  18%|█▊        | 427M/2.36G [00:36<02:06, 15.2MB/s][A
+model.safetensors:  18%|█▊        | 429M/2.36G [00:36<02:00, 15.9MB/s][A
+model.safetensors:  18%|█▊        | 432M/2.36G [00:36<01:56, 16.5MB/s][A
+model.safetensors:  18%|█▊        | 435M/2.36G [00:36<01:46, 18.0MB/s][A
+model.safetensors:  19%|█▊        | 437M/2.36G [00:36<02:00, 15.9MB/s][A
+model.safetensors:  19%|█▊        | 440M/2.36G [00:37<01:52, 17.1MB/s][A
+model.safetensors:  19%|█▉        | 444M/2.36G [00:37<01:40, 19.1MB/s][A
+model.safetensors:  19%|█▉        | 446M/2.36G [00:37<02:00, 15.8MB/s][A
+model.safetensors:  19%|█▉        | 449M/2.36G [00:37<01:52, 16.9MB/s][A
+model.safetensors:  19%|█▉        | 452M/2.36G [00:37<01:45, 18.1MB/s][A
+model.safetensors:  19%|█▉        | 454M/2.36G [00:37<02:19, 13.6MB/s][A
+model.safetensors:  19%|█▉        | 457M/2.36G [00:38<02:08, 14.8MB/s][A
+model.safetensors:  20%|█▉        | 460M/2.36G [00:38<01:54, 16.6MB/s][A
+model.safetensors:  20%|█▉        | 462M/2.36G [00:38<02:08, 14.8MB/s][A
+model.safetensors:  20%|█▉        | 466M/2.36G [00:38<01:54, 16.4MB/s][A
+model.safetensors:  20%|█▉        | 468M/2.36G [00:38<01:48, 17.4MB/s][A
+model.safetensors:  20%|█▉        | 470M/2.36G [00:38<02:08, 14.7MB/s][A
+model.safetensors:  20%|██        | 472M/2.36G [00:39<02:13, 14.1MB/s][A
+model.safetensors:  20%|██        | 474M/2.36G [00:39<02:06, 14.8MB/s][A
+model.safetensors:  20%|██        | 477M/2.36G [00:39<01:46, 17.7MB/s][A
+model.safetensors:  20%|██        | 479M/2.36G [00:39<02:05, 14.9MB/s][A
+model.safetensors:  20%|██        | 482M/2.36G [00:39<01:54, 16.4MB/s][A
+model.safetensors:  21%|██        | 485M/2.36G [00:39<01:39, 18.7MB/s][A
+model.safetensors:  21%|██        | 488M/2.36G [00:40<01:57, 16.0MB/s][A
+model.safetensors:  21%|██        | 491M/2.36G [00:40<01:43, 18.1MB/s][A
+model.safetensors:  21%|██        | 495M/2.36G [00:40<01:29, 20.7MB/s][A
+model.safetensors:  21%|██        | 499M/2.36G [00:40<01:31, 20.4MB/s][A
+model.safetensors:  21%|██▏       | 502M/2.36G [00:40<01:36, 19.2MB/s][A
+model.safetensors:  21%|██▏       | 504M/2.36G [00:40<01:47, 17.3MB/s][A
+model.safetensors:  22%|██▏       | 508M/2.36G [00:40<01:34, 19.5MB/s][A
+model.safetensors:  22%|██▏       | 510M/2.36G [00:41<01:39, 18.5MB/s][A
+model.safetensors:  22%|██▏       | 512M/2.36G [00:41<01:53, 16.3MB/s][A
+model.safetensors:  22%|██▏       | 515M/2.36G [00:41<01:36, 19.1MB/s][A
+model.safetensors:  22%|██▏       | 517M/2.36G [00:41<01:48, 17.0MB/s][A
+model.safetensors:  22%|██▏       | 519M/2.36G [00:41<01:47, 17.2MB/s][A
+model.safetensors:  22%|██▏       | 521M/2.36G [00:41<01:59, 15.3MB/s][A
+model.safetensors:  22%|██▏       | 524M/2.36G [00:41<01:44, 17.5MB/s][A
+model.safetensors:  22%|██▏       | 527M/2.36G [00:42<01:38, 18.6MB/s][A
+model.safetensors:  22%|██▏       | 530M/2.36G [00:42<01:49, 16.7MB/s][A
+model.safetensors:  23%|██▎       | 533M/2.36G [00:42<01:44, 17.4MB/s][A
+model.safetensors:  23%|██▎       | 535M/2.36G [00:42<01:45, 17.3MB/s][A
+model.safetensors:  23%|██▎       | 537M/2.36G [00:42<02:01, 15.0MB/s][A
+model.safetensors:  23%|██▎       | 539M/2.36G [00:42<02:08, 14.2MB/s][A
+model.safetensors:  23%|██▎       | 541M/2.36G [00:43<01:56, 15.5MB/s][A
+model.safetensors:  23%|██▎       | 543M/2.36G [00:43<01:49, 16.6MB/s][A
+model.safetensors:  23%|██▎       | 545M/2.36G [00:43<02:06, 14.4MB/s][A
+model.safetensors:  23%|██▎       | 547M/2.36G [00:43<02:09, 14.0MB/s][A
+model.safetensors:  23%|██▎       | 549M/2.36G [00:43<01:57, 15.4MB/s][A
+model.safetensors:  23%|██▎       | 552M/2.36G [00:43<01:51, 16.2MB/s][A
+model.safetensors:  23%|██▎       | 554M/2.36G [00:43<02:16, 13.2MB/s][A
+model.safetensors:  24%|██▎       | 558M/2.36G [00:44<01:44, 17.3MB/s][A
+model.safetensors:  24%|██▍       | 561M/2.36G [00:44<01:32, 19.4MB/s][A
+model.safetensors:  24%|██▍       | 563M/2.36G [00:44<01:42, 17.5MB/s][A
+model.safetensors:  24%|██▍       | 566M/2.36G [00:44<01:45, 16.9MB/s][A
+model.safetensors:  24%|██▍       | 568M/2.36G [00:44<01:58, 15.0MB/s][A
+model.safetensors:  24%|██▍       | 570M/2.36G [00:44<01:58, 15.1MB/s][A
+model.safetensors:  24%|██▍       | 575M/2.36G [00:45<01:38, 18.0MB/s][A
+model.safetensors:  25%|██▍       | 579M/2.36G [00:45<01:35, 18.6MB/s][A
+model.safetensors:  25%|██▍       | 581M/2.36G [00:45<01:46, 16.6MB/s][A
+model.safetensors:  25%|██▍       | 583M/2.36G [00:45<01:52, 15.7MB/s][A
+model.safetensors:  25%|██▍       | 585M/2.36G [00:45<02:06, 14.0MB/s][A
+model.safetensors:  25%|██▍       | 587M/2.36G [00:45<01:56, 15.2MB/s][A
+model.safetensors:  25%|██▌       | 589M/2.36G [00:46<01:47, 16.4MB/s][A
+model.safetensors:  25%|██▌       | 591M/2.36G [00:46<01:45, 16.8MB/s][A
+model.safetensors:  25%|██▌       | 595M/2.36G [00:46<01:30, 19.4MB/s][A
+model.safetensors:  25%|██▌       | 597M/2.36G [00:46<01:29, 19.6MB/s][A
+model.safetensors:  25%|██▌       | 600M/2.36G [00:46<01:21, 21.4MB/s][A
+model.safetensors:  26%|██▌       | 603M/2.36G [00:46<01:22, 21.3MB/s][A
+model.safetensors:  26%|██▌       | 606M/2.36G [00:46<01:28, 19.7MB/s][A
+model.safetensors:  26%|██▌       | 608M/2.36G [00:46<01:29, 19.4MB/s][A
+model.safetensors:  26%|██▌       | 611M/2.36G [00:47<01:21, 21.3MB/s][A
+model.safetensors:  26%|██▌       | 614M/2.36G [00:47<01:50, 15.8MB/s][A
+model.safetensors:  26%|██▌       | 617M/2.36G [00:47<01:45, 16.5MB/s][A
+model.safetensors:  26%|██▋       | 620M/2.36G [00:47<01:31, 19.0MB/s][A
+model.safetensors:  26%|██▋       | 623M/2.36G [00:47<01:34, 18.4MB/s][A
+model.safetensors:  27%|██▋       | 625M/2.36G [00:47<01:47, 16.2MB/s][A
+model.safetensors:  27%|██▋       | 627M/2.36G [00:48<01:58, 14.6MB/s][A
+model.safetensors:  27%|██▋       | 629M/2.36G [00:48<01:58, 14.5MB/s][A
+model.safetensors:  27%|██▋       | 632M/2.36G [00:48<01:37, 17.8MB/s][A
+model.safetensors:  27%|██▋       | 634M/2.36G [00:48<01:43, 16.7MB/s][A
+model.safetensors:  27%|██▋       | 638M/2.36G [00:48<01:35, 17.9MB/s][A
+model.safetensors:  27%|██▋       | 642M/2.36G [00:48<01:25, 20.0MB/s][A
+model.safetensors:  27%|██▋       | 646M/2.36G [00:49<01:25, 20.0MB/s][A
+model.safetensors:  27%|██▋       | 648M/2.36G [00:49<01:35, 17.9MB/s][A
+model.safetensors:  28%|██▊       | 651M/2.36G [00:49<01:26, 19.8MB/s][A
+model.safetensors:  28%|██▊       | 654M/2.36G [00:49<01:19, 21.4MB/s][A
+model.safetensors:  28%|██▊       | 659M/2.36G [00:49<01:24, 20.2MB/s][A
+model.safetensors:  28%|██▊       | 662M/2.36G [00:49<01:29, 19.0MB/s][A
+model.safetensors:  28%|██▊       | 664M/2.36G [00:50<01:35, 17.7MB/s][A
+model.safetensors:  28%|██▊       | 667M/2.36G [00:50<01:33, 18.1MB/s][A
+model.safetensors:  28%|██▊       | 670M/2.36G [00:50<01:23, 20.2MB/s][A
+model.safetensors:  29%|██▊       | 673M/2.36G [00:50<01:21, 20.7MB/s][A
+model.safetensors:  29%|██▊       | 676M/2.36G [00:50<01:28, 18.9MB/s][A
+model.safetensors:  29%|██▉       | 679M/2.36G [00:50<01:25, 19.5MB/s][A
+model.safetensors:  29%|██▉       | 684M/2.36G [00:51<01:21, 20.4MB/s][A
+model.safetensors:  29%|██▉       | 686M/2.36G [00:51<01:29, 18.6MB/s][A
+model.safetensors:  29%|██▉       | 688M/2.36G [00:51<01:35, 17.5MB/s][A
+model.safetensors:  29%|██▉       | 692M/2.36G [00:51<01:26, 19.2MB/s][A
+model.safetensors:  30%|██▉       | 696M/2.36G [00:51<01:22, 20.1MB/s][A
+model.safetensors:  30%|██▉       | 700M/2.36G [00:51<01:22, 20.0MB/s][A
+model.safetensors:  30%|██▉       | 703M/2.36G [00:52<01:33, 17.7MB/s][A
+model.safetensors:  30%|██▉       | 705M/2.36G [00:52<01:36, 17.1MB/s][A
+model.safetensors:  30%|██▉       | 707M/2.36G [00:52<01:42, 16.0MB/s][A
+model.safetensors:  30%|███       | 709M/2.36G [00:52<01:46, 15.5MB/s][A
+model.safetensors:  30%|███       | 711M/2.36G [00:52<01:56, 14.1MB/s][A
+model.safetensors:  30%|███       | 713M/2.36G [00:52<01:55, 14.3MB/s][A
+model.safetensors:  30%|███       | 715M/2.36G [00:53<01:59, 13.7MB/s][A
+model.safetensors:  30%|███       | 717M/2.36G [00:53<01:51, 14.7MB/s][A
+model.safetensors:  31%|███       | 721M/2.36G [00:53<01:34, 17.2MB/s][A
+model.safetensors:  31%|███       | 726M/2.36G [00:53<01:27, 18.7MB/s][A
+model.safetensors:  31%|███       | 728M/2.36G [00:53<01:35, 17.0MB/s][A
+model.safetensors:  31%|███       | 730M/2.36G [00:53<01:41, 16.0MB/s][A
+model.safetensors:  31%|███       | 734M/2.36G [00:54<01:29, 18.1MB/s][A
+model.safetensors:  31%|███       | 736M/2.36G [00:54<01:36, 16.8MB/s][A
+model.safetensors:  31%|███▏      | 738M/2.36G [00:54<01:36, 16.8MB/s][A
+model.safetensors:  31%|███▏      | 740M/2.36G [00:54<01:37, 16.6MB/s][A
+model.safetensors:  32%|███▏      | 742M/2.36G [00:54<01:42, 15.7MB/s][A
+model.safetensors:  32%|███▏      | 746M/2.36G [00:54<01:25, 18.8MB/s][A
+model.safetensors:  32%|███▏      | 748M/2.36G [00:54<01:25, 18.9MB/s][A
+model.safetensors:  32%|███▏      | 751M/2.36G [00:54<01:24, 19.0MB/s][A
+model.safetensors:  32%|███▏      | 755M/2.36G [00:55<01:17, 20.7MB/s][A
+model.safetensors:  32%|███▏      | 759M/2.36G [00:55<01:11, 22.3MB/s][A
+model.safetensors:  32%|███▏      | 763M/2.36G [00:55<01:06, 23.8MB/s][A
+model.safetensors:  33%|███▎      | 767M/2.36G [00:55<01:03, 25.0MB/s][A
+model.safetensors:  33%|███▎      | 770M/2.36G [00:55<01:04, 24.7MB/s][A
+model.safetensors:  33%|███▎      | 773M/2.36G [00:55<01:06, 23.8MB/s][A
+model.safetensors:  33%|███▎      | 776M/2.36G [00:55<01:07, 23.3MB/s][A
+model.safetensors:  33%|███▎      | 780M/2.36G [00:56<01:04, 24.3MB/s][A
+model.safetensors:  33%|███▎      | 784M/2.36G [00:56<01:06, 23.7MB/s][A
+model.safetensors:  33%|███▎      | 789M/2.36G [00:56<01:08, 23.0MB/s][A
+model.safetensors:  34%|███▎      | 792M/2.36G [00:56<01:15, 20.6MB/s][A
+model.safetensors:  34%|███▎      | 795M/2.36G [00:56<01:17, 20.1MB/s][A
+model.safetensors:  34%|███▍      | 797M/2.36G [00:57<01:18, 19.8MB/s][A
+model.safetensors:  34%|███▍      | 801M/2.36G [00:57<01:11, 21.8MB/s][A
+model.safetensors:  34%|███▍      | 804M/2.36G [00:57<01:09, 22.4MB/s][A
+model.safetensors:  34%|███▍      | 807M/2.36G [00:57<01:09, 22.3MB/s][A
+model.safetensors:  34%|███▍      | 811M/2.36G [00:57<01:15, 20.5MB/s][A
+model.safetensors:  35%|███▍      | 814M/2.36G [00:57<01:11, 21.6MB/s][A
+model.safetensors:  35%|███▍      | 818M/2.36G [00:57<01:05, 23.6MB/s][A
+model.safetensors:  35%|███▍      | 821M/2.36G [00:58<01:03, 24.3MB/s][A
+model.safetensors:  35%|███▍      | 824M/2.36G [00:58<01:34, 16.3MB/s][A
+model.safetensors:  35%|███▌      | 826M/2.36G [00:58<01:35, 16.0MB/s][A
+model.safetensors:  35%|███▌      | 829M/2.36G [00:58<01:22, 18.5MB/s][A
+model.safetensors:  35%|███▌      | 833M/2.36G [00:58<01:25, 17.8MB/s][A
+model.safetensors:  35%|███▌      | 836M/2.36G [00:58<01:24, 18.0MB/s][A
+model.safetensors:  36%|███▌      | 839M/2.36G [00:59<01:19, 19.1MB/s][A
+model.safetensors:  36%|███▌      | 843M/2.36G [00:59<01:15, 20.1MB/s][A
+model.safetensors:  36%|███▌      | 846M/2.36G [00:59<01:09, 21.8MB/s][A
+model.safetensors:  36%|███▌      | 849M/2.36G [00:59<01:14, 20.3MB/s][A
+model.safetensors:  36%|███▌      | 852M/2.36G [00:59<01:12, 20.7MB/s][A
+model.safetensors:  36%|███▋      | 856M/2.36G [00:59<01:11, 20.9MB/s][A
+model.safetensors:  36%|███▋      | 859M/2.36G [01:00<01:12, 20.6MB/s][A
+model.safetensors:  37%|███▋      | 862M/2.36G [01:00<01:15, 19.8MB/s][A
+model.safetensors:  37%|███▋      | 864M/2.36G [01:00<01:21, 18.3MB/s][A
+model.safetensors:  37%|███▋      | 867M/2.36G [01:00<01:18, 18.9MB/s][A
+model.safetensors:  37%|███▋      | 869M/2.36G [01:00<01:21, 18.2MB/s][A
+model.safetensors:  37%|███▋      | 871M/2.36G [01:00<01:19, 18.7MB/s][A
+model.safetensors:  37%|███▋      | 873M/2.36G [01:00<01:25, 17.4MB/s][A
+model.safetensors:  37%|███▋      | 877M/2.36G [01:01<01:24, 17.6MB/s][A
+model.safetensors:  37%|███▋      | 880M/2.36G [01:01<01:18, 18.9MB/s][A
+model.safetensors:  37%|███▋      | 882M/2.36G [01:01<01:19, 18.6MB/s][A
+model.safetensors:  38%|███▊      | 884M/2.36G [01:01<01:18, 18.9MB/s][A
+model.safetensors:  38%|███▊      | 886M/2.36G [01:01<01:19, 18.4MB/s][A
+model.safetensors:  38%|███▊      | 888M/2.36G [01:01<01:22, 17.9MB/s][A
+model.safetensors:  38%|███▊      | 890M/2.36G [01:01<01:22, 17.8MB/s][A
+model.safetensors:  38%|███▊      | 892M/2.36G [01:01<01:20, 18.3MB/s][A
+model.safetensors:  38%|███▊      | 894M/2.36G [01:02<01:38, 14.8MB/s][A
+model.safetensors:  38%|███▊      | 898M/2.36G [01:02<01:30, 16.2MB/s][A
+model.safetensors:  38%|███▊      | 901M/2.36G [01:02<01:14, 19.5MB/s][A
+model.safetensors:  38%|███▊      | 904M/2.36G [01:02<01:15, 19.3MB/s][A
+model.safetensors:  38%|███▊      | 906M/2.36G [01:02<01:18, 18.4MB/s][A
+model.safetensors:  39%|███▊      | 909M/2.36G [01:02<01:18, 18.5MB/s][A
+model.safetensors:  39%|███▊      | 911M/2.36G [01:02<01:17, 18.7MB/s][A
+model.safetensors:  39%|███▉      | 913M/2.36G [01:03<01:17, 18.6MB/s][A
+model.safetensors:  39%|███▉      | 915M/2.36G [01:03<01:45, 13.7MB/s][A
+model.safetensors:  39%|███▉      | 919M/2.36G [01:03<01:29, 16.1MB/s][A
+model.safetensors:  39%|███▉      | 923M/2.36G [01:03<01:17, 18.4MB/s][A
+model.safetensors:  39%|███▉      | 926M/2.36G [01:03<01:10, 20.3MB/s][A
+model.safetensors:  39%|███▉      | 929M/2.36G [01:03<01:12, 19.6MB/s][A
+model.safetensors:  40%|███▉      | 931M/2.36G [01:04<01:15, 18.9MB/s][A
+model.safetensors:  40%|███▉      | 933M/2.36G [01:04<01:14, 19.0MB/s][A
+model.safetensors:  40%|███▉      | 935M/2.36G [01:04<01:22, 17.2MB/s][A
+model.safetensors:  40%|███▉      | 937M/2.36G [01:04<01:25, 16.6MB/s][A
+model.safetensors:  40%|███▉      | 940M/2.36G [01:04<01:22, 17.1MB/s][A
+model.safetensors:  40%|████      | 943M/2.36G [01:04<01:10, 20.1MB/s][A
+model.safetensors:  40%|████      | 945M/2.36G [01:04<01:40, 14.0MB/s][A
+model.safetensors:  40%|████      | 948M/2.36G [01:05<01:40, 13.9MB/s][A
+model.safetensors:  40%|████      | 950M/2.36G [01:05<01:44, 13.4MB/s][A
+model.safetensors:  40%|████      | 952M/2.36G [01:05<01:40, 14.0MB/s][A
+model.safetensors:  40%|████      | 954M/2.36G [01:05<01:34, 14.8MB/s][A
+model.safetensors:  41%|████      | 956M/2.36G [01:05<01:33, 15.0MB/s][A
+model.safetensors:  41%|████      | 958M/2.36G [01:05<01:44, 13.4MB/s][A
+model.safetensors:  41%|████      | 960M/2.36G [01:06<01:42, 13.7MB/s][A
+model.safetensors:  41%|████      | 965M/2.36G [01:06<01:18, 17.7MB/s][A
+model.safetensors:  41%|████      | 969M/2.36G [01:06<01:13, 18.8MB/s][A
+model.safetensors:  41%|████      | 972M/2.36G [01:06<01:05, 21.3MB/s][A
+model.safetensors:  41%|████▏     | 975M/2.36G [01:06<01:30, 15.3MB/s][A
+model.safetensors:  41%|████▏     | 977M/2.36G [01:07<01:27, 15.8MB/s][A
+model.safetensors:  42%|████▏     | 981M/2.36G [01:07<01:20, 17.1MB/s][A
+model.safetensors:  42%|████▏     | 986M/2.36G [01:07<01:16, 17.9MB/s][A
+model.safetensors:  42%|████▏     | 988M/2.36G [01:08<02:23, 9.52MB/s][A
+model.safetensors:  42%|████▏     | 996M/2.36G [01:08<01:16, 17.8MB/s][A
+model.safetensors:  42%|████▏     | 999M/2.36G [01:08<01:12, 18.7MB/s][A
+model.safetensors:  43%|████▎     | 1.00G/2.36G [01:08<01:11, 18.9MB/s][A
+model.safetensors:  43%|████▎     | 1.01G/2.36G [01:08<01:12, 18.6MB/s][A
+model.safetensors:  43%|████▎     | 1.01G/2.36G [01:08<01:10, 19.1MB/s][A
+model.safetensors:  43%|████▎     | 1.01G/2.36G [01:09<01:24, 16.0MB/s][A
+model.safetensors:  43%|████▎     | 1.02G/2.36G [01:09<01:16, 17.6MB/s][A
+model.safetensors:  43%|████▎     | 1.02G/2.36G [01:09<01:09, 19.3MB/s][A
+model.safetensors:  43%|████▎     | 1.02G/2.36G [01:09<01:27, 15.3MB/s][A
+model.safetensors:  43%|████▎     | 1.02G/2.36G [01:09<01:26, 15.5MB/s][A
+model.safetensors:  44%|████▎     | 1.03G/2.36G [01:10<01:17, 17.2MB/s][A
+model.safetensors:  44%|████▎     | 1.03G/2.36G [01:10<01:20, 16.4MB/s][A
+model.safetensors:  44%|████▍     | 1.03G/2.36G [01:10<01:18, 16.9MB/s][A
+model.safetensors:  44%|████▍     | 1.03G/2.36G [01:10<01:25, 15.5MB/s][A
+model.safetensors:  44%|████▍     | 1.04G/2.36G [01:10<01:24, 15.7MB/s][A
+model.safetensors:  44%|████▍     | 1.04G/2.36G [01:10<01:15, 17.4MB/s][A
+model.safetensors:  44%|████▍     | 1.04G/2.36G [01:10<01:10, 18.5MB/s][A
+model.safetensors:  44%|████▍     | 1.05G/2.36G [01:11<01:13, 17.8MB/s][A
+model.safetensors:  44%|████▍     | 1.05G/2.36G [01:11<01:18, 16.7MB/s][A
+model.safetensors:  45%|████▍     | 1.05G/2.36G [01:11<01:12, 17.9MB/s][A
+model.safetensors:  45%|████▍     | 1.05G/2.36G [01:11<01:16, 17.0MB/s][A
+model.safetensors:  45%|████▍     | 1.06G/2.36G [01:11<01:14, 17.5MB/s][A
+model.safetensors:  45%|████▍     | 1.06G/2.36G [01:11<01:03, 20.3MB/s][A
+model.safetensors:  45%|████▌     | 1.06G/2.36G [01:12<01:36, 13.5MB/s][A
+model.safetensors:  45%|████▌     | 1.07G/2.36G [01:12<01:28, 14.6MB/s][A
+model.safetensors:  45%|████▌     | 1.07G/2.36G [01:12<01:32, 13.9MB/s][A
+model.safetensors:  45%|████▌     | 1.07G/2.36G [01:12<01:35, 13.5MB/s][A
+model.safetensors:  46%|████▌     | 1.07G/2.36G [01:12<01:17, 16.6MB/s][A
+model.safetensors:  46%|████▌     | 1.08G/2.36G [01:13<01:08, 18.6MB/s][A
+model.safetensors:  46%|████▌     | 1.08G/2.36G [01:13<01:09, 18.3MB/s][A
+model.safetensors:  46%|████▌     | 1.08G/2.36G [01:13<01:12, 17.5MB/s][A
+model.safetensors:  46%|████▌     | 1.09G/2.36G [01:13<01:10, 17.9MB/s][A
+model.safetensors:  46%|████▋     | 1.09G/2.36G [01:13<01:02, 20.4MB/s][A
+model.safetensors:  46%|████▋     | 1.09G/2.36G [01:13<01:01, 20.6MB/s][A
+model.safetensors:  47%|████▋     | 1.10G/2.36G [01:14<00:57, 21.8MB/s][A
+model.safetensors:  47%|████▋     | 1.10G/2.36G [01:14<00:56, 22.2MB/s][A
+model.safetensors:  47%|████▋     | 1.11G/2.36G [01:14<00:56, 22.2MB/s][A
+model.safetensors:  47%|████▋     | 1.11G/2.36G [01:14<00:54, 22.7MB/s][A
+model.safetensors:  47%|████▋     | 1.12G/2.36G [01:14<00:58, 21.4MB/s][A
+model.safetensors:  47%|████▋     | 1.12G/2.36G [01:15<01:04, 19.1MB/s][A
+model.safetensors:  48%|████▊     | 1.12G/2.36G [01:15<01:08, 18.0MB/s][A
+model.safetensors:  48%|████▊     | 1.12G/2.36G [01:15<01:03, 19.4MB/s][A
+model.safetensors:  48%|████▊     | 1.13G/2.36G [01:15<00:57, 21.5MB/s][A
+model.safetensors:  48%|████▊     | 1.13G/2.36G [01:15<00:55, 22.2MB/s][A
+model.safetensors:  48%|████▊     | 1.14G/2.36G [01:15<00:51, 23.9MB/s][A
+model.safetensors:  48%|████▊     | 1.14G/2.36G [01:15<00:50, 24.0MB/s][A
+model.safetensors:  48%|████▊     | 1.14G/2.36G [01:16<00:52, 23.2MB/s][A
+model.safetensors:  49%|████▊     | 1.15G/2.36G [01:16<00:54, 22.1MB/s][A
+model.safetensors:  49%|████▉     | 1.15G/2.36G [01:16<00:51, 23.3MB/s][A
+model.safetensors:  49%|████▉     | 1.15G/2.36G [01:16<00:52, 23.1MB/s][A
+model.safetensors:  49%|████▉     | 1.16G/2.36G [01:16<00:50, 23.6MB/s][A
+model.safetensors:  49%|████▉     | 1.16G/2.36G [01:16<00:47, 25.1MB/s][A
+model.safetensors:  49%|████▉     | 1.16G/2.36G [01:17<01:20, 14.8MB/s][A
+model.safetensors:  49%|████▉     | 1.17G/2.36G [01:17<01:20, 14.9MB/s][A
+model.safetensors:  50%|████▉     | 1.17G/2.36G [01:17<01:24, 14.1MB/s][A
+model.safetensors:  50%|████▉     | 1.17G/2.36G [01:17<01:22, 14.3MB/s][A
+model.safetensors:  50%|████▉     | 1.17G/2.36G [01:17<01:06, 17.7MB/s][A
+model.safetensors:  50%|█████     | 1.18G/2.36G [01:18<00:58, 20.0MB/s][A
+model.safetensors:  50%|█████     | 1.18G/2.36G [01:18<00:56, 20.9MB/s][A
+model.safetensors:  50%|█████     | 1.19G/2.36G [01:18<00:58, 20.1MB/s][A
+model.safetensors:  50%|█████     | 1.19G/2.36G [01:18<01:01, 19.0MB/s][A
+model.safetensors:  51%|█████     | 1.19G/2.36G [01:18<00:58, 20.0MB/s][A
+model.safetensors:  51%|█████     | 1.20G/2.36G [01:18<00:55, 21.1MB/s][A
+model.safetensors:  51%|█████     | 1.20G/2.36G [01:19<00:53, 21.6MB/s][A
+model.safetensors:  51%|█████     | 1.20G/2.36G [01:19<00:58, 19.7MB/s][A
+model.safetensors:  51%|█████     | 1.21G/2.36G [01:19<01:08, 16.7MB/s][A
+model.safetensors:  51%|█████▏    | 1.21G/2.36G [01:19<01:12, 15.8MB/s][A
+model.safetensors:  51%|█████▏    | 1.21G/2.36G [01:19<01:03, 18.1MB/s][A
+model.safetensors:  52%|█████▏    | 1.22G/2.36G [01:19<00:57, 19.9MB/s][A
+model.safetensors:  52%|█████▏    | 1.22G/2.36G [01:20<00:59, 19.3MB/s][A
+model.safetensors:  52%|█████▏    | 1.22G/2.36G [01:20<00:58, 19.4MB/s][A
+model.safetensors:  52%|█████▏    | 1.22G/2.36G [01:20<00:56, 20.1MB/s][A
+model.safetensors:  52%|█████▏    | 1.23G/2.36G [01:20<01:01, 18.4MB/s][A
+model.safetensors:  52%|█████▏    | 1.23G/2.36G [01:20<01:02, 18.2MB/s][A
+model.safetensors:  52%|█████▏    | 1.23G/2.36G [01:20<00:58, 19.2MB/s][A
+model.safetensors:  52%|█████▏    | 1.24G/2.36G [01:21<01:04, 17.4MB/s][A
+model.safetensors:  53%|█████▎    | 1.24G/2.36G [01:21<01:08, 16.4MB/s][A
+model.safetensors:  53%|█████▎    | 1.24G/2.36G [01:21<01:01, 18.1MB/s][A
+model.safetensors:  53%|█████▎    | 1.25G/2.36G [01:21<00:57, 19.2MB/s][A
+model.safetensors:  53%|█████▎    | 1.25G/2.36G [01:21<00:54, 20.2MB/s][A
+model.safetensors:  53%|█████▎    | 1.25G/2.36G [01:21<00:53, 20.8MB/s][A
+model.safetensors:  53%|█████▎    | 1.26G/2.36G [01:22<00:55, 20.0MB/s][A
+model.safetensors:  53%|█████▎    | 1.26G/2.36G [01:22<00:56, 19.5MB/s][A
+model.safetensors:  53%|█████▎    | 1.26G/2.36G [01:22<01:02, 17.6MB/s][A
+model.safetensors:  54%|█████▎    | 1.26G/2.36G [01:22<00:59, 18.4MB/s][A
+model.safetensors:  54%|█████▎    | 1.26G/2.36G [01:22<01:04, 17.0MB/s][A
+model.safetensors:  54%|█████▍    | 1.27G/2.36G [01:22<01:02, 17.3MB/s][A
+model.safetensors:  54%|█████▍    | 1.27G/2.36G [01:22<00:56, 19.1MB/s][A
+model.safetensors:  54%|█████▍    | 1.27G/2.36G [01:23<01:22, 13.2MB/s][A
+model.safetensors:  54%|█████▍    | 1.28G/2.36G [01:23<01:12, 14.9MB/s][A
+model.safetensors:  54%|█████▍    | 1.28G/2.36G [01:23<01:05, 16.5MB/s][A
+model.safetensors:  54%|█████▍    | 1.28G/2.36G [01:23<00:57, 18.7MB/s][A
+model.safetensors:  55%|█████▍    | 1.29G/2.36G [01:23<00:51, 20.7MB/s][A
+model.safetensors:  55%|█████▍    | 1.29G/2.36G [01:24<00:55, 19.2MB/s][A
+model.safetensors:  55%|█████▍    | 1.29G/2.36G [01:24<01:18, 13.6MB/s][A
+model.safetensors:  55%|█████▍    | 1.30G/2.36G [01:24<01:07, 15.7MB/s][A
+model.safetensors:  55%|█████▌    | 1.30G/2.36G [01:24<00:57, 18.5MB/s][A
+model.safetensors:  55%|█████▌    | 1.30G/2.36G [01:24<01:07, 15.5MB/s][A
+model.safetensors:  55%|█████▌    | 1.30G/2.36G [01:25<01:05, 16.0MB/s][A
+model.safetensors:  56%|█████▌    | 1.31G/2.36G [01:25<00:59, 17.5MB/s][A
+model.safetensors:  56%|█████▌    | 1.31G/2.36G [01:25<00:54, 19.3MB/s][A
+model.safetensors:  56%|█████▌    | 1.32G/2.36G [01:25<00:49, 20.8MB/s][A
+model.safetensors:  56%|█████▌    | 1.32G/2.36G [01:25<00:53, 19.4MB/s][A
+model.safetensors:  56%|█████▌    | 1.32G/2.36G [01:26<01:00, 17.0MB/s][A
+model.safetensors:  56%|█████▌    | 1.33G/2.36G [01:26<01:04, 15.9MB/s][A
+model.safetensors:  56%|█████▋    | 1.33G/2.36G [01:26<01:06, 15.4MB/s][A
+model.safetensors:  57%|█████▋    | 1.33G/2.36G [01:26<00:58, 17.4MB/s][A
+model.safetensors:  57%|█████▋    | 1.34G/2.36G [01:26<00:53, 19.2MB/s][A
+model.safetensors:  57%|█████▋    | 1.34G/2.36G [01:26<00:50, 20.2MB/s][A
+model.safetensors:  57%|█████▋    | 1.34G/2.36G [01:27<00:49, 20.3MB/s][A
+model.safetensors:  57%|█████▋    | 1.35G/2.36G [01:27<00:53, 19.0MB/s][A
+model.safetensors:  57%|█████▋    | 1.35G/2.36G [01:27<00:51, 19.7MB/s][A
+model.safetensors:  57%|█████▋    | 1.35G/2.36G [01:27<00:48, 20.8MB/s][A
+model.safetensors:  58%|█████▊    | 1.36G/2.36G [01:27<00:44, 22.7MB/s][A
+model.safetensors:  58%|█████▊    | 1.36G/2.36G [01:27<00:47, 20.8MB/s][A
+model.safetensors:  58%|█████▊    | 1.36G/2.36G [01:28<00:50, 19.5MB/s][A
+model.safetensors:  58%|█████▊    | 1.37G/2.36G [01:28<00:51, 19.0MB/s][A
+model.safetensors:  58%|█████▊    | 1.37G/2.36G [01:28<00:50, 19.6MB/s][A
+model.safetensors:  58%|█████▊    | 1.37G/2.36G [01:28<00:51, 19.0MB/s][A
+model.safetensors:  58%|█████▊    | 1.37G/2.36G [01:28<00:51, 19.2MB/s][A
+model.safetensors:  58%|█████▊    | 1.38G/2.36G [01:28<00:56, 17.2MB/s][A
+model.safetensors:  59%|█████▊    | 1.38G/2.36G [01:28<00:52, 18.7MB/s][A
+model.safetensors:  59%|█████▊    | 1.38G/2.36G [01:29<00:52, 18.7MB/s][A
+model.safetensors:  59%|█████▊    | 1.38G/2.36G [01:29<00:54, 18.0MB/s][A
+model.safetensors:  59%|█████▉    | 1.39G/2.36G [01:29<00:53, 18.2MB/s][A
+model.safetensors:  59%|█████▉    | 1.39G/2.36G [01:29<00:54, 17.7MB/s][A
+model.safetensors:  59%|█████▉    | 1.39G/2.36G [01:29<00:52, 18.5MB/s][A
+model.safetensors:  59%|█████▉    | 1.39G/2.36G [01:29<00:56, 17.0MB/s][A
+model.safetensors:  59%|█████▉    | 1.40G/2.36G [01:29<00:51, 18.6MB/s][A
+model.safetensors:  59%|█████▉    | 1.40G/2.36G [01:29<00:51, 18.6MB/s][A
+model.safetensors:  59%|█████▉    | 1.40G/2.36G [01:30<00:52, 18.3MB/s][A
+model.safetensors:  59%|█████▉    | 1.40G/2.36G [01:30<00:52, 18.1MB/s][A
+model.safetensors:  60%|█████▉    | 1.40G/2.36G [01:30<00:51, 18.6MB/s][A
+model.safetensors:  60%|█████▉    | 1.41G/2.36G [01:30<00:53, 17.9MB/s][A
+model.safetensors:  60%|█████▉    | 1.41G/2.36G [01:30<00:51, 18.5MB/s][A
+model.safetensors:  60%|█████▉    | 1.41G/2.36G [01:30<00:51, 18.2MB/s][A
+model.safetensors:  60%|█████▉    | 1.41G/2.36G [01:30<00:51, 18.4MB/s][A
+model.safetensors:  60%|██████    | 1.41G/2.36G [01:30<00:52, 18.0MB/s][A
+model.safetensors:  60%|██████    | 1.42G/2.36G [01:30<00:50, 18.5MB/s][A
+model.safetensors:  60%|██████    | 1.42G/2.36G [01:31<01:13, 12.7MB/s][A
+model.safetensors:  60%|██████    | 1.42G/2.36G [01:31<01:03, 14.8MB/s][A
+model.safetensors:  61%|██████    | 1.43G/2.36G [01:31<00:52, 17.8MB/s][A
+model.safetensors:  61%|██████    | 1.43G/2.36G [01:31<00:45, 20.4MB/s][A
+model.safetensors:  61%|██████    | 1.43G/2.36G [01:31<00:42, 21.7MB/s][A
+model.safetensors:  61%|██████    | 1.44G/2.36G [01:31<00:43, 21.0MB/s][A
+model.safetensors:  61%|██████    | 1.44G/2.36G [01:32<00:42, 21.4MB/s][A
+model.safetensors:  61%|██████    | 1.44G/2.36G [01:32<00:44, 20.6MB/s][A
+model.safetensors:  61%|██████▏   | 1.44G/2.36G [01:32<00:45, 20.2MB/s][A
+model.safetensors:  61%|██████▏   | 1.45G/2.36G [01:32<00:47, 19.3MB/s][A
+model.safetensors:  62%|██████▏   | 1.45G/2.36G [01:32<00:43, 20.7MB/s][A
+model.safetensors:  62%|██████▏   | 1.45G/2.36G [01:32<00:39, 22.6MB/s][A
+model.safetensors:  62%|██████▏   | 1.46G/2.36G [01:33<00:43, 20.5MB/s][A
+model.safetensors:  62%|██████▏   | 1.46G/2.36G [01:33<00:51, 17.4MB/s][A
+model.safetensors:  62%|██████▏   | 1.46G/2.36G [01:33<00:47, 18.9MB/s][A
+model.safetensors:  62%|██████▏   | 1.47G/2.36G [01:33<01:09, 12.7MB/s][A
+model.safetensors:  62%|██████▏   | 1.47G/2.36G [01:34<00:58, 15.1MB/s][A
+model.safetensors:  63%|██████▎   | 1.47G/2.36G [01:34<01:04, 13.7MB/s][A
+model.safetensors:  63%|██████▎   | 1.48G/2.36G [01:34<00:58, 15.1MB/s][A
+model.safetensors:  63%|██████▎   | 1.48G/2.36G [01:34<00:50, 17.3MB/s][A
+model.safetensors:  63%|██████▎   | 1.48G/2.36G [01:34<00:44, 19.4MB/s][A
+model.safetensors:  63%|██████▎   | 1.49G/2.36G [01:34<00:42, 20.5MB/s][A
+model.safetensors:  63%|██████▎   | 1.49G/2.36G [01:35<00:41, 20.8MB/s][A
+model.safetensors:  64%|██████▎   | 1.50G/2.36G [01:35<00:41, 20.8MB/s][A
+model.safetensors:  64%|██████▎   | 1.50G/2.36G [01:35<00:39, 21.6MB/s][A
+model.safetensors:  64%|██████▍   | 1.51G/2.36G [01:35<00:36, 23.1MB/s][A
+model.safetensors:  64%|██████▍   | 1.51G/2.36G [01:35<00:35, 23.9MB/s][A
+model.safetensors:  64%|██████▍   | 1.51G/2.36G [01:35<00:33, 25.0MB/s][A
+model.safetensors:  64%|██████▍   | 1.52G/2.36G [01:36<00:36, 22.9MB/s][A
+model.safetensors:  65%|██████▍   | 1.52G/2.36G [01:36<00:41, 19.9MB/s][A
+model.safetensors:  65%|██████▍   | 1.52G/2.36G [01:36<00:42, 19.7MB/s][A
+model.safetensors:  65%|██████▍   | 1.53G/2.36G [01:36<00:39, 21.0MB/s][A
+model.safetensors:  65%|██████▍   | 1.53G/2.36G [01:36<00:36, 22.9MB/s][A
+model.safetensors:  65%|██████▌   | 1.53G/2.36G [01:36<00:37, 21.7MB/s][A
+model.safetensors:  65%|██████▌   | 1.54G/2.36G [01:37<00:37, 21.6MB/s][A
+model.safetensors:  65%|██████▌   | 1.54G/2.36G [01:37<00:40, 20.4MB/s][A
+model.safetensors:  65%|██████▌   | 1.54G/2.36G [01:37<00:39, 20.4MB/s][A
+model.safetensors:  66%|██████▌   | 1.55G/2.36G [01:37<00:38, 21.2MB/s][A
+model.safetensors:  66%|██████▌   | 1.55G/2.36G [01:37<00:36, 22.0MB/s][A
+model.safetensors:  66%|██████▌   | 1.56G/2.36G [01:37<00:34, 23.4MB/s][A
+model.safetensors:  66%|██████▌   | 1.56G/2.36G [01:38<00:35, 22.6MB/s][A
+model.safetensors:  66%|██████▋   | 1.56G/2.36G [01:38<00:40, 19.8MB/s][A
+model.safetensors:  66%|██████▋   | 1.56G/2.36G [01:38<00:52, 15.2MB/s][A
+model.safetensors:  66%|██████▋   | 1.57G/2.36G [01:38<00:52, 15.2MB/s][A
+model.safetensors:  67%|██████▋   | 1.57G/2.36G [01:38<00:53, 14.6MB/s][A
+model.safetensors:  67%|██████▋   | 1.57G/2.36G [01:39<00:58, 13.5MB/s][A
+model.safetensors:  67%|██████▋   | 1.57G/2.36G [01:39<00:53, 14.5MB/s][A
+model.safetensors:  67%|██████▋   | 1.58G/2.36G [01:39<00:44, 17.5MB/s][A
+model.safetensors:  67%|██████▋   | 1.58G/2.36G [01:39<00:38, 19.9MB/s][A
+model.safetensors:  67%|██████▋   | 1.59G/2.36G [01:39<00:37, 20.3MB/s][A
+model.safetensors:  67%|██████▋   | 1.59G/2.36G [01:39<00:36, 21.3MB/s][A
+model.safetensors:  68%|██████▊   | 1.59G/2.36G [01:40<00:34, 22.3MB/s][A
+model.safetensors:  68%|██████▊   | 1.60G/2.36G [01:40<00:32, 23.6MB/s][A
+model.safetensors:  68%|██████▊   | 1.60G/2.36G [01:40<00:32, 23.4MB/s][A
+model.safetensors:  68%|██████▊   | 1.60G/2.36G [01:40<00:34, 21.6MB/s][A
+model.safetensors:  68%|██████▊   | 1.61G/2.36G [01:40<00:34, 21.5MB/s][A
+model.safetensors:  68%|██████▊   | 1.61G/2.36G [01:40<00:37, 19.8MB/s][A
+model.safetensors:  68%|██████▊   | 1.61G/2.36G [01:40<00:39, 18.9MB/s][A
+model.safetensors:  69%|██████▊   | 1.61G/2.36G [01:41<00:38, 19.2MB/s][A
+model.safetensors:  69%|██████▊   | 1.62G/2.36G [01:41<00:37, 19.6MB/s][A
+model.safetensors:  69%|██████▊   | 1.62G/2.36G [01:41<00:39, 18.6MB/s][A
+model.safetensors:  69%|██████▉   | 1.62G/2.36G [01:41<00:41, 17.8MB/s][A
+model.safetensors:  69%|██████▉   | 1.63G/2.36G [01:41<00:39, 18.5MB/s][A
+model.safetensors:  69%|██████▉   | 1.63G/2.36G [01:41<00:42, 17.2MB/s][A
+model.safetensors:  69%|██████▉   | 1.63G/2.36G [01:41<00:37, 19.3MB/s][A
+model.safetensors:  69%|██████▉   | 1.63G/2.36G [01:42<00:38, 18.6MB/s][A
+model.safetensors:  69%|██████▉   | 1.64G/2.36G [01:42<00:40, 17.8MB/s][A
+model.safetensors:  70%|██████▉   | 1.64G/2.36G [01:42<01:23, 8.61MB/s][A
+model.safetensors:  70%|██████▉   | 1.64G/2.36G [01:43<00:49, 14.4MB/s][A
+model.safetensors:  70%|██████▉   | 1.65G/2.36G [01:43<00:47, 15.0MB/s][A
+model.safetensors:  70%|██████▉   | 1.65G/2.36G [01:43<00:53, 13.3MB/s][A
+model.safetensors:  70%|███████   | 1.65G/2.36G [01:43<00:47, 14.8MB/s][A
+model.safetensors:  70%|███████   | 1.66G/2.36G [01:43<00:42, 16.5MB/s][A
+model.safetensors:  70%|███████   | 1.66G/2.36G [01:43<00:36, 19.0MB/s][A
+model.safetensors:  71%|███████   | 1.66G/2.36G [01:44<00:37, 18.7MB/s][A
+model.safetensors:  71%|███████   | 1.67G/2.36G [01:44<00:38, 17.8MB/s][A
+model.safetensors:  71%|███████   | 1.67G/2.36G [01:44<00:33, 20.3MB/s][A
+model.safetensors:  71%|███████   | 1.67G/2.36G [01:44<00:33, 20.5MB/s][A
+model.safetensors:  71%|███████   | 1.67G/2.36G [01:44<00:32, 20.9MB/s][A
+model.safetensors:  71%|███████   | 1.68G/2.36G [01:44<00:31, 21.3MB/s][A
+model.safetensors:  71%|███████▏  | 1.68G/2.36G [01:44<00:31, 21.7MB/s][A
+model.safetensors:  71%|███████▏  | 1.68G/2.36G [01:45<00:32, 20.9MB/s][A
+model.safetensors:  72%|███████▏  | 1.69G/2.36G [01:45<00:30, 21.9MB/s][A
+model.safetensors:  72%|███████▏  | 1.69G/2.36G [01:45<00:34, 19.5MB/s][A
+model.safetensors:  72%|███████▏  | 1.69G/2.36G [01:45<00:37, 17.7MB/s][A
+model.safetensors:  72%|███████▏  | 1.69G/2.36G [01:45<00:41, 16.0MB/s][A
+model.safetensors:  72%|███████▏  | 1.70G/2.36G [01:45<00:45, 14.7MB/s][A
+model.safetensors:  72%|███████▏  | 1.70G/2.36G [01:46<00:44, 14.8MB/s][A
+model.safetensors:  72%|███████▏  | 1.70G/2.36G [01:46<00:35, 18.3MB/s][A
+model.safetensors:  72%|███████▏  | 1.70G/2.36G [01:46<00:46, 14.1MB/s][A
+model.safetensors:  72%|███████▏  | 1.71G/2.36G [01:46<00:40, 16.0MB/s][A
+model.safetensors:  73%|███████▎  | 1.71G/2.36G [01:46<00:33, 19.2MB/s][A
+model.safetensors:  73%|███████▎  | 1.71G/2.36G [01:46<00:34, 18.8MB/s][A
+model.safetensors:  73%|███████▎  | 1.72G/2.36G [01:47<00:37, 17.2MB/s][A
+model.safetensors:  73%|███████▎  | 1.72G/2.36G [01:47<00:31, 19.9MB/s][A
+model.safetensors:  73%|███████▎  | 1.72G/2.36G [01:47<00:32, 19.3MB/s][A
+model.safetensors:  73%|███████▎  | 1.72G/2.36G [01:47<00:35, 17.7MB/s][A
+model.safetensors:  73%|███████▎  | 1.73G/2.36G [01:47<00:39, 15.8MB/s][A
+model.safetensors:  73%|███████▎  | 1.73G/2.36G [01:47<00:39, 16.1MB/s][A
+model.safetensors:  73%|███████▎  | 1.73G/2.36G [01:47<00:32, 19.5MB/s][A
+model.safetensors:  74%|███████▎  | 1.73G/2.36G [01:48<00:43, 14.3MB/s][A
+model.safetensors:  74%|███████▎  | 1.74G/2.36G [01:48<00:41, 15.0MB/s][A
+model.safetensors:  74%|███████▍  | 1.74G/2.36G [01:48<00:34, 17.7MB/s][A
+model.safetensors:  74%|███████▍  | 1.74G/2.36G [01:48<00:33, 18.2MB/s][A
+model.safetensors:  74%|███████▍  | 1.74G/2.36G [01:48<00:33, 18.3MB/s][A
+model.safetensors:  74%|███████▍  | 1.75G/2.36G [01:48<00:28, 21.0MB/s][A
+model.safetensors:  74%|███████▍  | 1.75G/2.36G [01:48<00:30, 19.9MB/s][A
+model.safetensors:  74%|███████▍  | 1.75G/2.36G [01:49<00:35, 17.1MB/s][A
+model.safetensors:  75%|███████▍  | 1.76G/2.36G [01:49<00:33, 17.7MB/s][A
+model.safetensors:  75%|███████▍  | 1.76G/2.36G [01:49<00:29, 20.1MB/s][A
+model.safetensors:  75%|███████▍  | 1.76G/2.36G [01:49<00:30, 19.3MB/s][A
+model.safetensors:  75%|███████▍  | 1.77G/2.36G [01:49<00:35, 16.6MB/s][A
+model.safetensors:  75%|███████▌  | 1.77G/2.36G [01:50<00:43, 13.6MB/s][A
+model.safetensors:  75%|███████▌  | 1.77G/2.36G [01:50<00:41, 14.2MB/s][A
+model.safetensors:  75%|███████▌  | 1.77G/2.36G [01:50<00:35, 16.3MB/s][A
+model.safetensors:  75%|███████▌  | 1.78G/2.36G [01:50<00:32, 17.9MB/s][A
+model.safetensors:  76%|███████▌  | 1.78G/2.36G [01:50<00:35, 16.4MB/s][A
+model.safetensors:  76%|███████▌  | 1.78G/2.36G [01:50<00:34, 16.5MB/s][A
+model.safetensors:  76%|███████▌  | 1.79G/2.36G [01:51<00:30, 18.6MB/s][A
+model.safetensors:  76%|███████▌  | 1.79G/2.36G [01:51<00:26, 21.1MB/s][A
+model.safetensors:  76%|███████▌  | 1.79G/2.36G [01:51<00:26, 21.2MB/s][A
+model.safetensors:  76%|███████▌  | 1.80G/2.36G [01:51<00:25, 21.8MB/s][A
+model.safetensors:  76%|███████▋  | 1.80G/2.36G [01:51<00:26, 21.0MB/s][A
+model.safetensors:  76%|███████▋  | 1.80G/2.36G [01:51<00:24, 23.1MB/s][A
+model.safetensors:  77%|███████▋  | 1.81G/2.36G [01:52<00:28, 19.0MB/s][A
+model.safetensors:  77%|███████▋  | 1.81G/2.36G [01:52<00:28, 19.3MB/s][A
+model.safetensors:  77%|███████▋  | 1.81G/2.36G [01:52<00:26, 20.9MB/s][A
+model.safetensors:  77%|███████▋  | 1.81G/2.36G [01:52<00:26, 20.1MB/s][A
+model.safetensors:  77%|███████▋  | 1.82G/2.36G [01:52<00:26, 20.5MB/s][A
+model.safetensors:  77%|███████▋  | 1.82G/2.36G [01:52<00:26, 20.4MB/s][A
+model.safetensors:  77%|███████▋  | 1.82G/2.36G [01:52<00:24, 22.1MB/s][A
+model.safetensors:  78%|███████▊  | 1.83G/2.36G [01:53<00:28, 18.6MB/s][A
+model.safetensors:  78%|███████▊  | 1.83G/2.36G [01:53<00:30, 17.3MB/s][A
+model.safetensors:  78%|███████▊  | 1.83G/2.36G [01:53<00:26, 20.2MB/s][A
+model.safetensors:  78%|███████▊  | 1.84G/2.36G [01:53<00:27, 18.7MB/s][A
+model.safetensors:  78%|███████▊  | 1.84G/2.36G [01:53<00:27, 18.6MB/s][A
+model.safetensors:  78%|███████▊  | 1.84G/2.36G [01:53<00:24, 21.4MB/s][A
+model.safetensors:  78%|███████▊  | 1.84G/2.36G [01:53<00:26, 19.1MB/s][A
+model.safetensors:  78%|███████▊  | 1.85G/2.36G [01:54<00:24, 20.6MB/s][A
+model.safetensors:  78%|███████▊  | 1.85G/2.36G [01:54<00:25, 19.9MB/s][A
+model.safetensors:  79%|███████▊  | 1.85G/2.36G [01:54<00:29, 17.2MB/s][A
+model.safetensors:  79%|███████▊  | 1.85G/2.36G [01:54<00:29, 17.2MB/s][A
+model.safetensors:  79%|███████▉  | 1.86G/2.36G [01:54<00:24, 20.0MB/s][A
+model.safetensors:  79%|███████▉  | 1.86G/2.36G [01:54<00:25, 19.1MB/s][A
+model.safetensors:  79%|███████▉  | 1.86G/2.36G [01:54<00:26, 19.0MB/s][A
+model.safetensors:  79%|███████▉  | 1.87G/2.36G [01:55<00:24, 19.8MB/s][A
+model.safetensors:  79%|███████▉  | 1.87G/2.36G [01:55<00:22, 21.4MB/s][A
+model.safetensors:  79%|███████▉  | 1.87G/2.36G [01:55<00:24, 19.8MB/s][A
+model.safetensors:  80%|███████▉  | 1.87G/2.36G [01:55<00:24, 19.6MB/s][A
+model.safetensors:  80%|███████▉  | 1.88G/2.36G [01:55<00:22, 21.2MB/s][A
+model.safetensors:  80%|███████▉  | 1.88G/2.36G [01:55<00:27, 17.4MB/s][A
+model.safetensors:  80%|███████▉  | 1.88G/2.36G [01:56<00:27, 17.2MB/s][A
+model.safetensors:  80%|████████  | 1.89G/2.36G [01:56<00:23, 19.8MB/s][A
+model.safetensors:  80%|████████  | 1.89G/2.36G [01:56<00:23, 19.5MB/s][A
+model.safetensors:  80%|████████  | 1.89G/2.36G [01:56<00:24, 19.1MB/s][A
+model.safetensors:  80%|████████  | 1.89G/2.36G [01:56<00:22, 20.5MB/s][A
+model.safetensors:  81%|████████  | 1.90G/2.36G [01:56<00:22, 20.2MB/s][A
+model.safetensors:  81%|████████  | 1.90G/2.36G [01:56<00:23, 19.3MB/s][A
+model.safetensors:  81%|████████  | 1.90G/2.36G [01:56<00:20, 22.1MB/s][A
+model.safetensors:  81%|████████  | 1.91G/2.36G [01:57<00:20, 22.0MB/s][A
+model.safetensors:  81%|████████  | 1.91G/2.36G [01:57<00:20, 22.2MB/s][A
+model.safetensors:  81%|████████  | 1.91G/2.36G [01:57<00:21, 20.6MB/s][A
+model.safetensors:  81%|████████▏ | 1.92G/2.36G [01:57<00:20, 21.7MB/s][A
+model.safetensors:  81%|████████▏ | 1.92G/2.36G [01:57<00:18, 23.2MB/s][A
+model.safetensors:  82%|████████▏ | 1.92G/2.36G [01:57<00:24, 17.9MB/s][A
+model.safetensors:  82%|████████▏ | 1.93G/2.36G [01:58<00:24, 17.5MB/s][A
+model.safetensors:  82%|████████▏ | 1.93G/2.36G [01:58<00:27, 15.4MB/s][A
+model.safetensors:  82%|████████▏ | 1.93G/2.36G [01:58<00:26, 15.9MB/s][A
+model.safetensors:  82%|████████▏ | 1.93G/2.36G [01:58<00:23, 18.1MB/s][A
+model.safetensors:  82%|████████▏ | 1.93G/2.36G [01:58<00:23, 18.2MB/s][A
+model.safetensors:  82%|████████▏ | 1.94G/2.36G [01:58<00:21, 19.7MB/s][A
+model.safetensors:  82%|████████▏ | 1.94G/2.36G [01:58<00:18, 22.5MB/s][A
+model.safetensors:  82%|████████▏ | 1.94G/2.36G [01:59<00:18, 22.5MB/s][A
+model.safetensors:  83%|████████▎ | 1.95G/2.36G [01:59<00:39, 10.3MB/s][A
+model.safetensors:  83%|████████▎ | 1.95G/2.36G [01:59<00:34, 11.8MB/s][A
+model.safetensors:  83%|████████▎ | 1.95G/2.36G [02:00<00:28, 14.0MB/s][A
+model.safetensors:  83%|████████▎ | 1.96G/2.36G [02:00<00:24, 16.6MB/s][A
+model.safetensors:  83%|████████▎ | 1.96G/2.36G [02:00<00:23, 16.9MB/s][A
+model.safetensors:  83%|████████▎ | 1.96G/2.36G [02:00<00:23, 16.5MB/s][A
+model.safetensors:  83%|████████▎ | 1.97G/2.36G [02:00<00:21, 18.3MB/s][A
+model.safetensors:  84%|████████▎ | 1.97G/2.36G [02:00<00:21, 17.9MB/s][A
+model.safetensors:  84%|████████▎ | 1.97G/2.36G [02:01<00:24, 16.0MB/s][A
+model.safetensors:  84%|████████▍ | 1.98G/2.36G [02:01<00:23, 15.9MB/s][A
+model.safetensors:  84%|████████▍ | 1.98G/2.36G [02:01<00:20, 18.9MB/s][A
+model.safetensors:  84%|████████▍ | 1.98G/2.36G [02:01<00:20, 18.5MB/s][A
+model.safetensors:  84%|████████▍ | 1.98G/2.36G [02:01<00:21, 17.5MB/s][A
+model.safetensors:  84%|████████▍ | 1.99G/2.36G [02:01<00:23, 15.5MB/s][A
+model.safetensors:  84%|████████▍ | 1.99G/2.36G [02:01<00:23, 16.0MB/s][A
+model.safetensors:  84%|████████▍ | 1.99G/2.36G [02:02<00:19, 19.2MB/s][A
+model.safetensors:  85%|████████▍ | 1.99G/2.36G [02:02<00:19, 18.5MB/s][A
+model.safetensors:  85%|████████▍ | 2.00G/2.36G [02:02<00:19, 18.3MB/s][A
+model.safetensors:  85%|████████▍ | 2.00G/2.36G [02:02<00:17, 20.1MB/s][A
+model.safetensors:  85%|████████▍ | 2.00G/2.36G [02:02<00:17, 20.2MB/s][A
+model.safetensors:  85%|████████▌ | 2.00G/2.36G [02:02<00:16, 20.8MB/s][A
+model.safetensors:  85%|████████▌ | 2.01G/2.36G [02:02<00:15, 22.8MB/s][A
+model.safetensors:  85%|████████▌ | 2.01G/2.36G [02:03<00:19, 17.4MB/s][A
+model.safetensors:  85%|████████▌ | 2.01G/2.36G [02:03<00:20, 16.9MB/s][A
+model.safetensors:  86%|████████▌ | 2.02G/2.36G [02:03<00:21, 15.6MB/s][A
+model.safetensors:  86%|████████▌ | 2.02G/2.36G [02:03<00:21, 15.5MB/s][A
+model.safetensors:  86%|████████▌ | 2.02G/2.36G [02:03<00:17, 18.8MB/s][A
+model.safetensors:  86%|████████▌ | 2.02G/2.36G [02:03<00:18, 17.9MB/s][A
+model.safetensors:  86%|████████▌ | 2.03G/2.36G [02:03<00:17, 18.5MB/s][A
+model.safetensors:  86%|████████▌ | 2.03G/2.36G [02:04<00:16, 20.0MB/s][A
+model.safetensors:  86%|████████▌ | 2.03G/2.36G [02:04<00:17, 18.6MB/s][A
+model.safetensors:  86%|████████▋ | 2.03G/2.36G [02:04<00:17, 18.6MB/s][A
+model.safetensors:  86%|████████▋ | 2.04G/2.36G [02:04<00:15, 20.9MB/s][A
+model.safetensors:  87%|████████▋ | 2.04G/2.36G [02:04<00:18, 16.7MB/s][A
+model.safetensors:  87%|████████▋ | 2.04G/2.36G [02:04<00:19, 16.3MB/s][A
+model.safetensors:  87%|████████▋ | 2.04G/2.36G [02:05<00:20, 15.4MB/s][A
+model.safetensors:  87%|████████▋ | 2.05G/2.36G [02:05<00:22, 13.6MB/s][A
+model.safetensors:  87%|████████▋ | 2.05G/2.36G [02:05<00:24, 12.7MB/s][A
+model.safetensors:  87%|████████▋ | 2.05G/2.36G [02:05<00:23, 13.0MB/s][A
+model.safetensors:  87%|████████▋ | 2.06G/2.36G [02:05<00:18, 16.3MB/s][A
+model.safetensors:  87%|████████▋ | 2.06G/2.36G [02:05<00:15, 19.2MB/s][A
+model.safetensors:  87%|████████▋ | 2.06G/2.36G [02:06<00:21, 13.6MB/s][A
+model.safetensors:  88%|████████▊ | 2.06G/2.36G [02:06<00:19, 14.8MB/s][A
+model.safetensors:  88%|████████▊ | 2.07G/2.36G [02:06<00:20, 14.2MB/s][A
+model.safetensors:  88%|████████▊ | 2.07G/2.36G [02:06<00:20, 14.0MB/s][A
+model.safetensors:  88%|████████▊ | 2.07G/2.36G [02:06<00:16, 16.9MB/s][A
+model.safetensors:  88%|████████▊ | 2.07G/2.36G [02:06<00:18, 15.4MB/s][A
+model.safetensors:  88%|████████▊ | 2.08G/2.36G [02:07<00:17, 16.3MB/s][A
+model.safetensors:  88%|████████▊ | 2.08G/2.36G [02:07<00:14, 18.6MB/s][A
+model.safetensors:  88%|████████▊ | 2.08G/2.36G [02:07<00:15, 17.3MB/s][A
+model.safetensors:  88%|████████▊ | 2.08G/2.36G [02:07<00:15, 17.2MB/s][A
+model.safetensors:  89%|████████▊ | 2.09G/2.36G [02:07<00:13, 19.9MB/s][A
+model.safetensors:  89%|████████▊ | 2.09G/2.36G [02:07<00:13, 19.2MB/s][A
+model.safetensors:  89%|████████▉ | 2.09G/2.36G [02:08<00:15, 17.0MB/s][A
+model.safetensors:  89%|████████▉ | 2.10G/2.36G [02:08<00:17, 15.3MB/s][A
+model.safetensors:  89%|████████▉ | 2.10G/2.36G [02:08<00:17, 15.1MB/s][A
+model.safetensors:  89%|████████▉ | 2.10G/2.36G [02:08<00:14, 18.1MB/s][A
+model.safetensors:  89%|████████▉ | 2.10G/2.36G [02:08<00:14, 17.3MB/s][A
+model.safetensors:  89%|████████▉ | 2.11G/2.36G [02:08<00:13, 18.4MB/s][A
+model.safetensors:  89%|████████▉ | 2.11G/2.36G [02:08<00:11, 21.2MB/s][A
+model.safetensors:  90%|████████▉ | 2.11G/2.36G [02:09<00:11, 21.4MB/s][A
+model.safetensors:  90%|████████▉ | 2.11G/2.36G [02:09<00:12, 20.0MB/s][A
+model.safetensors:  90%|████████▉ | 2.12G/2.36G [02:09<00:12, 19.4MB/s][A
+model.safetensors:  90%|█████████ | 2.12G/2.36G [02:09<00:10, 21.4MB/s][A
+model.safetensors:  90%|█████████ | 2.12G/2.36G [02:09<00:11, 21.1MB/s][A
+model.safetensors:  90%|█████████ | 2.13G/2.36G [02:09<00:10, 20.8MB/s][A
+model.safetensors:  90%|█████████ | 2.13G/2.36G [02:10<00:11, 19.5MB/s][A
+model.safetensors:  91%|█████████ | 2.13G/2.36G [02:10<00:12, 17.9MB/s][A
+model.safetensors:  91%|█████████ | 2.13G/2.36G [02:10<00:13, 16.2MB/s][A
+model.safetensors:  91%|█████████ | 2.14G/2.36G [02:10<00:11, 18.4MB/s][A
+model.safetensors:  91%|█████████ | 2.14G/2.36G [02:10<00:10, 19.8MB/s][A
+model.safetensors:  91%|█████████ | 2.15G/2.36G [02:10<00:11, 18.5MB/s][A
+model.safetensors:  91%|█████████▏| 2.15G/2.36G [02:11<00:10, 20.1MB/s][A
+model.safetensors:  91%|█████████▏| 2.16G/2.36G [02:11<00:09, 21.8MB/s][A
+model.safetensors:  92%|█████████▏| 2.16G/2.36G [02:11<00:08, 22.8MB/s][A
+model.safetensors:  92%|█████████▏| 2.16G/2.36G [02:11<00:07, 24.5MB/s][A
+model.safetensors:  92%|█████████▏| 2.17G/2.36G [02:11<00:08, 22.9MB/s][A
+model.safetensors:  92%|█████████▏| 2.17G/2.36G [02:11<00:09, 20.6MB/s][A
+model.safetensors:  92%|█████████▏| 2.17G/2.36G [02:12<00:09, 19.0MB/s][A
+model.safetensors:  92%|█████████▏| 2.18G/2.36G [02:12<00:08, 21.1MB/s][A
+model.safetensors:  92%|█████████▏| 2.18G/2.36G [02:12<00:08, 21.8MB/s][A
+model.safetensors:  93%|█████████▎| 2.18G/2.36G [02:12<00:07, 22.2MB/s][A
+model.safetensors:  93%|█████████▎| 2.19G/2.36G [02:12<00:07, 21.8MB/s][A
+model.safetensors:  93%|█████████▎| 2.19G/2.36G [02:12<00:07, 22.8MB/s][A
+model.safetensors:  93%|█████████▎| 2.19G/2.36G [02:12<00:07, 22.5MB/s][A
+model.safetensors:  93%|█████████▎| 2.20G/2.36G [02:13<00:06, 23.6MB/s][A
+model.safetensors:  93%|█████████▎| 2.20G/2.36G [02:13<00:06, 25.2MB/s][A
+model.safetensors:  94%|█████████▎| 2.20G/2.36G [02:13<00:06, 22.3MB/s][A
+model.safetensors:  94%|█████████▎| 2.21G/2.36G [02:13<00:07, 20.8MB/s][A
+model.safetensors:  94%|█████████▍| 2.21G/2.36G [02:13<00:06, 21.5MB/s][A
+model.safetensors:  94%|█████████▍| 2.21G/2.36G [02:13<00:06, 23.5MB/s][A
+model.safetensors:  94%|█████████▍| 2.22G/2.36G [02:13<00:05, 23.6MB/s][A
+model.safetensors:  94%|█████████▍| 2.22G/2.36G [02:14<00:06, 21.5MB/s][A
+model.safetensors:  94%|█████████▍| 2.22G/2.36G [02:14<00:06, 21.7MB/s][A
+model.safetensors:  95%|█████████▍| 2.23G/2.36G [02:14<00:06, 20.0MB/s][A
+model.safetensors:  95%|█████████▍| 2.23G/2.36G [02:14<00:06, 20.0MB/s][A
+model.safetensors:  95%|█████████▍| 2.24G/2.36G [02:14<00:06, 19.1MB/s][A
+model.safetensors:  95%|█████████▌| 2.24G/2.36G [02:15<00:05, 19.8MB/s][A
+model.safetensors:  95%|█████████▌| 2.24G/2.36G [02:15<00:06, 18.7MB/s][A
+model.safetensors:  95%|█████████▌| 2.24G/2.36G [02:15<00:06, 17.7MB/s][A
+model.safetensors:  95%|█████████▌| 2.25G/2.36G [02:15<00:05, 20.3MB/s][A
+model.safetensors:  95%|█████████▌| 2.25G/2.36G [02:15<00:07, 14.2MB/s][A
+model.safetensors:  96%|█████████▌| 2.25G/2.36G [02:16<00:07, 14.6MB/s][A
+model.safetensors:  96%|█████████▌| 2.26G/2.36G [02:16<00:06, 16.5MB/s][A
+model.safetensors:  96%|█████████▌| 2.26G/2.36G [02:16<00:05, 18.0MB/s][A
+model.safetensors:  96%|█████████▌| 2.26G/2.36G [02:18<00:17, 5.16MB/s][A
+model.safetensors:  96%|█████████▋| 2.27G/2.36G [02:18<00:12, 6.90MB/s][A
+model.safetensors:  96%|█████████▋| 2.27G/2.36G [02:18<00:11, 7.59MB/s][A
+model.safetensors:  96%|█████████▋| 2.27G/2.36G [02:18<00:09, 8.52MB/s][A
+model.safetensors:  97%|█████████▋| 2.28G/2.36G [02:19<00:08, 9.38MB/s][A
+model.safetensors:  97%|█████████▋| 2.28G/2.36G [02:19<00:07, 10.3MB/s][A
+model.safetensors:  97%|█████████▋| 2.28G/2.36G [02:19<00:05, 13.2MB/s][A
+model.safetensors:  97%|█████████▋| 2.28G/2.36G [02:19<00:05, 13.0MB/s][A
+model.safetensors:  97%|█████████▋| 2.29G/2.36G [02:19<00:05, 13.6MB/s][A
+model.safetensors:  97%|█████████▋| 2.29G/2.36G [02:19<00:04, 15.7MB/s][A
+model.safetensors:  97%|█████████▋| 2.29G/2.36G [02:20<00:04, 14.2MB/s][A
+model.safetensors:  97%|█████████▋| 2.29G/2.36G [02:20<00:08, 7.70MB/s][A
+model.safetensors:  98%|█████████▊| 2.30G/2.36G [02:20<00:05, 10.5MB/s][A
+model.safetensors:  98%|█████████▊| 2.30G/2.36G [02:21<00:05, 11.0MB/s][A
+model.safetensors:  98%|█████████▊| 2.30G/2.36G [02:21<00:04, 11.2MB/s][A
+model.safetensors:  98%|█████████▊| 2.31G/2.36G [02:21<00:03, 13.8MB/s][A
+model.safetensors:  98%|█████████▊| 2.31G/2.36G [02:21<00:02, 16.2MB/s][A
+model.safetensors:  98%|█████████▊| 2.32G/2.36G [02:21<00:02, 17.9MB/s][A
+model.safetensors:  98%|█████████▊| 2.32G/2.36G [02:22<00:02, 16.0MB/s][A
+model.safetensors:  98%|█████████▊| 2.32G/2.36G [02:22<00:02, 16.4MB/s][A
+model.safetensors:  99%|█████████▊| 2.32G/2.36G [02:22<00:01, 19.1MB/s][A
+model.safetensors:  99%|█████████▊| 2.33G/2.36G [02:22<00:01, 20.6MB/s][A
+model.safetensors:  99%|█████████▉| 2.33G/2.36G [02:22<00:01, 20.1MB/s][A
+model.safetensors:  99%|█████████▉| 2.33G/2.36G [02:22<00:01, 20.9MB/s][A
+model.safetensors:  99%|█████████▉| 2.34G/2.36G [02:22<00:00, 22.2MB/s][A
+model.safetensors:  99%|█████████▉| 2.34G/2.36G [02:22<00:00, 23.9MB/s][A
+model.safetensors:  99%|█████████▉| 2.34G/2.36G [02:23<00:00, 17.4MB/s][A
+model.safetensors:  99%|█████████▉| 2.34G/2.36G [02:23<00:00, 17.3MB/s][A
+model.safetensors: 100%|█████████▉| 2.35G/2.36G [02:23<00:00, 20.0MB/s][A
+model.safetensors: 100%|█████████▉| 2.35G/2.36G [02:23<00:00, 20.2MB/s][A
+model.safetensors: 100%|█████████▉| 2.35G/2.36G [02:23<00:00, 19.4MB/s][A
+                                                                       [ADownloading: 100%|██████████| 7/7 [02:26<00:00, 26.18s/file]Downloading: 100%|██████████| 7/7 [02:26<00:00, 20.95s/file]
+Snapshot ready at model_zoo/lam_models/releases/lam/lam-20k/step_045500
++ echo EXIT_WEIGHTS=0
+EXIT_WEIGHTS=0
++ rm -rf ./tmp/
++ echo '===== RESULT ====='
+===== RESULT =====
++ du -sh /workspace/LAM/model_zoo /workspace/LAM/assets
+3.1G	/workspace/LAM/model_zoo
+305M	/workspace/LAM/assets
++ find /workspace/LAM/model_zoo -maxdepth 3
++ head -20
+/workspace/LAM/model_zoo
+/workspace/LAM/model_zoo/lam_models
+/workspace/LAM/model_zoo/lam_models/releases
+/workspace/LAM/model_zoo/lam_models/releases/lam
+/workspace/LAM/model_zoo/human_parametric_models
+/workspace/LAM/model_zoo/human_parametric_models/flame_assets
+/workspace/LAM/model_zoo/human_parametric_models/flame_assets/pred_expression.json
+/workspace/LAM/model_zoo/human_parametric_models/flame_assets/flame_arkit_bs.npy
+/workspace/LAM/model_zoo/human_parametric_models/flame_assets/flame
+/workspace/LAM/model_zoo/human_parametric_models/flame_assets/teeth_jawopen_offset.npy
+/workspace/LAM/model_zoo/human_parametric_models/flame_assets/shoulder_mesh.obj
+/workspace/LAM/model_zoo/human_parametric_models/flame_vhap
+/workspace/LAM/model_zoo/human_parametric_models/flame_vhap/landmark_embedding_with_eyes.npy
+/workspace/LAM/model_zoo/human_parametric_models/flame_vhap/FLAME_masks.pkl
+/workspace/LAM/model_zoo/human_parametric_models/flame_vhap/uv_masks.npz
+/workspace/LAM/model_zoo/human_parametric_models/flame_vhap/flame2023.pkl
+/workspace/LAM/model_zoo/human_parametric_models/flame_vhap/tex_mean_painted.png
+/workspace/LAM/model_zoo/human_parametric_models/flame_vhap/head_template_mesh.obj
+/workspace/LAM/model_zoo/flame_tracking_models
+/workspace/LAM/model_zoo/flame_tracking_models/matting

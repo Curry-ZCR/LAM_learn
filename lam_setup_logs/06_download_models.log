@@ -1,0 +1,36 @@
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ PIP=/usr/local/miniconda3/envs/lam/bin/pip
++ cd /workspace/LAM
++ tail -5
++ /usr/local/miniconda3/envs/lam/bin/pip install modelscope
+Requirement already satisfied: certifi>=2023.5.7 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from requests>=2.25->modelscope) (2026.7.22)
+Installing collected packages: modelscope-hub, modelscope
+
+Successfully installed modelscope-1.40.1 modelscope-hub-0.4.5
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_MS=0
+EXIT_MS=0
++ /usr/local/miniconda3/envs/lam/bin/python -m modelscope download --model Damo_XR_Lab/LAM-assets --local_dir ./tmp/
+/usr/local/miniconda3/envs/lam/bin/python: No module named modelscope.__main__; 'modelscope' is a package and cannot be directly executed
++ echo EXIT_ASSETS=1
+EXIT_ASSETS=1
++ ls -la ./tmp/
+ls: cannot access './tmp/': No such file or directory
++ cd /workspace/LAM
++ tar -xf ./tmp/LAM_assets.tar
+tar: ./tmp/LAM_assets.tar: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
++ echo EXIT_TAR1=2
+EXIT_TAR1=2
++ tar -xf ./tmp/thirdparty_models.tar
+tar: ./tmp/thirdparty_models.tar: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
++ echo EXIT_TAR2=2
+EXIT_TAR2=2
++ /usr/local/miniconda3/envs/lam/bin/python -m modelscope download Damo_XR_Lab/LAM-20K --local_dir ./model_zoo/lam_models/releases/lam/lam-20k/step_045500/
+/usr/local/miniconda3/envs/lam/bin/python: No module named modelscope.__main__; 'modelscope' is a package and cannot be directly executed
++ echo EXIT_WEIGHTS=1
+EXIT_WEIGHTS=1
++ rm -rf ./tmp/
++ du -sh /workspace/LAM/model_zoo /workspace/LAM/assets /workspace/LAM/thirdparties
+700K	/workspace/LAM/assets

@@ -1,0 +1,37 @@
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ /usr/local/miniconda3/envs/lam/bin/python -
+/workspace/LAM/./lam/models/encoders/dinov2/layers/swiglu_ffn.py:43: UserWarning: xFormers is available (SwiGLU)
+  warnings.warn("xFormers is available (SwiGLU)")
+/workspace/LAM/./lam/models/encoders/dinov2/layers/attention.py:27: UserWarning: xFormers is available (Attention)
+  warnings.warn("xFormers is available (Attention)")
+/workspace/LAM/./lam/models/encoders/dinov2/layers/block.py:39: UserWarning: xFormers is available (Block)
+  warnings.warn("xFormers is available (Block)")
+================================================================================================================================================ 
+skip_decoder: True 
+================================================================================================================================================
+#########scale sphere:False, add_teeth:False
+================================================================================================================================================ 
+ Render rgb: True 
+================================================================================================================================================
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/huggingface_hub/hub_mixin.py", line 511, in from_pretrained
+    instance = cls._from_pretrained(
+  File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/huggingface_hub/hub_mixin.py", line 727, in _from_pretrained
+    model = cls(**model_kwargs)
+  File "/workspace/LAM/./lam/utils/hf_hub.py", line 23, in __init__
+    super().__init__(**config)
+  File "/workspace/LAM/./lam/models/modeling_lam.py", line 104, in __init__
+    self.renderer = GS3DRenderer(human_model_path=human_model_path,
+  File "/workspace/LAM/./lam/models/rendering/gs_renderer.py", line 451, in __init__
+    self.flame_model = FlameHeadSubdivided(
+  File "/workspace/LAM/./lam/models/rendering/flame_model/flame.py", line 699, in __init__
+    super().__init__(shape_params=shape_params,
+  File "/workspace/LAM/./lam/models/rendering/flame_model/flame.py", line 122, in __init__
+    with open(flame_model_path, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: './pretrained_models/human_model_files/flame_assets/flame/flame2023.pkl'
++ echo EXIT_LOAD=1
+EXIT_LOAD=1

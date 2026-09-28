@@ -1,0 +1,120 @@
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ PIP=/usr/local/miniconda3/envs/lam/bin/pip
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ export PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export TORCH_CUDA_ARCH_LIST=8.9
++ TORCH_CUDA_ARCH_LIST=8.9
++ export MAX_JOBS=16
++ MAX_JOBS=16
++ cd /workspace/LAM/thirdparty_src
++ tail -3
++ /usr/local/miniconda3/envs/lam/bin/pip install setuptools wheel ninja
+Requirement already satisfied: ninja in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (1.13.2)
+Requirement already satisfied: packaging>=24.0 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from wheel) (26.3)
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo '############ 1/4 diff-gaussian-rasterization ############'
+############ 1/4 diff-gaussian-rasterization ############
++ cd diff-gaussian-rasterization
++ /usr/local/miniconda3/envs/lam/bin/pip install . --no-build-isolation
++ tail -30
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: diff_gaussian_rasterization
+  Building wheel for diff_gaussian_rasterization (pyproject.toml): started
+  Building wheel for diff_gaussian_rasterization (pyproject.toml): still running...
+  Building wheel for diff_gaussian_rasterization (pyproject.toml): finished with status 'done'
+  Created wheel for diff_gaussian_rasterization: filename=diff_gaussian_rasterization-0.0.0-cp310-cp310-linux_x86_64.whl size=478515 sha256=759f3bd31dda3433d09ba0fd2b863ddcde774ab749b902a69beeb91c1270aa8a
+  Stored in directory: /tmp/pip-ephem-wheel-cache-gosxr3tw/wheels/d4/5c/18/c72eae275d27a4bcf2d8584c9981aa702af0e2078a761d7d3e
+Successfully built diff_gaussian_rasterization
+Installing collected packages: diff_gaussian_rasterization
+Successfully installed diff_gaussian_rasterization-0.0.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_DGR=0
+EXIT_DGR=0
++ cd ..
++ echo '############ 2/4 simple-knn ############'
+############ 2/4 simple-knn ############
++ cd simple-knn
++ /usr/local/miniconda3/envs/lam/bin/pip install . --no-build-isolation
++ tail -30
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: simple_knn
+  Building wheel for simple_knn (pyproject.toml): started
+  Building wheel for simple_knn (pyproject.toml): still running...
+  Building wheel for simple_knn (pyproject.toml): finished with status 'done'
+  Created wheel for simple_knn: filename=simple_knn-1.0.0-cp310-cp310-linux_x86_64.whl size=428605 sha256=01749f3dc047160a60ad28101b7379d35e4e274de6459611ce918d8ab8cad493
+  Stored in directory: /tmp/pip-ephem-wheel-cache-2peraka0/wheels/92/7f/02/f627d59ddf9ecfd3ebdfc48aee5c83ce6a9c7d8c7ca89db665
+Successfully built simple_knn
+Installing collected packages: simple_knn
+Successfully installed simple_knn-1.0.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_KNN=0
+EXIT_KNN=0
++ cd ..
++ echo '############ 3/4 nvdiffrast ############'
+############ 3/4 nvdiffrast ############
++ cd nvdiffrast
++ /usr/local/miniconda3/envs/lam/bin/pip install . --no-build-isolation
++ tail -30
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: numpy in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from nvdiffrast==0.3.3) (1.23.0)
+Building wheels for collected packages: nvdiffrast
+  Building wheel for nvdiffrast (pyproject.toml): started
+  Building wheel for nvdiffrast (pyproject.toml): finished with status 'done'
+  Created wheel for nvdiffrast: filename=nvdiffrast-0.3.3-py3-none-any.whl size=140025 sha256=0b4afbf2de864fe2914d05a00adbf2403db137ebeed2822ab759bad4390338cd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-xbmk0da3/wheels/11/af/b9/31b0fc1ca15b8ca9062f3bca245c50fe69cfa1469a83d81d70
+Successfully built nvdiffrast
+Installing collected packages: nvdiffrast
+Successfully installed nvdiffrast-0.3.3
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_NDR=0
+EXIT_NDR=0
++ cd ..
++ echo '############ 4/4 pytorch3d ############'
+############ 4/4 pytorch3d ############
++ cd pytorch3d
++ FORCE_CUDA=1
++ /usr/local/miniconda3/envs/lam/bin/pip install . --no-build-isolation
++ tail -40
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Processing ./.
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting fvcore (from pytorch3d==0.7.6)
+  Downloading fvcore-0.1.5.post20221221.tar.gz (50 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting iopath (from pytorch3d==0.7.6)
+  Downloading iopath-0.1.10.tar.gz (42 kB)
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: numpy in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (1.23.0)
+Collecting yacs>=0.1.6 (from fvcore->pytorch3d==0.7.6)
+  Downloading yacs-0.1.8-py3-none-any.whl (14 kB)
+Requirement already satisfied: pyyaml>=5.1 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (6.0.3)
+Requirement already satisfied: tqdm in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (4.70.1)
+Requirement already satisfied: termcolor>=1.1 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (3.3.0)
+Requirement already satisfied: Pillow in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from fvcore->pytorch3d==0.7.6) (10.4.0)
+Collecting tabulate (from fvcore->pytorch3d==0.7.6)
+  Downloading tabulate-0.10.0-py3-none-any.whl (39 kB)
+Requirement already satisfied: typing_extensions in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from iopath->pytorch3d==0.7.6) (4.16.0)
+Collecting portalocker (from iopath->pytorch3d==0.7.6)
+  Downloading portalocker-4.4.0-py3-none-any.whl (129 kB)
+Building wheels for collected packages: pytorch3d, fvcore, iopath
+  Building wheel for pytorch3d (pyproject.toml): started
+  Building wheel for pytorch3d (pyproject.toml): still running...
+  Building wheel for pytorch3d (pyproject.toml): still running...
+  Building wheel for pytorch3d (pyproject.toml): still running...
++ echo EXIT_P3D=143
+EXIT_P3D=143
++ cd ..

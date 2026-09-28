@@ -1,0 +1,28 @@
+##################### B. 自定义图片 #####################
+EXIT_B=0  (0 且无 Traceback 才算成功)
+0
+-rw-r--r-- 1 root root 688871 Sep 28 14:10 my_avatar.mp4
+-rw-r--r-- 1 root root 858050 Sep 28 14:10 my_avatar_audio.mp4
+
+##################### C. 目录输入 (.jpg 过滤验证) #####################
+EXIT_C=0
+生成的视频数量（应为 7，即 .jpg 数量）:
+18
+barbara.mp4
+barbara_audio.mp4
+cluo.mp4
+cluo_audio.mp4
+dufu.mp4
+dufu_audio.mp4
+libai.mp4
+libai_audio.mp4
+musk.mp4
+musk_audio.mp4
+my_avatar.mp4
+my_avatar_audio.mp4
+speed.mp4
+speed_audio.mp4
+status.mp4
+status_audio.mp4
+zhouxingchi.mp4
+zhouxingchi_audio.mp4

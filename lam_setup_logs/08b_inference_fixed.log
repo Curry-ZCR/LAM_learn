@@ -1,0 +1,440 @@
++ export PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ PATH=/usr/local/miniconda3/envs/lam/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ export CUDA_HOME=/usr/local/cuda
++ CUDA_HOME=/usr/local/cuda
++ export PYTHONPATH=/workspace/LAM:
++ PYTHONPATH=/workspace/LAM:
++ export TORCH_CUDA_ARCH_LIST=8.9
++ TORCH_CUDA_ARCH_LIST=8.9
++ export EXPORT_MESH=false
++ EXPORT_MESH=false
++ ulimit -n 65535
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ ninja --version
+1.13.2.git.kitware.jobserver-pipe-1
++ CUDA_VISIBLE_DEVICES=0
++ /usr/local/miniconda3/envs/lam/bin/python -m lam.launch infer.lam --config configs/inference/lam-20k-8gpu.yaml model_name=model_zoo/lam_models/releases/lam/lam-20k/step_045500/ image_input=assets/sample_input/status.png export_video=true export_mesh=false motion_seqs_dir=assets/sample_motion/export/Look_In_My_Eyes/ motion_img_dir=null vis_motion=false motion_img_need_mask=true render_fps=30 motion_video_read_fps=30 save_ply=false save_img=false gaga_track_type= cross_id=false test_sample=false rank=0 nodes=0
+2026-09-28 13:51:57.402241: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2026-09-28 13:51:57.440432: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-09-28 13:51:58.215557: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2026-09-28 13:52:06.888 | INFO     | tools.flame_tracking_single_image:__init__:69 - Output Directory: tracking_output
+2026-09-28 13:52:06.888 | INFO     | tools.flame_tracking_single_image:__init__:72 - Loading Pre-trained Models...
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+2026-09-28 13:52:10.340 | INFO     | tools.flame_tracking_single_image:__init__:119 - Finished Loading Pre-trained Models. Time: 3.45s
+================================================================================================================================================ 
+skip_decoder: True 
+================================================================================================================================================
+#########scale sphere:False, add_teeth:False
+================================================================================================================================================ 
+ Render rgb: True 
+================================================================================================================================================
+face_upsampled:(39904, 3), face_ori:torch.Size([9976, 3]),                 vertex_num_upsampled:20018, vertex_num_ori:5023
+================================================================================================================================================
+loading pretrained weight from: model_zoo/lam_models/releases/lam/lam-20k/step_045500/model.safetensors
+finish loading pretrained weight from: model_zoo/lam_models/releases/lam/lam-20k/step_045500/model.safetensors
+================================================================================================================================================
+  0%|          | 0/1 [00:00<?, ?it/s]2026-09-28 13:52:10.341 | INFO     | tools.flame_tracking_single_image:preprocess:144 - Starting Preprocessing...
+2026-09-28 13:52:11.820 | INFO     | tools.flame_tracking_single_image:preprocess:239 - Finished Processing Image. Time: 1.46s
+2026-09-28 13:52:11.821 | INFO     | tools.flame_tracking_single_image:optimize:247 - Starting Optimization...
+Ignoring unknown cluster teeth.
+# tyro YAML.
+!dataclass:BaseTrackingConfig
+async_func: true
+begin_frame_idx: 0
+begin_stage: null
+data: !dataclass:DataConfig
+  _target: vhap.data.video_dataset.VideoDataset
+  align_cameras_to_axes: true
+  background_color: white
+  calibrated: false
+  camera_convention_conversion: opencv->opengl
+  division: null
+  landmark_source: star
+  n_downsample_rgb: null
+  root_folder: !!python/object/apply:pathlib.PosixPath
+  - tracking_output
+  - preprocess
+  scale_factor: 1.0
+  sequence: status
+  subset: null
+  target_extrinsic_type: w2c
+  use_alpha_map: false
+  use_landmark: true
+device: cuda
+exp: !dataclass:ExperimentConfig
+  keyframes: !!python/tuple []
+  output_folder: !!python/object/apply:pathlib.PosixPath
+  - tracking_output
+  - tracking
+  photometric: false
+  reuse_landmarks: true
+log: !dataclass:LogConfig
+  image_format: jpg
+  interval_media: 500
+  interval_scalar: 100
+  max_num_views: 3
+  stack_views_in_rows: true
+  view_indices: !!python/tuple []
+lr: !dataclass:LearningRateConfig
+  base: 0.005
+  camera: 0.005
+  dynamic_offset: 0.0005
+  expr: 0.05
+  light: 0.005
+  static_offset: 0.0005
+  translation: 0.001
+model: !dataclass:ModelConfig
+  add_teeth: true
+  flame_params_path: null
+  n_expr: 100
+  n_shape: 300
+  n_tex: 100
+  occluded: !!python/tuple
+  - hair
+  - hair
+  remove_lip_inside: false
+  residual_tex: true
+  tex_clusters: !!python/tuple
+  - skin
+  - hair
+  - boundary
+  - lips_tight
+  - teeth
+  - sclerae
+  - irises
+  tex_extra: true
+  tex_painted: true
+  tex_resolution: 2048
+  use_dynamic_offset: false
+  use_static_offset: false
+pipeline: !dataclass:PipelineConfig
+  lmk_global_tracking: !dataclass:StageLmkGlobalTrackingConfig
+    disable_jawline_landmarks: false
+    num_epochs: 0
+    optimizable_params: &id001 !!python/tuple
+    - cam
+    - pose
+    - shape
+    - joints
+    - expr
+  lmk_init_all: !dataclass:StageLmkInitAllConfig
+    disable_jawline_landmarks: false
+    num_steps: 300
+    optimizable_params: *id001
+  lmk_init_rigid: !dataclass:StageLmkInitRigidConfig
+    disable_jawline_landmarks: false
+    num_steps: 300
+    optimizable_params: !!python/tuple
+    - cam
+    - pose
+  lmk_sequential_tracking: !dataclass:StageLmkSequentialTrackingConfig
+    disable_jawline_landmarks: false
+    num_steps: 50
+    optimizable_params: !!python/tuple
+    - pose
+    - joints
+    - expr
+  rgb_global_tracking: !dataclass:StageRgbGlobalTrackingConfig
+    align_boundary_except: !!python/tuple
+    - bottomline
+    - hair
+    - hair
+    - hair
+    align_texture_except: !!python/tuple
+    - hair
+    - hair
+    - hair
+    disable_jawline_landmarks: true
+    num_epochs: 30
+    optimizable_params: !!python/tuple
+    - cam
+    - pose
+    - shape
+    - joints
+    - expr
+    - texture
+    - lights
+    - static_offset
+    - dynamic_offset
+  rgb_init_all: !dataclass:StageRgbInitAllConfig
+    align_boundary_except: !!python/tuple
+    - hair
+    - bottomline
+    - hair
+    - hair
+    - hair
+    align_texture_except: !!python/tuple
+    - hair
+    - boundary
+    - neck
+    - hair
+    - hair
+    - hair
+    disable_jawline_landmarks: true
+    num_steps: 500
+    optimizable_params: !!python/tuple
+    - cam
+    - pose
+    - shape
+    - joints
+    - expr
+    - texture
+    - lights
+  rgb_init_offset: !dataclass:StageRgbInitOffsetConfig
+    align_boundary_except: !!python/tuple
+    - bottomline
+    - hair
+    - hair
+    - hair
+    align_texture_except: !!python/tuple
+    - hair
+    - boundary
+    - neck
+    - hair
+    - hair
+    - hair
+    disable_jawline_landmarks: true
+    num_steps: 500
+    optimizable_params: !!python/tuple
+    - cam
+    - pose
+    - shape
+    - joints
+    - expr
+    - texture
+    - lights
+    - static_offset
+  rgb_init_texture: !dataclass:StageRgbInitTextureConfig
+    align_boundary_except: !!python/tuple
+    - hair
+    - boundary
+    - hair
+    - hair
+    - hair
+    align_texture_except: !!python/tuple
+    - hair
+    - boundary
+    - neck
+    - hair
+    - hair
+    - hair
+    disable_jawline_landmarks: false
+    num_steps: 500
+    optimizable_params: !!python/tuple
+    - cam
+    - shape
+    - texture
+    - lights
+  rgb_sequential_tracking: !dataclass:StageRgbSequentialTrackingConfig
+    align_boundary_except: !!python/tuple
+    - bottomline
+    - hair
+    - hair
+    - hair
+    align_texture_except: !!python/tuple
+    - hair
+    - hair
+    - hair
+    disable_jawline_landmarks: true
+    num_steps: 50
+    optimizable_params: !!python/tuple
+    - pose
+    - joints
+    - expr
+    - texture
+    - dynamic_offset
+render: !dataclass:RenderConfig
+  backend: nvdiffrast
+  background_eval: target
+  background_train: target
+  disturb_rate_bg: 0.5
+  disturb_rate_fg: 0.5
+  lighting_space: world
+  lighting_type: SH
+  use_opengl: false
+w: !dataclass:LossWeightConfig
+  always_enable_jawline_landmarks: true
+  blur_iter: 0
+  landmark: 10.0
+  photo: 30.0
+  prior_eyes: 0.03
+  prior_jaw: 0.3
+  prior_neck: 0.3
+  reg_diffuse: 100.0
+  reg_expr: 0.03
+  reg_light: null
+  reg_offset: 300.0
+  reg_offset_dynamic: 300000.0
+  reg_offset_lap: 1000000.0
+  reg_offset_lap_relax_coef: 0.1
+  reg_offset_lap_relax_for: &id002 !!python/tuple
+  - hair
+  - ears
+  reg_offset_relax_coef: 1.0
+  reg_offset_relax_for: *id002
+  reg_offset_rigid: 300.0
+  reg_offset_rigid_for: !!python/tuple
+  - left_ear
+  - right_ear
+  - neck
+  - left_eye
+  - right_eye
+  - lips_tight
+  reg_shape: 0.3
+  reg_tex_pca: 0.0001
+  reg_tex_res: null
+  reg_tex_res_clusters: 10.0
+  reg_tex_res_for: !!python/tuple
+  - sclerae
+  - teeth
+  reg_tex_tv: 10000.0
+  smooth_eyes: 0
+  smooth_jaw: 0.1
+  smooth_neck: 30.0
+  smooth_rot: 30.0
+  smooth_trans: 300.0
+
+[92m[09/28 13:52:31 vhap.model.tracker]: [0mStart sequential tracking FLAME in 1 frames
+[92m[09/28 13:52:32 vhap.model.tracker]: [0m[train-lmk_init_rigid] frame 0 step 99:  lmk: 1.2745  total: 1.2745  focal_length: 2.0008  
+[92m[09/28 13:52:33 vhap.model.tracker]: [0m[train-lmk_init_rigid] frame 0 step 199:  lmk: 0.2499  total: 0.2499  focal_length: 2.4539  
+[92m[09/28 13:52:34 vhap.model.tracker]: [0m[train-lmk_init_rigid] frame 0 step 299:  lmk: 0.2480  total: 0.2480  focal_length: 2.4507  
+[92m[09/28 13:52:35 vhap.model.tracker]: [0m[train-lmk_init_all] frame 0 step 399:  lmk: 0.0962  joint_prior: 0.0031  reg_expr: 0.0161  reg_shape: 0.0072  total: 0.1226  focal_length: 2.4863  
+[92m[09/28 13:52:37 vhap.model.tracker]: [0m[train-lmk_init_all] frame 0 step 499:  lmk: 0.0799  joint_prior: 0.0049  reg_expr: 0.0145  reg_shape: 0.0113  total: 0.1105  focal_length: 2.5041  
+[92m[09/28 13:52:37 vhap.model.tracker]: [0m[train-lmk_init_all] frame 0 step 499:  Logging media took 0.21s
+[92m[09/28 13:52:38 vhap.model.tracker]: [0m[train-lmk_init_all] frame 0 step 599:  lmk: 0.0779  joint_prior: 0.0045  reg_expr: 0.0122  reg_shape: 0.0132  total: 0.1078  focal_length: 2.5109  
+[92m[09/28 13:52:39 vhap.model.tracker]: [0mStarted Evaluation
+[92m[09/28 13:52:39 vhap.model.tracker]: [0m[eval] frame 0:  lmk: 0.0802  photo: 8.1397  total: 8.2199  
+[92m[09/28 13:52:39 vhap.model.tracker]: [0mStart global optimization of all frames
+[92m[09/28 13:52:39 vhap.model.tracker]: [0mAll done.
+2026-09-28 13:52:39.868 | INFO     | tools.flame_tracking_single_image:optimize:269 - Finished Optimization. Time: 28.04s
+2026-09-28 13:52:39.869 | INFO     | tools.flame_tracking_single_image:export:326 - Beginning export from tracking_output/tracking
+==== Config: data ====
+# tyro YAML.
+!dataclass:DataConfig
+_target: vhap.data.video_dataset.VideoDataset
+align_cameras_to_axes: true
+background_color: white
+calibrated: false
+camera_convention_conversion: opencv->opengl
+division: null
+landmark_source: star
+n_downsample_rgb: null
+root_folder: !!python/object/apply:pathlib.PosixPath
+- tracking_output
+- preprocess
+scale_factor: 1.0
+sequence: status
+subset: null
+target_extrinsic_type: w2c
+use_alpha_map: false
+use_landmark: true
+
+Writing images to tracking_output/export/status
+
+  0%|          | 0/1 [00:00<?, ?it/s][A
+100%|██████████| 1/1 [00:00<00:00,  3.57it/s][A100%|██████████| 1/1 [00:00<00:00,  3.56it/s]
+Writing database: tracking_output/export/status/transforms.json
+Writing database: tracking_output/export/status/transforms_backup.json
+---- Config: model ----
+# tyro YAML.
+!dataclass:ModelConfig
+add_teeth: true
+flame_params_path: null
+n_expr: 100
+n_shape: 300
+n_tex: 100
+occluded: !!python/tuple
+- hair
+- hair
+remove_lip_inside: false
+residual_tex: true
+tex_clusters: !!python/tuple
+- skin
+- hair
+- boundary
+- lips_tight
+- teeth
+- sclerae
+- irises
+tex_extra: true
+tex_painted: true
+tex_resolution: 2048
+use_dynamic_offset: false
+use_static_offset: false
+
+Loading database from: tracking_output/export/status/transforms_backup.json
+Loading FLAME parameters from: tracking_output/tracking/2026-09-28_13-52-31/tracked_flame_params_0.npz
+Initializing FLAME model...
+Writing canonical FLAME parameters to: tracking_output/export/status/canonical_flame_param.npz
+Writing FLAME parameters to: tracking_output/export/status
+
+  0%|          | 0/1 [00:00<?, ?it/s][A100%|██████████| 1/1 [00:00<00:00, 1482.61it/s]
+2026-09-28 13:52:41.339 | INFO     | tools.flame_tracking_single_image:export:352 - Finished Export. Time: 1.46s
+                                       0%|          | 0/1 [00:37<?, ?it/s]                                       0%|          | 0/1 [00:37<?, ?it/s]Writing database: tracking_output/export/status/transforms.json
+Writing database: tracking_output/export/status/transforms_backup_flame.json
+Writing database: tracking_output/export/status/transforms_train.json
+Writing database: tracking_output/export/status/transforms_val.json
+Writing database: tracking_output/export/status/transforms_test.json
+motion_seqs_dir: assets/sample_motion/export/Look_In_My_Eyes/
+subdir_path and uid:  status
+load mask from: tracking_output/export/status/fg_masks/00000_00.png
+len motion_seq:519
+start to inference...................
+time elapsed: 3.1810264587402344
+Moviepy - Building video exps/videos/lam/lam_20k/status.mp4.
+Moviepy - Writing video exps/videos/lam/lam_20k/status.mp4
+
+
+t:   0%|          | 0/520 [00:00<?, ?it/s, now=None][A
+t:   5%|▍         | 25/520 [00:00<00:02, 245.17it/s, now=None][A
+t:  10%|▉         | 51/520 [00:00<00:01, 249.55it/s, now=None][A
+t:  15%|█▍        | 76/520 [00:00<00:01, 243.20it/s, now=None][A
+t:  19%|█▉        | 101/520 [00:00<00:01, 234.64it/s, now=None][A
+t:  24%|██▍       | 125/520 [00:00<00:01, 228.46it/s, now=None][A
+t:  28%|██▊       | 148/520 [00:00<00:01, 220.00it/s, now=None][A
+t:  33%|███▎      | 172/520 [00:00<00:01, 225.61it/s, now=None][A
+t:  38%|███▊      | 195/520 [00:00<00:01, 224.06it/s, now=None][A
+t:  42%|████▏     | 219/520 [00:00<00:01, 227.13it/s, now=None][A
+t:  47%|████▋     | 245/520 [00:01<00:01, 234.56it/s, now=None][A
+t:  52%|█████▏    | 269/520 [00:01<00:01, 235.13it/s, now=None][A
+t:  56%|█████▋    | 293/520 [00:01<00:00, 234.43it/s, now=None][A
+t:  61%|██████    | 317/520 [00:01<00:00, 228.71it/s, now=None][A
+t:  65%|██████▌   | 340/520 [00:01<00:00, 223.81it/s, now=None][A
+t:  70%|██████▉   | 363/520 [00:01<00:00, 224.75it/s, now=None][A
+t:  74%|███████▍  | 387/520 [00:01<00:00, 227.63it/s, now=None][A
+t:  79%|███████▉  | 410/520 [00:01<00:00, 225.09it/s, now=None][A
+t:  83%|████████▎ | 434/520 [00:01<00:00, 228.88it/s, now=None][A
+t:  88%|████████▊ | 458/520 [00:01<00:00, 232.12it/s, now=None][A
+t:  93%|█████████▎| 482/520 [00:02<00:00, 230.23it/s, now=None][A
+t:  97%|█████████▋| 506/520 [00:02<00:00, 231.93it/s, now=None][A
+                                                               [A                                       0%|          | 0/1 [00:39<?, ?it/s]                                       0%|          | 0/1 [00:39<?, ?it/s]                                       0%|          | 0/1 [00:39<?, ?it/s]                                       0%|          | 0/1 [00:39<?, ?it/s]Moviepy - Done !
+Moviepy - video ready exps/videos/lam/lam_20k/status.mp4
+Video saved successfully at exps/videos/lam/lam_20k/status.mp4
+Moviepy - Building video exps/videos/lam/lam_20k/status_audio.mp4.
+MoviePy - Writing audio in status_audioTEMP_MPY_wvf_snd.mp4
+
+chunk:   0%|          | 0/382 [00:00<?, ?it/s, now=None][A
+chunk:  33%|███▎      | 127/382 [00:00<00:00, 1251.73it/s, now=None][A
+chunk:  67%|██████▋   | 255/382 [00:00<00:00, 1258.82it/s, now=None][A
+chunk: 100%|█████████▉| 381/382 [00:00<00:00, 1251.73it/s, now=None][A
+                                                                    [A                                       0%|          | 0/1 [00:39<?, ?it/s]                                       0%|          | 0/1 [00:39<?, ?it/s]MoviePy - Done.
+Moviepy - Writing video exps/videos/lam/lam_20k/status_audio.mp4
+
+
+t:   0%|          | 0/520 [00:00<?, ?it/s, now=None][A
+t:  13%|█▎        | 67/520 [00:00<00:00, 662.69it/s, now=None][A
+t:  26%|██▌       | 134/520 [00:00<00:00, 627.75it/s, now=None][A
+t:  38%|███▊      | 197/520 [00:00<00:00, 624.93it/s, now=None][A
+t:  50%|█████     | 260/520 [00:00<00:00, 610.71it/s, now=None][A
+t:  62%|██████▏   | 322/520 [00:00<00:00, 601.12it/s, now=None][A
+t:  74%|███████▎  | 383/520 [00:00<00:00, 551.70it/s, now=None][A
+t:  85%|████████▍ | 440/520 [00:00<00:00, 555.04it/s, now=None][A
+t:  95%|█████████▌| 496/520 [00:00<00:00, 551.01it/s, now=None][A
+                                                               [A                                       0%|          | 0/1 [00:40<?, ?it/s]                                       0%|          | 0/1 [00:40<?, ?it/s]100%|██████████| 1/1 [00:40<00:00, 40.91s/it]100%|██████████| 1/1 [00:40<00:00, 40.91s/it]
+Moviepy - Done !
+Moviepy - video ready exps/videos/lam/lam_20k/status_audio.mp4
+Audio added successfully at exps/videos/lam/lam_20k/status_audio.mp4
++ echo EXIT_INFER=0
+EXIT_INFER=0

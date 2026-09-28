@@ -1,0 +1,34 @@
++ PIP=/usr/local/miniconda3/envs/lam/bin/pip
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ echo '############ FIX A: build chumpy without build isolation ############'
+############ FIX A: build chumpy without build isolation ############
++ tail -12
++ /usr/local/miniconda3/envs/lam/bin/pip install chumpy==0.70 --no-build-isolation --no-deps
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Requirement already satisfied: chumpy==0.70 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (0.70)
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_CHUMPY=0
+EXIT_CHUMPY=0
++ echo '############ FIX B: pin numpy 1.x + a matching scipy ############'
+############ FIX B: pin numpy 1.x + a matching scipy ############
++ /usr/local/miniconda3/envs/lam/bin/pip install numpy==1.23.0 scipy==1.10.1 six
++ tail -12
+Installing collected packages: numpy, scipy
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.2.6
+    Uninstalling numpy-2.2.6:
+      Successfully uninstalled numpy-2.2.6
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.15.3
+    Uninstalling scipy-1.15.3:
+      Successfully uninstalled scipy-1.15.3
+
+Successfully installed numpy-1.23.0 scipy-1.10.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_PINS=0
+EXIT_PINS=0
++ /usr/local/miniconda3/envs/lam/bin/python -c 'import numpy,scipy,chumpy;print('\''numpy'\'',numpy.__version__);print('\''scipy'\'',scipy.__version__);print('\''chumpy ok'\'')'
+numpy 1.23.0
+scipy 1.10.1
+chumpy ok

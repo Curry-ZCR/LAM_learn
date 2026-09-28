@@ -1,0 +1,69 @@
++ PIP=/usr/local/miniconda3/envs/lam/bin/pip
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ /usr/local/miniconda3/envs/lam/bin/pip install -r /workspace/lam_setup_logs/requirements_local2.txt numpy==1.23.0 scipy==1.10.1
++ tail -60
+Collecting ml-dtypes>=0.2.0 (from jaxlib==0.4.30->-r /workspace/lam_setup_logs/requirements_local2.txt (line 11))
+  Downloading ml_dtypes-0.5.4-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (5.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.0/5.0 MB 95.1 MB/s  0:00:00
+Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth<3,>=1.6.3->tensorboard<2.13,>=2.12->tensorflow==2.12.0->-r /workspace/lam_setup_logs/requirements_local2.txt (line 8))
+  Downloading pyasn1-0.6.4-py3-none-any.whl (84 kB)
+Collecting oauthlib>=3.0.0 (from requests-oauthlib>=0.7.0->google-auth-oauthlib<1.1,>=0.5->tensorboard<2.13,>=2.12->tensorflow==2.12.0->-r /workspace/lam_setup_logs/requirements_local2.txt (line 8))
+  Downloading oauthlib-4.0.0-py3-none-any.whl (159 kB)
+Requirement already satisfied: sympy in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (1.14.0)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==8.9.2.26 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (8.9.2.26)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.20.5 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (2.20.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (12.1.105)
+Requirement already satisfied: triton==2.3.0 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (2.3.0)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (12.9.86)
+Collecting click>=7.0 (from uvicorn>=0.14.0->gradio==3.44.3->-r /workspace/lam_setup_logs/requirements_local2.txt (line 12))
+  Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Collecting h11>=0.8 (from uvicorn>=0.14.0->gradio==3.44.3->-r /workspace/lam_setup_logs/requirements_local2.txt (line 12))
+  Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting starlette>=0.46.0 (from fastapi->gradio==3.44.3->-r /workspace/lam_setup_logs/requirements_local2.txt (line 12))
+  Downloading starlette-1.7.0-py3-none-any.whl (78 kB)
+Collecting annotated-doc>=0.0.2 (from fastapi->gradio==3.44.3->-r /workspace/lam_setup_logs/requirements_local2.txt (line 12))
+  Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi->gradio==3.44.3->-r /workspace/lam_setup_logs/requirements_local2.txt (line 12))
+  Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+Collecting exceptiongroup>=1.0.2 (from anyio<5,>=4.0.0->starlette>=0.46.0->fastapi->gradio==3.44.3->-r /workspace/lam_setup_logs/requirements_local2.txt (line 12))
+  Downloading exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+Collecting httpcore==1.* (from httpx->gradio==3.44.3->-r /workspace/lam_setup_logs/requirements_local2.txt (line 12))
+  Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Collecting zipp>=3.20 (from importlib_metadata->diffusers->-r /workspace/lam_setup_logs/requirements_local2.txt (line 18))
+  Downloading zipp-4.1.0-py3-none-any.whl (10 kB)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/miniconda3/envs/lam/lib/python3.10/site-packages (from sympy->torch>=2.0.0->accelerate->-r /workspace/lam_setup_logs/requirements_local2.txt (line 15)) (1.3.0)
+Building wheels for collected packages: moviepy, antlr4-python3-runtime
+  Building wheel for moviepy (pyproject.toml): started
+  Building wheel for moviepy (pyproject.toml): finished with status 'done'
+  Created wheel for moviepy: filename=moviepy-1.0.3-py3-none-any.whl size=110796 sha256=d778120ac3fd371c366b6387dbdb30053bfa14bf8a1995e1fecd5e5a6fb21d11
+  Stored in directory: /root/.cache/pip/wheels/bd/ed/23/76b275bb22beac81b20a1ee0007c137061f65ff32bfde5597a
+  Building wheel for antlr4-python3-runtime (pyproject.toml): started
+  Building wheel for antlr4-python3-runtime (pyproject.toml): finished with status 'done'
+  Created wheel for antlr4-python3-runtime: filename=antlr4_python3_runtime-4.9.3-py3-none-any.whl size=144590 sha256=aebc5e3b13df94c0de21ff71ab696dcc183b7d1ddef6425c98b494fd15beed7e
+  Stored in directory: /root/.cache/pip/wheels/fd/40/c6/c03a72bc01e732a4371de9a6c5f5d5a97436243fb7778d2e60
+Successfully built moviepy antlr4-python3-runtime
+Installing collected packages: pytz, pydub, libclang, flatbuffers, antlr4-python3-runtime, zipp, wrapt, websockets, wadler-lindig, urllib3, tzdata, typing-inspection, typeguard, trimesh, tqdm, tifffile, termcolor, tensorflow-io-gcs-filesystem, tensorflow-estimator, tensorboard-data-server, semantic-version, safetensors, rpds-py, regex, PyYAML, PyWavelets, python-multipart, python-dateutil, pyparsing, pydantic-core, pycparser, pyasn1, psutil, protobuf, plyfile, Pillow, orjson, opt-einsum, opencv_python_headless, oauthlib, ninja, narwhals, ml-dtypes, markupsafe, markdown, loguru, lazy_loader, kiwisolver, keras, importlib-resources, imageio_ffmpeg, idna, h5py, h11, grpcio, google-pasta, gast, fonttools, ffmpy, exceptiongroup, einops, docstring-parser, decorator, Cython, cycler, contourpy, click, charset_normalizer, certifi, attrs, annotated-types, annotated-doc, aiofiles, absl-py, werkzeug, uvicorn, tyro, requests, referencing, pymcubes, pydantic, pyasn1-modules, proglog, pandas, omegaconf, matplotlib, jaxtyping, jaxlib, importlib_metadata, imageio, httpcore, cffi, astunparse, anyio, starlette, scikit-image, requests-oauthlib, moviepy, jsonschema-specifications, jax, huggingface_hub, httpx, cryptography, tokenizers, jsonschema, gradio-client, google-auth, fastapi, diffusers, accelerate, transformers, google-auth-oauthlib, altair, tensorboard, gradio, tensorflow, face-detection-tflite
+  Attempting uninstall: Pillow
+    Found existing installation: pillow 12.3.0
+    Uninstalling pillow-12.3.0:
+      Successfully uninstalled pillow-12.3.0
+  Attempting uninstall: markupsafe
+    Found existing installation: MarkupSafe 3.0.3
+    Uninstalling MarkupSafe-3.0.3:
+      Successfully uninstalled MarkupSafe-3.0.3
+
+Successfully installed Cython-3.3.0 Pillow-10.4.0 PyWavelets-1.8.0 PyYAML-6.0.3 absl-py-2.5.0 accelerate-1.15.0 aiofiles-23.2.1 altair-5.5.0 annotated-doc-0.0.5 annotated-types-0.8.0 antlr4-python3-runtime-4.9.3 anyio-4.15.1 astunparse-1.6.3 attrs-26.1.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 click-8.5.0 contourpy-1.3.2 cryptography-50.0.1 cycler-0.12.1 decorator-4.4.2 diffusers-0.32.2 docstring-parser-0.18.0 einops-0.8.2 exceptiongroup-1.3.1 face-detection-tflite-0.6.0 fastapi-0.141.1 ffmpy-1.0.0 flatbuffers-25.12.19 fonttools-4.65.0 gast-0.4.0 google-auth-2.58.1 google-auth-oauthlib-1.0.0 google-pasta-0.2.0 gradio-3.44.3 gradio-client-0.5.0 grpcio-1.84.0 h11-0.16.0 h5py-3.16.0 httpcore-1.0.9 httpx-0.28.1 huggingface_hub-0.23.2 idna-3.20 imageio-2.38.0 imageio_ffmpeg-0.6.0 importlib-resources-6.5.2 importlib_metadata-9.0.1 jax-0.4.30 jaxlib-0.4.30 jaxtyping-0.3.7 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 keras-2.12.0 kiwisolver-1.5.1 lazy_loader-0.6 libclang-18.1.1 loguru-0.7.3 markdown-3.10.3 markupsafe-2.1.5 matplotlib-3.10.9 ml-dtypes-0.5.4 moviepy-1.0.3 narwhals-2.26.0 ninja-1.13.2 oauthlib-4.0.0 omegaconf-2.3.0 opencv_python_headless-4.11.0.86 opt-einsum-3.4.0 orjson-3.12.0 pandas-2.2.3 plyfile-1.1.3 proglog-0.1.12 protobuf-4.25.9 psutil-7.2.2 pyasn1-0.6.4 pyasn1-modules-0.4.2 pycparser-3.0 pydantic-2.13.5 pydantic-core-2.46.5 pydub-0.25.1 pymcubes-0.1.6 pyparsing-3.3.3 python-dateutil-2.9.0.post0 python-multipart-0.0.32 pytz-2026.4 referencing-0.37.0 regex-2026.9.10 requests-2.34.2 requests-oauthlib-2.0.0 rpds-py-0.30.0 safetensors-0.8.0 scikit-image-0.20.0 semantic-version-2.10.0 starlette-1.7.0 tensorboard-2.12.3 tensorboard-data-server-0.7.2 tensorflow-2.12.0 tensorflow-estimator-2.12.0 tensorflow-io-gcs-filesystem-0.37.1 termcolor-3.3.0 tifffile-2025.5.10 tokenizers-0.19.1 tqdm-4.70.1 transformers-4.41.2 trimesh-4.4.9 typeguard-4.6.0 typing-inspection-0.4.4 tyro-1.0.16 tzdata-2026.4 urllib3-2.8.0 uvicorn-0.54.0 wadler-lindig-0.1.7 websockets-11.0.3 werkzeug-3.1.9 wrapt-1.14.2 zipp-4.1.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_REQ=0
+EXIT_REQ=0
++ /usr/local/miniconda3/envs/lam/bin/python -c 'import numpy,scipy;print('\''numpy'\'',numpy.__version__,'\''scipy'\'',scipy.__version__)'
+numpy 1.23.0 scipy 1.10.1

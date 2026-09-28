@@ -1,0 +1,71 @@
++ cd /workspace/LAM
++ mkdir -p thirdparty_src
++ cd thirdparty_src
++ clone diff-gaussian-rasterization https://github.com/ashawkey/diff-gaussian-rasterization/ ''
++ name=diff-gaussian-rasterization
++ url=https://github.com/ashawkey/diff-gaussian-rasterization/
++ branch=
++ rm -rf diff-gaussian-rasterization
++ '[' -n '' ']'
++ git clone --recursive --depth 1 https://github.com/ashawkey/diff-gaussian-rasterization/ diff-gaussian-rasterization
+Cloning into 'diff-gaussian-rasterization'...
+Submodule 'third_party/glm' (https://github.com/g-truc/glm.git) registered for path 'third_party/glm'
+Cloning into '/workspace/LAM/thirdparty_src/diff-gaussian-rasterization/third_party/glm'...
+Submodule path 'third_party/glm': checked out '5c46b9c07008ae65cb81ab79cd677ecc1934b903'
++ echo CLONE_diff-gaussian-rasterization=0
+CLONE_diff-gaussian-rasterization=0
++ clone simple-knn https://github.com/camenduru/simple-knn/ ''
++ name=simple-knn
++ url=https://github.com/camenduru/simple-knn/
++ branch=
++ rm -rf simple-knn
++ '[' -n '' ']'
++ git clone --recursive --depth 1 https://github.com/camenduru/simple-knn/ simple-knn
+Cloning into 'simple-knn'...
++ echo CLONE_simple-knn=0
+CLONE_simple-knn=0
++ clone nvdiffrast https://github.com/ShenhanQian/nvdiffrast backface-culling
++ name=nvdiffrast
++ url=https://github.com/ShenhanQian/nvdiffrast
++ branch=backface-culling
++ rm -rf nvdiffrast
++ '[' -n backface-culling ']'
++ git clone --recursive --branch backface-culling --depth 1 https://github.com/ShenhanQian/nvdiffrast nvdiffrast
+Cloning into 'nvdiffrast'...
++ echo CLONE_nvdiffrast=0
+CLONE_nvdiffrast=0
++ clone pytorch3d https://github.com/facebookresearch/pytorch3d.git v0.7.6
++ name=pytorch3d
++ url=https://github.com/facebookresearch/pytorch3d.git
++ branch=v0.7.6
++ rm -rf pytorch3d
++ '[' -n v0.7.6 ']'
++ git clone --recursive --branch v0.7.6 --depth 1 https://github.com/facebookresearch/pytorch3d.git pytorch3d
+Cloning into 'pytorch3d'...
+Note: switching to 'f34104cf6ebefacd7b7e07955ee7aaa823e616ac'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
++ echo CLONE_pytorch3d=0
+CLONE_pytorch3d=0
++ ls -la
+total 24
+drwxr-xr-x  6 root root 4096 Sep 28 13:23 .
+drwxr-xr-x 11 root root 4096 Sep 28 13:23 ..
+drwxr-xr-x  6 root root 4096 Sep 28 13:23 diff-gaussian-rasterization
+drwxr-xr-x  7 root root 4096 Sep 28 13:23 nvdiffrast
+drwxr-xr-x 13 root root 4096 Sep 28 13:23 pytorch3d
+drwxr-xr-x  4 root root 4096 Sep 28 13:23 simple-knn

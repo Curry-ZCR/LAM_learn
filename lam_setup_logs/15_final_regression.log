@@ -1,0 +1,18 @@
+########## A. 依赖版本核对 ##########
+torch         2.3.0+cu121 | cuda True
+numpy/scipy   1.23.0 1.10.1
+gradio        3.44.3
+web 栈        fastapi 0.103.2 | starlette 0.27.0 | pydantic 2.8.0
+CUDA 扩展     OK
+>>> A PASS
+
+########## B. 命令行推理回归 ##########
+Traceback 数: 0
+-rw-r--r-- 1 root root 922967 Sep 28 14:43 exps/videos/lam/lam_20k/status_audio.mp4
+>>> B PASS
+
+########## C. Web 界面启动 ##########
+HTTP 200 —— Web 界面已就绪 (等待 100 秒)
+首页大小: 766250 bytes
+>>> C PASS
+已停止 Web 服务

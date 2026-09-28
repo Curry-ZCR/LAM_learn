@@ -1,0 +1,106 @@
++ PIP=/usr/local/miniconda3/envs/lam/bin/pip
++ PY=/usr/local/miniconda3/envs/lam/bin/python
++ cd /workspace/LAM
++ grep -vE '^git\+' requirements.txt
++ echo '--- filtered requirements ---'
+--- filtered requirements ---
++ cat /workspace/lam_setup_logs/requirements_local.txt
+pymcubes==0.1.6 
+omegaconf==2.3.0 
+moviepy==1.0.3 
+pandas==2.2.3 
+transformers==4.41.2 
+numpy==1.23.0 
+trimesh==4.4.9 
+opencv_python_headless==4.11.0.86 
+tensorflow==2.12.0 
+face-detection-tflite==0.6.0 
+scikit-image==0.20.0 
+jaxlib==0.4.30 
+gradio==3.44.3
+huggingface_hub==0.23.2
+Cython 
+accelerate 
+tyro 
+einops 
+diffusers 
+plyfile 
+jaxtyping 
+typeguard 
+chumpy 
+loguru 
+ninja
+nvdiffrast@git+https://github.com/ShenhanQian/nvdiffrast@backface-culling
++ /usr/local/miniconda3/envs/lam/bin/pip install numpy==1.23.0
++ tail -5
+    Found existing installation: numpy 2.2.6
+    Uninstalling numpy-2.2.6:
+      Successfully uninstalled numpy-2.2.6
+Successfully installed numpy-1.23.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ echo EXIT_NUMPY=0
+EXIT_NUMPY=0
++ /usr/local/miniconda3/envs/lam/bin/pip install -r /workspace/lam_setup_logs/requirements_local.txt
++ tail -60
+  Downloading gradio-3.44.3-py3-none-any.whl (20.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 20.2/20.2 MB 47.5 MB/s  0:00:00
+Collecting huggingface_hub==0.23.2 (from -r /workspace/lam_setup_logs/requirements_local.txt (line 14))
+  Downloading huggingface_hub-0.23.2-py3-none-any.whl (401 kB)
+Collecting Cython (from -r /workspace/lam_setup_logs/requirements_local.txt (line 15))
+  Downloading cython-3.3.0-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.5/3.5 MB 62.2 MB/s  0:00:00
+Collecting accelerate (from -r /workspace/lam_setup_logs/requirements_local.txt (line 16))
+  Downloading accelerate-1.15.0-py3-none-any.whl (394 kB)
+Collecting tyro (from -r /workspace/lam_setup_logs/requirements_local.txt (line 17))
+  Downloading tyro-1.0.16-py3-none-any.whl (216 kB)
+Collecting einops (from -r /workspace/lam_setup_logs/requirements_local.txt (line 18))
+  Downloading einops-0.8.2-py3-none-any.whl (65 kB)
+Collecting diffusers (from -r /workspace/lam_setup_logs/requirements_local.txt (line 19))
+  Downloading diffusers-0.40.0-py3-none-any.whl (5.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.9/5.9 MB 37.5 MB/s  0:00:00
+Collecting plyfile (from -r /workspace/lam_setup_logs/requirements_local.txt (line 20))
+  Downloading plyfile-1.1.5-py3-none-any.whl (36 kB)
+Collecting jaxtyping (from -r /workspace/lam_setup_logs/requirements_local.txt (line 21))
+  Downloading jaxtyping-0.3.7-py3-none-any.whl (56 kB)
+Collecting typeguard (from -r /workspace/lam_setup_logs/requirements_local.txt (line 22))
+  Downloading typeguard-4.6.0-py3-none-any.whl (36 kB)
+Collecting chumpy (from -r /workspace/lam_setup_logs/requirements_local.txt (line 23))
+  Downloading chumpy-0.70.tar.gz (50 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'error'
+  error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [23 lines of output]
+      Traceback (most recent call last):
+        File "<string>", line 9, in <module>
+      ModuleNotFoundError: No module named 'pip'
+      
+      During handling of the above exception, another exception occurred:
+      
+      Traceback (most recent call last):
+        File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+          main()
+        File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+          json_out["return_val"] = hook(**hook_input["kwargs"])
+        File "/usr/local/miniconda3/envs/lam/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 143, in get_requires_for_build_wheel
+          return hook(config_settings)
+        File "/tmp/pip-build-env-1e9gkc4y/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 333, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+        File "/tmp/pip-build-env-1e9gkc4y/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 301, in _get_build_requires
+          self.run_setup()
+        File "/tmp/pip-build-env-1e9gkc4y/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 520, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File "/tmp/pip-build-env-1e9gkc4y/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 317, in run_setup
+          exec(code, locals())  # noqa: S102 # exec is intentional here
+        File "<string>", line 11, in <module>
+      ModuleNotFoundError: No module named 'pip'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+ERROR: Failed to build 'chumpy' when getting requirements to build wheel
++ echo EXIT_REQ=0
+EXIT_REQ=0

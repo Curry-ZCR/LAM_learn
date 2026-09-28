@@ -1,0 +1,25 @@
+##################### 6.1 依赖完整性 #####################
+torch       2.3.0+cu121 | cuda avail True
+numpy/scipy 1.23.0 1.10.1
+DGR / simple_knn / nvdiffrast 0.3.3 / pytorch3d 0.7.6
+tensorflow 2.12.0
+transformers 4.41.2 | diffusers 0.32.2
+xformers 0.0.26.post1 | chumpy/modelscope OK
+>>> 6.1 PASS
+
+##################### 6.2 ninja / nvcc 可达性 #####################
+1.13.2.git.kitware.jobserver-pipe-1
+Build cuda_12.8.r12.8/compiler.35404655_0
+ninja 对 torch 可见 -> 6.2 PASS
+
+##################### 6.3 FaceBoxesV2 扩展 #####################
+FaceBoxesV2 cpu_nms OK -> 6.3 PASS
+
+##################### 6.4 FLAME + pytorch3d #####################
+face_upsampled:(39904, 3), face_ori:torch.Size([9976, 3]),                 vertex_num_upsampled:20018, vertex_num_ori:5023
+FLAME OK, v_template (5023, 3) -> 6.4 PASS
+
+##################### 6.5 模型权重加载 #####################
+face_upsampled:(39904, 3), face_ori:torch.Size([9976, 3]),                 vertex_num_upsampled:20018, vertex_num_ori:5023
+checkpoint tensors: 835/835 loaded, 0 unexpected
+>>> 6.5 PASS
