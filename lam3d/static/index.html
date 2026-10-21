@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LAM · 单图生成 3D 数字人</title>
+<link rel="stylesheet" href="/static/app.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "/static/vendor/three/build/three.module.js",
+    "three/addons/": "/static/vendor/three/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div class="app">
+
+  <!-- ══════════════════ 左侧：输入 ══════════════════ -->
+  <aside class="panel panel--input">
+    <header class="brand">
+      <div class="brand__mark">LAM</div>
+      <div>
+        <h1>单图生成 3D 数字人</h1>
+        <p class="brand__sub">Large Avatar Model · 一张照片 → 可 360° 拖拽的高斯点云人像</p>
+      </div>
+    </header>
+
+    <!-- 1. 图片 -->
+    <section class="step">
+      <div class="step__head"><span class="step__no">1</span> 选择人脸照片</div>
+
+      <div id="drop" class="drop" tabindex="0" role="button" aria-label="上传图片">
+        <input id="file" type="file" accept="image/png,image/jpeg,image/webp,image/bmp" hidden />
+        <img id="preview" class="drop__img" alt="" hidden />
+        <div id="dropHint" class="drop__hint">
+          <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+            <path d="M12 16V4m0 0L8 8m4-4 4 4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"
+                  fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <strong>点击或拖入图片</strong>
+          <span>正脸、光线均匀效果最好 · PNG/JPG/WEBP · ≤20MB</span>
+        </div>
+      </div>
+
+      <div class="samples" id="samples"></div>
+    </section>
+
+    <!-- 2. 生成 -->
+    <section class="step">
+      <div class="step__head"><span class="step__no">2</span> 生成 3D 数字人</div>
+      <button id="generate" class="btn btn--primary" disabled>
+        <span class="btn__label">生成 3D 数字人</span>
+      </button>
+      <p class="hint" id="engineHint">正在检查推理引擎…</p>
+    </section>
+
+    <!-- 重建结果：模型生成后回显「重建后人物脸图」 -->
+    <section class="step card face-card" id="faceCard" hidden>
+      <h3>重建结果</h3>
+      <img id="faceImg" class="face-card__img" alt="重建后人物脸图" />
+    </section>
+    <!-- ARKit 表情调节卡片：位于左栏输入区，随流程常驻，不覆盖 3D 预览区 -->
+    <section id="arkitPanel" class="arkit-panel" hidden>
+      <div class="arkit__head">
+        <span class="arkit__title">ARKit 表情驱动</span>
+        <button class="arkit__close" id="arkitClose" type="button" title="关闭">✕</button>
+      </div>
+      <div class="arkit__status" id="arkitStatus"></div>
+      <div class="arkit__presets" id="arkitPresets"></div>
+      <div class="arkit__orbit">
+        <div class="arkit__orbit-btns">
+          <button class="tool" type="button" data-orbit="yawL" title="左转">左转</button>
+          <button class="tool" type="button" data-orbit="yawR" title="右转">右转</button>
+          <button class="tool" type="button" data-orbit="pitchU" title="抬头">抬头</button>
+          <button class="tool" type="button" data-orbit="pitchD" title="低头">低头</button>
+          <button class="tool" type="button" data-orbit="zoomIn" title="放大">放大</button>
+          <button class="tool" type="button" data-orbit="zoomOut" title="缩小">缩小</button>
+          <button class="tool" type="button" data-orbit="reset" title="复位视角">复位</button>
+        </div>
+        <div class="arkit__readout" id="arkitOrbitReadout">yaw 0.0° · pitch 0.0° · zoom 1.00</div>
+      </div>
+      <div class="arkit__sliders" id="arkitSliders"></div>
+      <div class="arkit__foot">
+        <span id="arkitLatency">延迟 --</span>
+        <span id="arkitGaussians"></span>
+      </div>
+    </section>
+  </aside>
+
+  <!-- ══════════════════ 右侧：结果 ══════════════════ -->
+  <main class="panel panel--result">
+
+    <!-- 进度 -->
+    <div id="progress" class="progress" hidden>
+      <div class="progress__top">
+        <span class="progress__stage" id="stageText">排队中</span>
+        <span class="progress__pct" id="pctText">0%</span>
+      </div>
+      <div class="progress__bar"><i id="bar"></i></div>
+      <div class="progress__detail" id="detailText"></div>
+    </div>
+
+    <!-- 空态 -->
+    <div id="empty" class="empty">
+      <div class="empty__art" aria-hidden="true">
+        <svg viewBox="0 0 120 120" width="132" height="132">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7c8cff"/><stop offset="100%" stop-color="#39d0c8"/>
+            </linearGradient>
+          </defs>
+          <path d="M60 18c-14 0-24 10-24 24v16c0 16 11 28 24 28s24-12 24-28V42c0-14-10-24-24-24z"
+                fill="none" stroke="url(#g1)" stroke-width="2.4"/>
+          <path d="M36 56c-6 0-9 4-9 9s4 8 9 8M84 56c6 0 9 4 9 9s-4 8-9 8"
+                fill="none" stroke="url(#g1)" stroke-width="2.4"/>
+          <ellipse cx="60" cy="104" rx="26" ry="7" fill="none" stroke="url(#g1)"
+                   stroke-width="2" stroke-dasharray="4 5" opacity=".7"/>
+        </svg>
+      </div>
+      <h2>还没有结果</h2>
+      <p>在左侧选一张人脸照片，点击「生成 3D 数字人」。<br/>
+         完成后这里会显示可 360° 拖拽的高斯点云人像，打开「表情」即可用 ARKit 52 参数实时调节。</p>
+      <ul class="empty__facts" id="facts"></ul>
+    </div>
+
+    <!-- 错误 -->
+    <div id="errorBox" class="alert" hidden>
+      <strong>生成失败</strong>
+      <p id="errorText"></p>
+    </div>
+
+    <!-- 结果 -->
+    <div id="result" class="result" hidden>
+      <div class="viewer-wrap">
+        <div class="viewer" id="viewer"></div>
+        <div class="viewer__badge" id="viewerBadge">点云加载中…</div>
+        <div class="viewer__tools">
+          <button class="tool" data-view="front" title="正面">正面</button>
+          <button class="tool" data-view="left"  title="左侧">左侧</button>
+          <button class="tool" data-view="right" title="右侧">右侧</button>
+          <button class="tool" data-view="three" title="四分之三">3/4</button>
+          <button class="tool" id="spin" title="自动旋转">自转</button>
+          <button class="tool" id="wire" title="点云中心">线框</button>
+          <button class="tool" id="arkitToggle" type="button" title="ARKit 实时表情">表情</button>
+          <select class="tool tool--select" id="splatQuality" title="渲染清晰度">
+            <option value="standard">标准</option>
+            <option value="hq" selected>高清</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="side">
+        <details class="card export-card" id="exportCard">
+          <summary><h3>导出模型</h3></summary>
+          <div class="downloads">
+            <a class="dl" id="dlGlb"  download>GLB 模型<span>Three.js / Blender 直开</span></a>
+            <a class="dl" id="dlObj"  download>OBJ 网格<span>带顶点色，通用格式</span></a>
+            <a class="dl" id="dlPly"  download>高斯点云 PLY<span>Gaussian Splatting</span></a>
+          </div>
+        </details>
+
+        <div class="card" id="statsCard">
+          <h3>本次统计</h3>
+          <dl class="stats" id="stats"></dl>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+{
+  "presets": [
+    {
+      "title": "smile",
+      "fg_mean": 0.9961,
+      "full_mean": 0.2017,
+      "fg_changed_ratio": 0.0499,
+      "fg_changed_px": 18618,
+      "latency": "延迟 35 ms · 服务端 16.87 ms"
+    },
+    {
+      "title": "bigSmile",
+      "fg_mean": 1.3595,
+      "full_mean": 0.2802,
+      "fg_changed_ratio": 0.0642,
+      "fg_changed_px": 23953,
+      "latency": "延迟 36 ms · 服务端 14.71 ms"
+    },
+    {
+      "title": "laugh",
+      "fg_mean": 2.3673,
+      "full_mean": 0.4737,
+      "fg_changed_ratio": 0.0959,
+      "fg_changed_px": 35758,
+      "latency": "延迟 30 ms · 服务端 13.96 ms"
+    },
+    {
+      "title": "surprise",
+      "fg_mean": 4.9362,
+      "full_mean": 1.0357,
+      "fg_changed_ratio": 0.1346,
+      "fg_changed_px": 50202,
+      "latency": "延迟 34 ms · 服务端 16.19 ms"
+    },
+    {
+      "title": "angry",
+      "fg_mean": 3.3772,
+      "full_mean": 0.6861,
+      "fg_changed_ratio": 0.1034,
+      "fg_changed_px": 38564,
+      "latency": "延迟 30 ms · 服务端 14.36 ms"
+    },
+    {
+      "title": "sad",
+      "fg_mean": 2.4797,
+      "full_mean": 0.5037,
+      "fg_changed_ratio": 0.0867,
+      "fg_changed_px": 32324,
+      "latency": "延迟 27 ms · 服务端 14 ms"
+    },
+    {
+      "title": "kiss",
+      "fg_mean": 1.2295,
+      "full_mean": 0.2408,
+      "fg_changed_ratio": 0.0539,
+      "fg_changed_px": 20114,
+      "latency": "延迟 39 ms · 服务端 21.91 ms"
+    },
+    {
+      "title": "mouthOpen",
+      "fg_mean": 2.2705,
+      "full_mean": 0.4317,
+      "fg_changed_ratio": 0.0705,
+      "fg_changed_px": 26278,
+      "latency": "延迟 27 ms · 服务端 14.1 ms"
+    },
+    {
+      "title": "blink",
+      "fg_mean": 1.116,
+      "full_mean": 0.2064,
+      "fg_changed_ratio": 0.0271,
+      "fg_changed_px": 10094,
+      "latency": "延迟 32 ms · 服务端 14.17 ms"
+    },
+    {
+      "title": "winkLeft",
+      "fg_mean": 1.1146,
+      "full_mean": 0.2078,
+      "fg_changed_ratio": 0.0398,
+      "fg_changed_px": 14848,
+      "latency": "延迟 30 ms · 服务端 14.42 ms"
+    },
+    {
+      "title": "winkRight",
+      "fg_mean": 1.1992,
+      "full_mean": 0.2263,
+      "fg_changed_ratio": 0.0423,
+      "fg_changed_px": 15793,
+      "latency": "延迟 28 ms · 服务端 14.11 ms"
+    },
+    {
+      "title": "cheekPuff",
+      "fg_mean": 1.0201,
+      "full_mean": 0.197,
+      "fg_changed_ratio": 0.0431,
+      "fg_changed_px": 16087,
+      "latency": "延迟 27 ms · 服务端 13.89 ms"
+    }
+  ],
+  "sliders": [
+    {
+      "title": "jawOpen",
+      "fg_mean": 1.7824,
+      "full_mean": 0.549,
+      "fg_changed_ratio": 0.0675,
+      "latency": "延迟 27 ms · 服务端 14.12 ms"
+    },
+    {
+      "title": "browInnerUp",
+      "fg_mean": 1.7002,
+      "full_mean": 0.5669,
+      "fg_changed_ratio": 0.0523,
+      "latency": "延迟 21 ms · 服务端 6.27 ms"
+    },
+    {
+      "title": "mouthSmileLeft",
+      "fg_mean": 0.8508,
+      "full_mean": 0.5501,
+      "fg_changed_ratio": 0.0364,
+      "latency": "延迟 20 ms · 服务端 5.58 ms"
+    },
+    {
+      "title": "eyeBlinkLeft",
+      "fg_mean": 1.812,
+      "full_mean": 1.2752,
+      "fg_changed_ratio": 0.0441,
+      "latency": "延迟 21 ms · 服务端 5.62 ms"
+    },
+    {
+      "title": "cheekPuff",
+      "fg_mean": 1.8102,
+      "full_mean": 1.1737,
+      "fg_changed_ratio": 0.0685,
+      "latency": "延迟 20 ms · 服务端 5.89 ms"
+    }
+  ],
+  "errors": [],
+  "job_id": "76020c15eada",
+  "panel_open": true,
+  "noise_floor_full": 0.0,
+  "bg": [
+    15,
+    19,
+    28
+  ],
+  "fg_px": 372999,
+  "total_px": 1924208,
+  "fg_ratio": 0.193845,
+  "dilution": 5.159,
+  "noise_floor_fg": 0.0,
+  "n_presets": 12,
+  "viewer_badge": "已加载 · 20,018 高斯 · 可 360° 拖拽"
+}

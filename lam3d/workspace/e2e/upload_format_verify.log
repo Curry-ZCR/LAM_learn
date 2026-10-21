@@ -1,0 +1,133 @@
+task-8 上传格式归一化验收 base=http://127.0.0.1:8000 fixtures=/tmp/uft_fix
+fixture 就绪: {"true_png": "PNG", "true_jpeg": "JPEG", "webp": "WEBP", "bmp": "BMP", "tiff": "TIFF", "gif": "GIF", "webp_renamed_png": "WEBP", "bad_readme_png": "ERR:UnidentifiedImageError", "too_big": null, "empty": null}
+
+--- F: fixture 与基准证据 ---
+[PASS] F.true_png fixture 可用  — /tmp/uft_fix/true_png.png 198955B pil=PNG
+[PASS] F.true_jpeg fixture 可用  — /tmp/uft_fix/true_jpeg.jpg 35209B pil=JPEG
+[PASS] F.webp fixture 可用  — /tmp/uft_fix/webp.webp 10082B pil=WEBP
+[PASS] F.bmp fixture 可用  — /tmp/uft_fix/bmp.bmp 442422B pil=BMP
+[PASS] F.bad_readme_png 是 README 改名  — 23380B
+[PASS] F.too_big > 20MB  — 22020096B
+[PASS] F.empty 0 字节  — 0B
+[PASS] F.bug_repro.09ef12e402a4 修复前原样按后缀落盘 input.webp  — 09ef12e402a4 inputs=['input.webp']
+[PASS] F.bug_repro.98e7e5c4c438 修复前原样按后缀落盘 input.webp  — 98e7e5c4c438 inputs=['input.webp']
+
+--- R: 坏文件 / 超限 / 空文件（不发生成，不占 GPU） ---
+[PASS] R.bad_readme_400  — HTTP 400 {"detail":"无法解析为图片：文件内容不是有效图片，请改用 PNG/JPG/WEBP"}
+[PASS] R.bad_readme_text_clean  — 文案不含 Unsupported image file/torchvision/Traceback
+[PASS] R.too_big_413  — HTTP 413 {"detail":"图片过大（>20 MB）"}
+[PASS] R.empty_400  — HTTP 400 {"detail":"上传内容为空"}
+[PASS] R.design_reject.tiff  — .tiff -> HTTP 400（按设计拒绝，非 FAIL）: {"detail":"不支持的图片格式 .tiff，请用 PNG/JPG/WEBP"}
+[PASS] R.design_reject.gif  — .gif -> HTTP 400（按设计拒绝，非 FAIL）: {"detail":"不支持的图片格式 .gif，请用 PNG/JPG/WEBP"}
+
+--- C: 曾失败格式 WEBP / BMP 端到端（核心） ---
+[INFO] C.webp submit  — job=dbda23951f2e state=queued input_size=[384, 384] name=/tmp/uft_fix/webp.webp
+[PASS] C.webp.succeeded  — job=dbda23951f2e state=succeeded err=None
+[PASS] C.webp.face_512_png  — size=[512, 512] format=PNG err=None
+[PASS] C.webp.face_nonbg_gt5pct  — non-bg=52.09%
+[INFO] C.bmp submit  — job=21e16f0b1590 state=queued input_size=[384, 384] name=/tmp/uft_fix/bmp.bmp
+[PASS] C.bmp.succeeded  — job=21e16f0b1590 state=succeeded err=None
+[PASS] C.bmp.face_512_png  — size=[512, 512] format=PNG err=None
+[PASS] C.bmp.face_nonbg_gt5pct  — non-bg=51.91%
+
+--- Z: 真 PNG / 真 JPEG 逐字节零回归（关键） ---
+[INFO] Z.true_png submit  — job=ffb97c977204 state=queued input_size=[384, 384] name=true_png.png
+[PASS] Z.true_png.succeeded  — job=ffb97c977204 state=succeeded err=None
+[PASS] Z.true_png.face_512_png  — size=[512, 512] format=PNG err=None
+[PASS] Z.true_png.face_nonbg_gt5pct  — non-bg=51.91%
+[PASS] Z.true_png.input_exists  — input files=['input.png']
+[PASS] Z.true_png.bytes_identical  — uploaded sha256=d00b74ea51336896 stored(input.png)=d00b74ea51336896 identical=True
+[INFO] Z.true_jpeg submit  — job=de2eda157ca5 state=queued input_size=[384, 384] name=true_jpeg.jpg
+[PASS] Z.true_jpeg.succeeded  — job=de2eda157ca5 state=succeeded err=None
+[PASS] Z.true_jpeg.face_512_png  — size=[512, 512] format=PNG err=None
+[PASS] Z.true_jpeg.face_nonbg_gt5pct  — non-bg=52.21%
+[PASS] Z.true_jpeg.input_exists  — input files=['input.jpg']
+[PASS] Z.true_jpeg.bytes_identical  — uploaded sha256=667c4fa918380133 stored(input.jpg)=667c4fa918380133 identical=True
+
+--- X: 内容≠后缀（WEBP 改名 .png） ---
+[INFO] X.webp_as_png submit  — job=a62085f54182 state=queued input_size=[384, 384] name=webp_renamed.png
+[PASS] X.webp_as_png.succeeded  — job=a62085f54182 state=succeeded err=None
+[PASS] X.webp_as_png.face_512_png  — size=[512, 512] format=PNG err=None
+[PASS] X.webp_as_png.face_nonbg_gt5pct  — non-bg=52.09%
+[PASS] X.input_exists  — input files=['input.png']
+[PASS] X.stored_content_is_png  — stored=input.png PIL.format=PNG（按内容判定生效）
+
+--- S: 示例图路径回归 sample=status.png ---
+[PASS] S.sample_http200  — HTTP 200 {"id":"feb2e0e969bb","image_name":"status.png","state":"queued","stage":"queued","progress":0.0,"detail":"","created_at"
+[INFO] S.sample submit  — job=feb2e0e969bb state=queued
+[PASS] S.sample_succeeded  — job=feb2e0e969bb state=succeeded err=None
+
+--- A: index.html accept == 真实能力 一致性 ---
+[PASS] A.accept_found  — accept=image/png,image/jpeg,image/webp,image/bmp
+[INFO] A.accept  — ['image/png', 'image/jpeg', 'image/webp', 'image/bmp']
+[PASS] A.accept_all_known  — 未知项=[]
+[INFO] A.readme_has_webp  — 'WEBP' in README -> True
+[PASS] A.readme_mentions_webp  — README 提到 WEBP（与 accept 一致）
+[PASS] A.readme_mentions_png_jpg  — README 提到 PNG/JPG
+[PASS] A.cap.image/png  — reuse job=ffb97c977204
+[PASS] A.cap.image/jpeg  — reuse job=de2eda157ca5
+[PASS] A.cap.image/webp  — reuse job=dbda23951f2e
+[PASS] A.cap.image/bmp  — reuse job=21e16f0b1590
+
+--- I: 产品级不变量 ---
+[INFO] I.porcelain  — M LAM/lam/models/rendering/flame_model/flame.py |  M LAM/lam/models/rendering/gs_renderer.py | ?? LAM/lam/models/rendering/covariance_modulation.py | ?? lam3d/
+[PASS] I.no_static_changes  — static 改动=[]
+[INFO] I.lam_preexisting  — ['M LAM/lam/models/rendering/flame_model/flame.py (mtime=05:22:33)', ' M LAM/lam/models/rendering/gs_renderer.py (mtime=05:08:35)', '?? LAM/lam/models/rendering/covariance_modulation.py (mtime=06:40:33)']
+[PASS] I.no_new_lam_changes  — T7 开工后新增/改动的 LAM 条目=[]
+[PASS] I.lam_zero_touch  — LAM 改动文件='' (since 2026-10-16 11:00:00)
+[PASS] I.static_one_html  — html 数=1
+[PASS] I.app_compiles  — py_compile=OK
+
+================ 上传格式归一化 验收汇总 ================
+  PASS F.true_png fixture 可用
+  PASS F.true_jpeg fixture 可用
+  PASS F.webp fixture 可用
+  PASS F.bmp fixture 可用
+  PASS F.bad_readme_png 是 README 改名
+  PASS F.too_big > 20MB
+  PASS F.empty 0 字节
+  PASS F.bug_repro.09ef12e402a4 修复前原样按后缀落盘 input.webp
+  PASS F.bug_repro.98e7e5c4c438 修复前原样按后缀落盘 input.webp
+  PASS R.bad_readme_400
+  PASS R.bad_readme_text_clean
+  PASS R.too_big_413
+  PASS R.empty_400
+  PASS R.design_reject.tiff
+  PASS R.design_reject.gif
+  PASS C.webp.succeeded
+  PASS C.webp.face_512_png
+  PASS C.webp.face_nonbg_gt5pct
+  PASS C.bmp.succeeded
+  PASS C.bmp.face_512_png
+  PASS C.bmp.face_nonbg_gt5pct
+  PASS Z.true_png.succeeded
+  PASS Z.true_png.face_512_png
+  PASS Z.true_png.face_nonbg_gt5pct
+  PASS Z.true_png.input_exists
+  PASS Z.true_png.bytes_identical
+  PASS Z.true_jpeg.succeeded
+  PASS Z.true_jpeg.face_512_png
+  PASS Z.true_jpeg.face_nonbg_gt5pct
+  PASS Z.true_jpeg.input_exists
+  PASS Z.true_jpeg.bytes_identical
+  PASS X.webp_as_png.succeeded
+  PASS X.webp_as_png.face_512_png
+  PASS X.webp_as_png.face_nonbg_gt5pct
+  PASS X.input_exists
+  PASS X.stored_content_is_png
+  PASS S.sample_http200
+  PASS S.sample_succeeded
+  PASS A.accept_found
+  PASS A.accept_all_known
+  PASS A.readme_mentions_webp
+  PASS A.readme_mentions_png_jpg
+  PASS A.cap.image/png
+  PASS A.cap.image/jpeg
+  PASS A.cap.image/webp
+  PASS A.cap.image/bmp
+  PASS I.no_static_changes
+  PASS I.no_new_lam_changes
+  PASS I.lam_zero_touch
+  PASS I.static_one_html
+  PASS I.app_compiles
+-------- 51 passed / 0 failed --------

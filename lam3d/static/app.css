@@ -1,0 +1,272 @@
+:root{
+  --bg:#0b0e14; --bg2:#11151f; --panel:#151a26; --panel2:#1b2130;
+  --line:#242c3d; --line2:#2e3850;
+  --txt:#e8ecf5; --txt2:#9aa6be; --txt3:#68738c;
+  --acc:#6c8cff; --acc2:#39d0c8; --warn:#ff7a59; --ok:#3ddc97;
+  --r:14px; --r2:10px;
+  --shadow:0 10px 34px rgba(0,0,0,.42);
+}
+*{box-sizing:border-box}
+/* ★ 必须显式声明：本页大量用 display:grid/flex，会盖掉 [hidden] 的默认
+   display:none，导致"隐藏"的元素照常显示（实测把空态与结果页同时画了出来）。 */
+[hidden]{display:none !important}
+html,body{height:100%}
+body{
+  margin:0; background:radial-gradient(1100px 620px at 12% -6%,#1a2237 0%,var(--bg) 58%) fixed;
+  color:var(--txt); font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:.2px}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+
+.app{display:grid;grid-template-columns:392px minmax(0,1fr);gap:18px;padding:18px;height:100vh;max-width:1680px;margin:0 auto}
+.panel{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.panel--input{padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
+.panel--result{padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:16px;min-height:0}
+
+/* ── 品牌 ── */
+.brand{display:flex;gap:12px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.brand__mark{
+  flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  font-weight:800;font-size:14px;letter-spacing:.5px;color:#0b0e14;
+  background:linear-gradient(135deg,var(--acc),var(--acc2));
+}
+.brand h1{font-size:16px}
+.brand__sub{font-size:11.5px;color:var(--txt3);margin-top:2px}
+
+/* ── 步骤 ── */
+.step{display:flex;flex-direction:column;gap:10px}
+.step__head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--txt2)}
+.step__no{
+  width:19px;height:19px;border-radius:50%;display:grid;place-items:center;flex:none;
+  font-size:11px;background:var(--panel2);border:1px solid var(--line2);color:var(--acc)
+}
+
+/* ── 拖放区 ── */
+.drop{
+  position:relative;border:1.5px dashed var(--line2);border-radius:var(--r2);
+  background:var(--panel2);min-height:190px;display:grid;place-items:center;
+  transition:.18s;overflow:hidden;outline:none;
+}
+.drop:hover,.drop:focus-visible{border-color:var(--acc);background:#1e2536}
+.drop.is-over{border-color:var(--acc2);background:#1c2b32;transform:scale(1.008)}
+.drop__hint{display:flex;flex-direction:column;align-items:center;gap:7px;color:var(--txt3);text-align:center;padding:22px}
+.drop__hint strong{color:var(--txt2);font-size:13px;font-weight:600}
+.drop__hint span{font-size:11px;max-width:250px}
+.drop__img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#0e121b}
+
+/* ── 示例 ── */
+.samples{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.samples img{
+  width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;cursor:pointer;
+  border:1.5px solid var(--line);transition:.15s;filter:grayscale(.35) brightness(.86);
+}
+.samples img:hover{filter:none;transform:translateY(-2px);border-color:var(--acc2)}
+.samples img.is-sel{filter:none;border-color:var(--acc);box-shadow:0 0 0 2px rgba(108,140,255,.28)}
+
+/* ── 动作 ── */
+.motions{display:grid;grid-template-columns:1fr 1fr;gap:7px;max-height:212px;overflow-y:auto;padding-right:3px}
+.motion{
+  text-align:left;padding:9px 11px;border-radius:9px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--txt2);font-size:12.5px;transition:.15s;
+  display:flex;flex-direction:column;gap:2px;
+}
+.motion:hover{border-color:var(--line2);color:var(--txt)}
+.motion.is-sel{border-color:var(--acc);background:rgba(108,140,255,.13);color:var(--txt)}
+.motion small{font-size:10.5px;color:var(--txt3)}
+.motion.is-sel small{color:var(--acc)}
+
+/* ── 勾选 & 按钮 ── */
+.check{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--txt2);cursor:pointer;user-select:none}
+.check input{accent-color:var(--acc);width:15px;height:15px;cursor:pointer}
+.btn{
+  width:100%;padding:13px;border-radius:var(--r2);border:1px solid transparent;
+  font-weight:650;font-size:14px;transition:.16s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn--primary{background:linear-gradient(135deg,var(--acc),#5a6fe0);color:#fff;box-shadow:0 6px 18px rgba(108,140,255,.28)}
+.btn--primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 9px 24px rgba(108,140,255,.38)}
+.btn:disabled{opacity:.42;cursor:not-allowed;box-shadow:none;transform:none}
+.hint{font-size:11px;color:var(--txt3);text-align:center;min-height:15px}
+.hint.is-err{color:var(--warn)}
+
+/* ── 进度 ── */
+.progress{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);padding:14px 16px;flex:none}
+.progress__top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+.progress__stage{font-size:13px;font-weight:600}
+.progress__pct{font-size:13px;color:var(--acc);font-variant-numeric:tabular-nums;font-weight:650}
+.progress__bar{height:5px;border-radius:99px;background:#0d1119;overflow:hidden}
+.progress__bar i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .4s cubic-bezier(.4,0,.2,1);
+}
+.progress__detail{font-size:11.5px;color:var(--txt3);margin-top:8px;font-variant-numeric:tabular-nums}
+
+/* ── 空态 ── */
+.empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:11px;padding:30px}
+.empty h2{font-size:17px;color:var(--txt2)}
+.empty p{font-size:12.5px;color:var(--txt3);max-width:430px;line-height:1.75}
+.empty__facts{list-style:none;padding:0;margin:14px 0 0;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.empty__facts li{font-size:11px;color:var(--txt2);background:var(--panel2);border:1px solid var(--line);padding:5px 11px;border-radius:99px}
+
+/* ── 错误 ── */
+.alert{background:rgba(255,122,89,.09);border:1px solid rgba(255,122,89,.34);border-radius:var(--r2);padding:13px 15px;flex:none}
+.alert strong{color:var(--warn);font-size:13px}
+.alert p{margin-top:5px;font-size:12.5px;color:var(--txt2);word-break:break-word}
+
+/* ── 结果布局 ── */
+.result{display:grid;grid-template-columns:minmax(0,1fr) 344px;gap:16px;min-height:0}
+.viewer-wrap{position:relative;background:linear-gradient(180deg,#0f131c,#0a0d14);border:1px solid var(--line);border-radius:var(--r2);overflow:hidden;min-height:430px}
+.viewer{position:absolute;inset:0}
+.viewer canvas{display:block}
+.viewer__badge{
+  position:absolute;left:12px;top:12px;font-size:11px;color:var(--txt3);
+  background:rgba(11,14,20,.82);border:1px solid var(--line);padding:5px 10px;border-radius:99px;backdrop-filter:blur(6px);
+}
+.viewer__badge.is-ok{color:var(--ok);border-color:rgba(61,220,151,.3)}
+.viewer__badge.is-err{color:var(--warn);border-color:rgba(255,122,89,.3)}
+.viewer__tools{position:absolute;right:12px;bottom:12px;display:flex;gap:6px}
+.tool{
+  font-size:11px;padding:6px 10px;border-radius:8px;color:var(--txt2);
+  background:rgba(21,26,38,.9);border:1px solid var(--line);backdrop-filter:blur(6px);transition:.15s;
+}
+.tool:hover{color:var(--txt);border-color:var(--acc)}
+.tool.is-on{color:#fff;background:var(--acc);border-color:var(--acc)}
+
+/* ── 侧栏卡片 ── */
+.side{display:flex;flex-direction:column;gap:14px;min-width:0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r2);padding:13px}
+.card h3{font-size:12px;color:var(--txt2);margin-bottom:10px;text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+#video{width:100%;border-radius:9px;background:#0a0d14;aspect-ratio:1;display:block}
+.meta{font-size:11px;color:var(--txt3);margin-top:8px;font-variant-numeric:tabular-nums}
+
+.downloads{display:flex;flex-direction:column;gap:7px}
+.dl{
+  display:flex;flex-direction:column;gap:1px;padding:9px 12px;border-radius:9px;
+  background:var(--panel2);border:1px solid var(--line);font-size:12.5px;font-weight:600;transition:.15s;
+}
+.dl span{font-size:10.5px;color:var(--txt3);font-weight:400}
+.dl:hover{border-color:var(--acc);background:rgba(108,140,255,.11);transform:translateX(2px)}
+.dl.is-off{opacity:.34;pointer-events:none}
+
+.stats{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;margin:0;font-size:12px}
+.stats dt{color:var(--txt3)}
+.stats dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;color:var(--txt)}
+
+/* ── 历史 ── */
+.history{flex:none}
+.history h3{font-size:12px;color:var(--txt2);margin-bottom:9px;text-transform:uppercase;letter-spacing:.6px}
+.history__list{display:flex;gap:9px;overflow-x:auto;padding-bottom:5px}
+.hitem{
+  flex:none;width:112px;border:1px solid var(--line);border-radius:9px;overflow:hidden;
+  background:var(--panel);cursor:pointer;transition:.15s;
+}
+.hitem:hover{border-color:var(--acc);transform:translateY(-2px)}
+.hitem img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#0d1119}
+.hitem__t{font-size:10.5px;padding:5px 7px;color:var(--txt3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hitem__t b{color:var(--txt2);font-weight:600}
+
+/* ── 滚动条 ── */
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#252d3f;border-radius:99px;border:2px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:#33405a;background-clip:content-box}
+
+/* ── 响应式 ── */
+@media (max-width:1180px){
+  .app{grid-template-columns:1fr;height:auto;min-height:100vh}
+  .panel--input{order:1}
+  .result{grid-template-columns:1fr}
+  .viewer-wrap{min-height:380px}
+  .history__list{flex-wrap:nowrap}
+}
+@media (max-width:520px){
+  .app{padding:11px;gap:12px}
+  .motions{grid-template-columns:1fr}
+  .samples{grid-template-columns:repeat(4,1fr)}
+}
+
+/* ══════════════════ ARKit 表情调节卡片（左栏内流式布局，不再覆盖画布） ══════════════════ */
+/* 让原有工具条（含「表情」按钮）留在查看器上层，保持可见可点 */
+.viewer__tools{z-index:4}
+
+#arkitPanel{
+  position:static;width:100%;
+  /* 关键：父级 aside.panel--input 是 flex 列容器，默认 flex-shrink:1 会把面板压扁到只剩标题栏，
+     必须 flex:none 保持内容高度；超出 max-height 时由 .arkit__sliders 内部滚动。 */
+  flex:none;
+  display:flex;flex-direction:column;gap:9px;padding:12px 12px 10px;
+  max-height:min(72vh,760px);
+  background:rgba(17,21,31,.93);border:1px solid var(--line2);border-radius:var(--r2);
+  box-shadow:var(--shadow);backdrop-filter:blur(12px);overflow:hidden;
+}
+#arkitPanel[hidden]{display:none}
+.arkit__head{display:flex;align-items:center;justify-content:space-between;flex:none}
+.arkit__title{font-size:13px;font-weight:650;color:var(--txt)}
+.arkit__close{
+  width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--txt2);font-size:12px;line-height:1;display:grid;place-items:center;transition:.15s;flex:none;
+}
+.arkit__close:hover{color:var(--txt);border-color:var(--warn)}
+.arkit__status{flex:none;font-size:11px;color:var(--warn);min-height:14px;line-height:1.4;word-break:break-word}
+.arkit__presets{flex:none;display:flex;flex-wrap:wrap;gap:5px}
+.arkit-preset{
+  font-size:11px;padding:4px 9px;border-radius:7px;color:var(--txt2);
+  background:var(--panel2);border:1px solid var(--line);transition:.15s;
+}
+.arkit-preset:hover{color:var(--txt);border-color:var(--acc)}
+.arkit-preset--reset{color:var(--acc);border-color:var(--line2)}
+.arkit__orbit{flex:none;display:flex;flex-direction:column;gap:5px}
+.arkit__orbit-btns{display:flex;flex-wrap:wrap;gap:5px}
+.arkit__orbit-btns .tool{font-size:10.5px;padding:4px 8px}
+.arkit__readout{font-size:10.5px;color:var(--txt3);font-variant-numeric:tabular-nums}
+.arkit__sliders{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:5px;padding-right:3px}
+.arkit-group{border:1px solid var(--line);border-radius:9px;background:rgba(21,26,38,.5)}
+.arkit-group>summary{font-size:11.5px;font-weight:600;color:var(--txt2);cursor:pointer;padding:6px 9px;list-style:none}
+.arkit-group>summary::-webkit-details-marker{display:none}
+.arkit-group[open]>summary{color:var(--acc);border-bottom:1px solid var(--line)}
+.arkit-slider{display:grid;grid-template-columns:98px 1fr 30px;align-items:center;gap:7px;padding:3px 9px 5px}
+.arkit-slider__name{font-size:10.5px;color:var(--txt3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.arkit-slider__val{font-size:10.5px;color:var(--txt2);text-align:right;font-variant-numeric:tabular-nums}
+.arkit-slider input[type=range]{width:100%;accent-color:var(--acc);height:16px;margin:0}
+.arkit__foot{flex:none;display:flex;justify-content:space-between;gap:8px;font-size:10.5px;color:var(--txt3);border-top:1px solid var(--line);padding-top:7px;font-variant-numeric:tabular-nums}
+
+/* ══════════════════ 本轮新增（纯增量追加，未改动以上任何规则） ══════════════════ */
+/* 重建结果卡片：展示 LAM 单帧渲染出来的人物脸图 */
+#faceCard{display:flex;flex-direction:column;gap:10px}
+#faceCard h3{font-size:12px;margin:0}
+.face-card__img{
+  width:100%;border-radius:9px;display:block;background:#0a0d14;
+  border:1px solid var(--line);aspect-ratio:1;object-fit:contain;
+}
+
+/* 清晰度选择：与 .tool 按钮同一视觉语言的窄下拉框 */
+.tool--select{
+  appearance:none;-webkit-appearance:none;
+  padding:6px 22px 6px 10px;font-size:11px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 4.5 6 8l3.5-3.5' fill='none' stroke='%239aa6be' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 6px center;background-size:11px;
+  cursor:pointer;
+}
+.tool--select option{background:var(--panel2);color:var(--txt)}
+
+/* 导出模型：默认折叠，不占视觉空间 */
+.export-card{padding:0}
+.export-card>summary{
+  list-style:none;cursor:pointer;padding:13px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.export-card>summary::-webkit-details-marker{display:none}
+.export-card>summary::after{
+  content:'▾';color:var(--txt3);font-size:11px;transition:transform .15s;margin-left:8px;
+}
+.export-card[open]>summary::after{transform:rotate(180deg)}
+.export-card>summary:hover::after{color:var(--acc)}
+.export-card>summary h3{margin:0}
+.export-card .downloads{padding:0 13px 13px}
+
+/* 清晰度：高清模式把查看器 CSS 尺寸抬到 ≥640×640，
+   于是绘制缓冲 = css × clamp(dpr,1,2) ≥ 640×640（契约 A14）。
+   只抬高度，不动列宽，避免把右侧卡片挤出去。 */
+.viewer-wrap.is-hq{min-height:640px}

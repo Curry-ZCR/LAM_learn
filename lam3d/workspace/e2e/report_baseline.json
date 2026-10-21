@@ -1,0 +1,209 @@
+{
+  "tag": "baseline",
+  "base": "http://127.0.0.1:8000",
+  "viewport": {
+    "width": 1600,
+    "height": 950
+  },
+  "device_scale_factor": 2,
+  "ts": "2026-10-16 08:41:29",
+  "passed": 15,
+  "failed": 7,
+  "skipped": 4,
+  "results": [
+    {
+      "id": "S0",
+      "name": "服务就绪（/api/status ready:true）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "http://127.0.0.1:8000"
+    },
+    {
+      "id": "H1",
+      "name": "page.screenshot 可写出 PNG 且尺寸 == viewport*dsf",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "final_00_baseline_page.png"
+    },
+    {
+      "id": "H2",
+      "name": "WebGL2 合成 canvas 可用",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "dpr=2 640x480"
+    },
+    {
+      "id": "H3",
+      "name": "像素统计管道可用（合成渐变 ≥200 色 / 覆盖率 >5%）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "colors=65536 coverage=0.9954 via=element_screenshot"
+    },
+    {
+      "id": "H4",
+      "name": "拖拽工具可用（mouse.down/move/up 触达元素）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "pointermove=13"
+    },
+    {
+      "id": "H5",
+      "name": "dpr clamp 生效（≤2）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "devicePixelRatio=2"
+    },
+    {
+      "id": "9",
+      "name": "存在 上传区 #drop/#file/#preview/#samples",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 生成区 #generate/#engineHint",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 画布宿主 #viewer/#viewerBadge",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 #faceCard + #faceImg",
+      "ok": false,
+      "tag": "FAIL",
+      "extra": "value=False"
+    },
+    {
+      "id": "9",
+      "name": "存在 #exportCard 含 3 个下载链接",
+      "ok": false,
+      "tag": "FAIL",
+      "extra": "value=False"
+    },
+    {
+      "id": "9",
+      "name": "存在 #exportCard 默认折叠 (details 未 open)",
+      "ok": false,
+      "tag": "FAIL",
+      "extra": "value=False"
+    },
+    {
+      "id": "9",
+      "name": "存在 #statsCard",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 #splatQuality 清晰度选择器",
+      "ok": false,
+      "tag": "FAIL",
+      "extra": "value=False"
+    },
+    {
+      "id": "9",
+      "name": "无驱动视频卡片 / 无下载 MP4 卡片",
+      "ok": false,
+      "tag": "FAIL",
+      "extra": "side cards=['驱动视频', '下载', '本次统计']"
+    },
+    {
+      "id": "10",
+      "name": "#motions / #skipVideo / #historyWrap / #video / #dlMp4 全部不存在",
+      "ok": false,
+      "tag": "FAIL",
+      "extra": "{\"motions\": true, \"skipVideo\": true, \"historyWrap\": true, \"video\": true, \"dlMp4\": true}"
+    },
+    {
+      "id": "10",
+      "name": "static/ 下 html 只有 1 个",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "htmls=['index.html']"
+    },
+    {
+      "id": "10",
+      "name": "全站 JS/HTML 无 alert/confirm/window.open",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "js={} html=[]"
+    },
+    {
+      "id": "15",
+      "name": "console error 0 条",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "0 条：[]"
+    },
+    {
+      "id": "15",
+      "name": "pageerror 0 条",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "0 条：[]"
+    },
+    {
+      "id": "15",
+      "name": "无 alert/confirm 弹窗、无新标签页",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "dialogs=[] popups=[]"
+    },
+    {
+      "id": "11",
+      "name": "SplatView 真实渲染（≥200 色 / 覆盖 >5%）",
+      "ok": false,
+      "tag": "SKIP",
+      "extra": "基线模式：未生成结果，无法评估"
+    },
+    {
+      "id": "12",
+      "name": "360° 拖拽 + 视角预设切换",
+      "ok": false,
+      "tag": "SKIP",
+      "extra": "基线模式：未生成结果，无法评估"
+    },
+    {
+      "id": "13",
+      "name": "ARKit 预设 → 点云像素变化",
+      "ok": false,
+      "tag": "SKIP",
+      "extra": "基线模式：未生成结果，无法评估"
+    },
+    {
+      "id": "14",
+      "name": "清晰度 canvas.width == cssW*dpr",
+      "ok": false,
+      "tag": "SKIP",
+      "extra": "基线模式：未生成结果，无法评估"
+    },
+    {
+      "id": "16",
+      "name": "OrbitControls 实例存在（插桩捕获）",
+      "ok": false,
+      "tag": "FAIL",
+      "extra": "window.__ocList 为空：可能未创建，或未从 three/addons 导入"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "final_00_baseline_page.png",
+      "size": "3200x1900",
+      "bytes": 470145
+    }
+  ],
+  "notes": [
+    "服务就绪：{'ready': True, 'warming': False, 'error': None, 'queue': 0}",
+    "OrbitControls 观察器已装载",
+    "基线模式：跳过生成流程"
+  ]
+}
