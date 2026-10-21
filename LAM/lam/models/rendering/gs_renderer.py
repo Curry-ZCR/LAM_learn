@@ -29,6 +29,7 @@ import math
 import copy
 from diffusers.utils import is_torch_version
 from lam.models.rendering.flame_model.flame import FlameHeadSubdivided
+from lam.models.rendering.covariance_modulation import DynamicCovarianceModulator
 from lam.models.transformer import TransformerDecoder
 from pytorch3d.transforms import matrix_to_quaternion
 from lam.models.rendering.utils.typing import *
@@ -567,9 +568,28 @@ class GS3DRenderer(nn.Module):
 
         return ret
             
-    def animate_gs_model(self, gs_attr: GaussianModel, query_points, flame_data, debug=False):
+    def _get_cov_modulator(self, device):
+        """Lazily build (and cache) the ARKit-driven covariance modulator."""
+        mod = getattr(self, "_cov_modulator", None)
+        if mod is None:
+            mod = DynamicCovarianceModulator(self.flame_model)
+            mod.to(device)
+            self._cov_modulator = mod
+        return mod
+
+    def animate_gs_model(self, gs_attr: GaussianModel, query_points, flame_data, debug=False,
+                         arkit_params=None, cov_modulation=True):
         """
         query_points: [N, 3]
+
+        arkit_params: optional Apple ARKit blendshape vector(s) in [0, 1],
+            shape [52] / [1, 52] / [num_view, 52].  When given (and not all
+            zero) the canonical Gaussians are deformed with the ARKit basis and
+            their rotation quaternion / scale are modulated by the measured
+            local deformation (see
+            lam.models.rendering.covariance_modulation).  With ``arkit_params``
+            all zero (or None) the output is bit-identical to the previous
+            behaviour.
         """
         device = gs_attr.xyz.device
         if debug:
@@ -591,12 +611,22 @@ class GS3DRenderer(nn.Module):
             num_view = flame_data["expr"].shape[0]  # [Nv, 100]
             mean_3d = mean_3d.unsqueeze(0).repeat(num_view, 1, 1)  # [Nv, N, 3]
             query_points = query_points.unsqueeze(0).repeat(num_view, 1, 1)
+            v_cano = mean_3d
 
             if self.teeth_bs_flag:
                 expr = torch.cat([flame_data['expr'], flame_data['teeth_bs']], dim=-1)
             else:
                 expr = flame_data["expr"]
-            ret = self.flame_model.animation_forward(v_cano=mean_3d,
+
+            # ARKit-driven dynamic covariance modulation (rotation + scale).
+            # The neutral reference below is the *unmodified* animation_forward
+            # call, so arkit_params == 0 reproduces it exactly.
+            modulate = cov_modulation and arkit_params is not None and \
+                not DynamicCovarianceModulator.is_neutral(arkit_params)
+            if modulate:
+                modulator = self._get_cov_modulator(device)
+
+            ret = self.flame_model.animation_forward(v_cano=v_cano,
                                                 shape=flame_data["betas"].repeat(num_view, 1),
                                                 expr=expr,
                                                 rotation=flame_data["rotation"],
@@ -611,13 +641,50 @@ class GS3DRenderer(nn.Module):
                                                 static_offset=None,
                                                 )
             mean_3d = ret["animated"]
-            
+
+            if modulate:
+                arkit = modulator.prepare_params(arkit_params, num_view,
+                                                 mean_3d.device, mean_3d.dtype)
+                # ARKit basis -> canonical per-vertex offsets, skinned like
+                # FLAME expression blendshapes (no hand-written mapping)
+                dynamic_offset = modulator.arkit_offsets(arkit)  # [Nv, N, 3]
+                ret_driven = self.flame_model.animation_forward(v_cano=v_cano,
+                                                shape=flame_data["betas"].repeat(num_view, 1),
+                                                expr=expr,
+                                                rotation=flame_data["rotation"],
+                                                neck=flame_data["neck_pose"],
+                                                jaw=flame_data["jaw_pose"],
+                                                eyes=flame_data["eyes_pose"],
+                                                translation=flame_data["translation"],
+                                                zero_centered_at_root_node=False,
+                                                return_landmarks=False,
+                                                return_verts_cano=False,
+                                                static_offset=None,
+                                                dynamic_offset=dynamic_offset,
+                                                )
+                mean_3d = ret_driven["animated"]
+                # f(B, x0, xB) -> (dq, ds), then q' = normalize(dq (x) q0),
+                # s' = s0 + ds  (decoupled quaternion / scale only)
+                delta_q, stretch = modulator.delta_rotation_scale(ret["animated"], mean_3d)
+                gs_rotation, gs_scaling = modulator.apply(
+                    delta_q,
+                    modulator.delta_scale(stretch, gs_attr.scaling),
+                    gs_attr.rotation,
+                    gs_attr.scaling,
+                )
+            else:
+                # 未调制：与改动前完全一致 —— 每个视角共用同一份预测属性。
+                # （用 expand 而不是直接索引，保证下面 gs_rotation[i] 的写法
+                #   在调制/未调制两条路径上都是 [N, 4] / [N, 3]。）
+                gs_rotation = gs_attr.rotation.unsqueeze(0).expand(num_view, -1, -1)
+                gs_scaling = gs_attr.scaling.unsqueeze(0).expand(num_view, -1, -1)
+
         gs_attr_list = []                                                                  
         for i in range(num_view):
             gs_attr_copy = GaussianModel(xyz=mean_3d[i],
                                     opacity=gs_attr.opacity, 
-                                    rotation=gs_attr.rotation, 
-                                    scaling=gs_attr.scaling,
+                                    rotation=gs_rotation[i], 
+                                    scaling=gs_scaling[i],
                                     shs=gs_attr.shs,
                                     offset=gs_attr.offset) # [N, 3]
             gs_attr_list.append(gs_attr_copy)
@@ -764,7 +831,7 @@ class GS3DRenderer(nn.Module):
         return gs_model_list, query_points, flame_data, query_gs_features
 
     def forward_animate_gs(self, gs_model_list, query_points, flame_data, c2w, intrinsic, height, width,
-                           background_color, debug=False):
+                           background_color, debug=False, arkit_params=None, cov_modulation=True):
         batch_size = len(gs_model_list)
         out_list = []
 
@@ -774,7 +841,9 @@ class GS3DRenderer(nn.Module):
             animatable_gs_model_list: list[GaussianModel] = self.animate_gs_model(gs_model,
                                                                                   query_pt,
                                                                                   self.get_sing_batch_smpl_data(flame_data, b),
-                                                                                  debug=debug)
+                                                                                  debug=debug,
+                                                                                  arkit_params=arkit_params,
+                                                                                  cov_modulation=cov_modulation)
             assert len(animatable_gs_model_list) == c2w.shape[1]
             out_list.append(self.forward_single_batch(
                 animatable_gs_model_list,

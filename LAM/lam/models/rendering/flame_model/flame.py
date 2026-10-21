@@ -858,6 +858,11 @@ class FlameHeadSubdivided(FlameHead):
 
         # step2. v_cano_with_expr
         v_cano_with_expr = v_cano + blend_shapes(expr, self.shapedirs_up[:, :, self.n_shape_params:])
+
+        # extra canonical per-vertex offsets (e.g. ARKit blendshape basis),
+        # skinned together with the expression blendshapes
+        if dynamic_offset is not None:
+            v_cano_with_expr = v_cano_with_expr + dynamic_offset
         
         # step3. lbs
         vertices = self.skinning(v_posed=v_cano_with_expr, A=A, lbs_weights=self.lbs_weights_up, batch_size=batch_size,
@@ -1160,7 +1165,12 @@ class FlameHeadSubdivided(FlameHead):
         return subdivider_list
     
     def upsample_mesh_cpu(self, vert, feat_list=None):
-        face = torch.LongTensor(self.faces)
+        # ``faces`` is a registered buffer, so it follows the module to whatever
+        # device the model was moved to (the production pipeline always calls
+        # ``model.to('cuda')``).  ``torch.LongTensor`` can only wrap CPU memory,
+        # so materialise a CPU copy explicitly -- this helper is CPU-only by
+        # contract (its ``vert`` argument is CPU), the values are unchanged.
+        face = self.faces.detach().to(device="cpu", dtype=torch.long)
         mesh = Meshes(vert[None,:,:], face[None,:,:])
         if self.subdivide_num > 0:
             if feat_list is None:
