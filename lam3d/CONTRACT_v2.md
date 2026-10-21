@@ -10,6 +10,10 @@
 ## 1. 硬约束（沿用上一轮，全部有效）
 
 1. 形变只作用于**解耦**的旋转四元数 `q`（必须 `F.normalize`）与缩放 `s`（无 NaN/Inf）；**严禁直接修改合成后的协方差 Σ**。
+   - **本轮澄清（Lead 裁决，见 §11）**：`lam3d/core/tga_covariance.py` 会在**数学上**构造
+     `Sigma' = J Sigma J^T` 并对其做对称特征分解，以便**精确回写** `(q', s')`；但它从不把
+     `Sigma` 交给渲染器（不设 `cov3D_precomp`、不碰 CUDA），最终仍只通过 `q'` / `s'` 影响图像，
+     LSPL 字段与语义不变。此为本条约束允许的唯一形式。
 2. **禁止改动 `/workspace/LAM/**` 的任何文件**。上一轮已完成的 `covariance_modulation.py`、`gs_renderer.py`（`animate_gs_model` / `forward_animate_gs` 钩子）、`flame.py`（`dynamic_offset`）本轮**零改动**，直接调用。
    - 严禁修改 `diff-gaussian-rasterization` 的 CUDA C++ 源码。
 3. 后端禁止在 N 个高斯点维度上写 Python `for` 循环；只用广播 / `bmm` / `matmul` / `scatter_add` / `einsum`。
@@ -331,8 +335,49 @@ node v20.5.0；playwright chromium 已安装
 
 ## 10. 上一轮遗留的既有事实（可直接依赖，勿重复探索）
 - `arkit_live.sanitize_arkit(raw, count)` 已做长度/NaN/clip 校验；`arkit_meta()` 返回 52 名 + 13 预设。
-- `DynamicCovarianceModulator` / `animate_gs_model(..., arkit_params=..., cov_modulation=True)` 已通过 76/76 dry-run（含 B=0 位级一致、B=1 无 NaN、s≤1.35·s0、极分解 T9/T10 与 SVD 对齐）。
+- `DynamicCovarianceModulator` / `animate_gs_model(..., arkit_params=..., cov_modulation=True)` 已通过 85/85 dry-run（含 T11 的 TGA 段、B=0 位级一致、B=1 无 NaN、s≤1.35·s0、极分解 T9/T10 与 SVD 对齐）。
 - `forward_single_batch(gs_list, c2ws[Nv,4,4], intrs[Nv,4,4], h, w, bg[Nv,3])`；`forward_single_view` 返回 `comp_rgb` 为 `[H,W,3]`。
 - `gs.shs` 形状 `[N,1,3]`（`gs_use_rgb: true`）→ `gs.shs.squeeze(1)` 即 RGB。
 - 前端既有 importmap：`three` → `/static/vendor/three/build/three.module.js`（r160），`three/addons/` → `examples/jsm`。
 - `app.js` 里 ARKit 面板代码（`initArkitPanel` 等 17 个函数）已存在且经 34/34 浏览器 e2e 验证，本轮**改造**而非重写。
+
+---
+
+## 11. 附录（Lead 追加，2026-10-21）：TGA 雅可比协方差形变
+
+论文：*TGA: True-to-Geometry Avatar Dynamic Reconstruction*（NeurIPS 2025 Spotlight）。
+核心是 PGT：`mu0 = J mu + t`、`Sigma' = J R S S^T R^T J^T`，`J = Eb E^-1`
+（`E` / `Eb` 为静止 / 形变后的父三角形边基）。它替代「按父三角形面积做各向同性缩放」。
+
+**已证伪的失败路径（务必不要再试）**：`lam/models/rendering/gs_renderer.py:526-559`
+的 `forward_single_view` 把 `cov3D_precomp` 写死为 `None`，并把 `gs.scaling / gs.rotation`
+传给光栅器 ⇒ 光栅器只用 `(s, R)` 现算 `Sigma`，任何外部 `cov3D_precomp` 都被**静默丢弃**。
+证据：`scripts/diag_cov_path.py`，同坐标 A/B/C 对照 —— 挂 `cov3D_precomp` 走官方
+`forward_single_batch` 与不挂**逐位相同**；同一条 `Sigma` 走原始 rasterizer 才生效。
+
+**落地方式**：`lam3d/core/tga_covariance.TgaCovarianceModulator`，通过预置
+`renderer._cov_modulator` 注入（复用 `gs_renderer.py:571-578` 的惰性构造），保持
+`delta_rotation_scale / delta_scale / apply` 三个钩子的签名，LAM 零改动。
+于是 `Sigma'` 被精确回写为 `(q', s')`，§4 的 LSPL 语义 `Sigma = R diag(s^2) R^T` 不变。
+
+验收（全部在真实 checkpoint 上跑过，2026-10-21）：
+
+| 脚本 | 覆盖 | 结果 |
+|---|---|---|
+| `scripts/arkit_dryrun.py` | T1~T11（含 T11.1~T11.9 的 TGA 段） | 85/85 PASS |
+| `scripts/verify_tga_covariance.py` | M1~M6 纯数学（回写保真 / 分解 / 边界） | ALL PASS |
+| `scripts/verify_tga_render.py` | R1~R7 官方 `forward_single_batch` 渲染对照 | 10/10 PASS |
+| `scripts/verify_tga_live.py` | L1~L10 真实部署链路 + LSPL 打包 | 13/13 PASS |
+
+关键指标：回写保真 `||R' diag(s'^2) R'^T - J Sigma J^T|| / ||...||` max `1.01e-07`；
+全 1 时 `s'/s0` 落在 `[0.25, 1.35]`、`|q'|` 误差 `5.96e-08`；B=0 与改动前**逐位一致**；
+调制耗时 LAM `8.6~13.0 ms` vs TGA `9.3~13.0 ms`（§8 C18 的 30 ms 上限内）。
+视觉增量：全 1 时 TGA 与 LAM 原调制器在 512x512 上 mean|dpixel| `0.74`、变化像素 25%。
+
+开关：`LAM3D_TGA_COV=0` 回退原调制器；`LAM3D_TGA_STRENGTH` / `LAM3D_TGA_MAX_RATIO` /
+`LAM3D_TGA_MIN_RATIO` 调强度与逐轴尺度夹紧（默认 `1.0 / 1.35 / 0.25`）。
+
+**对 §1.1 的澄清**：允许在 `(q, s)` 的求解过程中数学地构造并分解 `Sigma'`，
+禁止的是把 `Sigma` 作为渲染输入（`cov3D_precomp`）、或让 LSPL 传 `Sigma`。
+`arkit_dryrun.py` 的 T11.2 会断言 `tga_covariance.py` 里不出现 `cov3D_precomp` /
+`diff_gaussian_rasterization`，把这条约束变成机器可查的。

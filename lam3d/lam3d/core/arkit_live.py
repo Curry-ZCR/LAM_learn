@@ -32,7 +32,7 @@ from typing import Optional
 import numpy as np
 import torch
 
-from . import paths, splat
+from . import paths, splat, tga_covariance
 
 # 实时渲染串行锁：光栅化与 animate_gs_model 都不是线程安全的，
 # 且 JobManager 本身也是单 GPU 串行队列。
@@ -174,6 +174,18 @@ def save_session(pipeline, job_id: str, res: dict, job_dir: Path, bg_color) -> d
         "bg": torch.as_tensor(bg_color, dtype=torch.float32).reshape(3),
         "render_hw": tuple(res["render_hw"]),
     }
+
+    # ARKit 协方差形变：把 TGA 的雅可比版本装进 renderer，替换 LAM 自带的
+    # 面内(2x2)旋转+各向同性缩放调制器。注入点是 renderer._cov_modulator ——
+    # gs_renderer.py:571-578 的 _get_cov_modulator 是惰性的，预置实例后
+    # animate_gs_model 会直接用它，因此 /workspace/LAM 一个字节都不用改。
+    # 失败不阻断会话（退回 LAM 原调制器，外观仍可用）。
+    try:
+        mod = tga_covariance.install(renderer)
+        if mod is not None:
+            session["cov_modulator"] = mod.__class__.__name__
+    except Exception:  # noqa: BLE001
+        logging.getLogger(__name__).exception("TGA 协方差形变安装失败（回退 LAM 原调制器）")
 
     # 静态（B=0）一份属性：既是环绕中心 pivot 的来源，也是 LSPL 头的来源。
     arrays0 = compute_splat(session, None)

@@ -91,6 +91,68 @@ cd /workspace/lam3d && PYTHONPATH=/workspace/lam3d:/workspace/LAM \
     --base http://127.0.0.1:8000 --sample status.png
 ```
 
+### TGA：雅可比协方差形变（PGT，NeurIPS'25）
+
+上面那套调制只做「面内旋转 + 各向同性面积缩放」，从**不构造协方差矩阵**。论文
+*TGA: True-to-Geometry Avatar Dynamic Reconstruction* 的主张是：按父三角形的形变梯度
+`J = Eb E^-1` 直接形变协方差 —— `Sigma' = J Sigma J^T`（Perspective-Aware Gaussian Transformation）。
+它替代「按父三角形面积做各向同性缩放」，因此不会在**剪切/旋转但不改面积**的区域把高斯糊成一片
+（over-blending），也不会在**只改一个方向**的区域欠融合（under-blending）。
+
+**先踩到的一个坑（本轮已用实验证伪）**：直觉做法是把形变后的 `Sigma'` 直接喂给光栅器。
+但官方渲染路径 `lam/models/rendering/gs_renderer.py:526-559` 的 `forward_single_view` 里
+`cov3D_precomp` 被写死成 `None`，随后又总是把 `gs.scaling / gs.rotation` 传给
+`diff_gaussian_rasterization` —— 光栅器只会用 `(s, R)` 现算 `Sigma = R diag(s^2) R^T`。
+所以**外部预计算的协方差会被静默丢弃**，这就是「加了协方差却没有效果」的原因。
+
+实证：`scripts/diag_cov_path.py` 在真实 checkpoint 上做同坐标的 A/B/C 对照 ——
+把 `4*Sigma` 挂成 `GaussianModel.cov3D_precomp` 走官方 `forward_single_batch`，输出与
+不挂时**逐位相同**（mean/max diff = 0）；而同一条 `Sigma` 用原始 rasterizer 直接喂
+`cov3D_precomp`，CUDA 路径确实生效（mean|diff| = 0.067）。⇒ 数学没错，是渲染路径丢了协方差。
+
+**本仓库的做法（不碰 LAM、不碰 CUDA）**：`lam3d/core/tga_covariance.py` 在 lam3d 侧实现
+`TgaCovarianceModulator`，通过预置 `renderer._cov_modulator` 注入
+（`gs_renderer.py:571-578` 的惰性构造正好留了这个口子）。它把 `Sigma' = J Sigma J^T` 做
+**对称特征分解**后精确回写成 `(q', s')` 再交给光栅器 —— 于是 `R' diag(s'^2) R'^T == Sigma'`，
+光栅器内部现算出来的就是 TGA 的协方差。契约（`CONTRACT_v2.md` §1/§4）因此完全不变：
+从不向渲染器塞 Sigma、LSPL 仍然只传 `xyz/rot/scale/opacity/rgb` 且语义仍是 `Sigma = R diag(s^2) R^T`。
+
+- `J`：每面取静止/形变两套基 `E=[e1,e2,n0]`、`Eb=[d1,d2,n1]`，`J_f = Eb E^-1`；再按**面积加权**
+  `scatter_add_` 平均到顶点（sliver 面 `E^-1` 病态，等权会被少数退化面主导）。孤立顶点回落恒等阵。
+- 回写：`Sigma'` 在 float64 下 `eigh`；特征值与**升序**的 `s0` 一一配对、逐轴夹在
+  `[min_scale_ratio, max_scale_ratio]`（默认 `0.25 / 1.35`，正好覆盖契约 §8 A6 的 `s' <= 1.35*s0`），
+  再 scatter 回原下标；特征向量逐列对齐 `R0` 的符号（否则 `R'` 可能差 180 度，`Sigma` 却完全一样），
+  兜底 `det<0` 翻最后一列；四元数在 float64 解出再降精度。
+- 全向量化：只有 `matmul / eigh / scatter_add_ / 广播`，**没有沿高斯维度的 Python 循环**；
+  ARKit 全 0 时短路，输出与改动前逐位一致。
+
+开关（都是环境变量，默认开启）：
+
+```bash
+LAM3D_TGA_COV=0          # 退回 LAM 原调制器（对照/回滚）
+LAM3D_TGA_STRENGTH=1.0   # J 相对恒等的插值强度（2.0 = 两倍形变）
+LAM3D_TGA_MAX_RATIO=1.35 # 逐轴尺度上限（契约 A6）
+LAM3D_TGA_MIN_RATIO=0.25 # 逐轴尺度下限
+```
+
+验收脚本（真实 checkpoint）：
+
+```bash
+cd /workspace/lam3d && PYTHONPATH=/workspace/lam3d:/workspace/LAM \
+  /usr/local/miniconda3/envs/lam/bin/python scripts/verify_tga_covariance.py  # M1~M6 纯数学，不占 GPU
+
+# 走官方 forward_single_batch 的渲染对照（R1~R7）
+/usr/local/miniconda3/envs/lam/bin/python scripts/verify_tga_render.py
+# 走真实部署链路 save_session -> compute_splat -> LSPL 打包（L1~L10）
+/usr/local/miniconda3/envs/lam/bin/python scripts/verify_tga_live.py
+# 出对照图（B=0 / LAM / TGA / 差分）
+/usr/local/miniconda3/envs/lam/bin/python scripts/make_tga_compare.py
+```
+
+`scripts/arkit_dryrun.py` 的 T11 段专门覆盖这套实现：回写保真（`R' diag(s'^2) R'^T == J Sigma J^T`，
+相对误差 < 1e-5）、`J = I` 还原、极端 `J` 有界、退化逐位一致、向量化审计（且断言
+`tga_covariance.py` 里不出现 `cov3D_precomp`，即绝不回头去注入协方差）。
+
 ---
 
 ## 抽取出来的模块

@@ -1,0 +1,494 @@
+{
+  "tag": "tga",
+  "base": "http://127.0.0.1:8000",
+  "viewport": {
+    "width": 1600,
+    "height": 950
+  },
+  "device_scale_factor": 2,
+  "ts": "2026-10-21 15:06:46",
+  "passed": 54,
+  "failed": 0,
+  "skipped": 0,
+  "results": [
+    {
+      "id": "S0",
+      "name": "服务就绪（/api/status ready:true）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "http://127.0.0.1:8000"
+    },
+    {
+      "id": "H1",
+      "name": "page.screenshot 可写出 PNG 且尺寸 == viewport*dsf",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "final_00_baseline_page.png"
+    },
+    {
+      "id": "H2",
+      "name": "WebGL2 合成 canvas 可用",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "dpr=2 640x480"
+    },
+    {
+      "id": "H3",
+      "name": "像素统计管道可用（合成渐变 ≥200 色 / 覆盖率 >5%）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "colors=65536 coverage=0.9947 via=element_screenshot"
+    },
+    {
+      "id": "H4",
+      "name": "拖拽工具可用（mouse.down/move/up 触达元素）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "pointermove=13"
+    },
+    {
+      "id": "H5",
+      "name": "dpr clamp 生效（≤2）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "devicePixelRatio=2"
+    },
+    {
+      "id": "9",
+      "name": "存在 上传区 #drop/#file/#preview/#samples",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 生成区 #generate/#engineHint",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 画布宿主 #viewer/#viewerBadge",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 #faceCard + #faceImg",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 #exportCard 含 3 个下载链接",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 #exportCard 默认折叠 (details 未 open)",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 #statsCard",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "存在 #splatQuality 清晰度选择器",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "value=True"
+    },
+    {
+      "id": "9",
+      "name": "无驱动视频卡片 / 无下载 MP4 卡片",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "side cards=['导出模型', '本次统计']"
+    },
+    {
+      "id": "10",
+      "name": "#motions / #skipVideo / #historyWrap / #video / #dlMp4 全部不存在",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "{\"motions\": false, \"skipVideo\": false, \"historyWrap\": false, \"video\": false, \"dlMp4\": false}"
+    },
+    {
+      "id": "10",
+      "name": "static/ 下 html 只有 1 个",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "htmls=['index.html']"
+    },
+    {
+      "id": "10",
+      "name": "全站 JS/HTML 无 alert/confirm/window.open",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "js={} html=[]"
+    },
+    {
+      "id": "B0",
+      "name": "选择图片后 #generate 可用",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "disabled=False"
+    },
+    {
+      "id": "B1",
+      "name": "POST /api/generate 返回 job id",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "job_id=0e60d621801c"
+    },
+    {
+      "id": "B2",
+      "name": "任务跑到 succeeded",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "state=succeeded err=None"
+    },
+    {
+      "id": "14",
+      "name": "canvas.width == cssW * dpr（dpr clamp ≤2）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "width=1508 cssW=754 dpr=2 eff=2.0"
+    },
+    {
+      "id": "14",
+      "name": "高清模式绘制像素 ≥ 640×640 等效",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "1508x1276"
+    },
+    {
+      "id": "14",
+      "name": "#splatQuality 默认高清且含 标准/高清 选项",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "{'tag': 'SELECT', 'value': 'hq', 'text': '高清', 'options': ['标准', '高清']}"
+    },
+    {
+      "id": "11",
+      "name": "canvas 不同颜色数 ≥ 200",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "colors=28115 via=element_screenshot"
+    },
+    {
+      "id": "11",
+      "name": "非背景覆盖率 > 5%",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "coverage=0.0903 bg=[15, 19, 28]"
+    },
+    {
+      "id": "12",
+      "name": "拖拽后点云像素变化",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "mean|Δpixel|=7.4689"
+    },
+    {
+      "id": "12",
+      "name": "拖拽后相机位置改变",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "pos [-0.007663799363735446, 0.0027449051175720105, 1.3026050698423088] → [1.1298291926580526, 0.6275125438361255, -0.2850879779567412]"
+    },
+    {
+      "id": "12",
+      "name": "三个预设对应的相机位置互不相同",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "max|Δpos|={'left~right': 2.286, 'left~three': 1.9698, 'right~three': 0.3267}; pos={'left': [-1.1457017184553544, 0.0038753049045251345, 0.6390094747136671], 'right': [1.1402499171196263, 0.002777010297905508, 0.6487438764489963], 'three': [0.8240570437258925, 0.2772662893456079, 0.9754025749551992]}"
+    },
+    {
+      "id": "12",
+      "name": "left / right / three 三张画面互不相同",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "left↔right=7.0814 left↔three=7.421 right↔three=3.9734"
+    },
+    {
+      "id": "T6",
+      "name": "生成完成后面板保持 hidden（#arkitToggle 是唯一入口）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "panel.hidden=True"
+    },
+    {
+      "id": "13",
+      "name": "ARKit 面板可打开",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "visible=True"
+    },
+    {
+      "id": "T6",
+      "name": "#arkitPanel 与 .viewer-wrap 矩形交集面积为 0（不遮挡预览区）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "inter=0.0px² panel=(39.0,296.3,350.0,633.4) viewer-wrap=(447.0,37.0,756.0,640.0)"
+    },
+    {
+      "id": "T6",
+      "name": "#arkitPanel 高度 ≥ 220px（面板真实展开，非被 flex 压扁）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "panel.height=633.4"
+    },
+    {
+      "id": "T6",
+      "name": "#arkitSliders 有真实高度（≥ 80px）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "offsetHeight=363 clientHeight=363"
+    },
+    {
+      "id": "T6",
+      "name": "#arkitPanel 位于左栏 aside.panel--input DOM 子树内",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "closest('aside.panel--input')=True position=static flex=0/0"
+    },
+    {
+      "id": "T6",
+      "name": "面板打开前后 canvas.width/height 不变（A14 未被破坏）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "before=1508x1276 after=1508x1276"
+    },
+    {
+      "id": "T6",
+      "name": "面板打开后 canvas.width === cssW * dpr（dpr clamp ≤2）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "width=1508 cssW=754 dpr=2 eff=2.0"
+    },
+    {
+      "id": "T6",
+      "name": "面板打开后绘制缓冲区 ≥ 640×640（A14 高清档）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "buffer=1508x1276 css=754x638"
+    },
+    {
+      "id": "T6",
+      "name": "#arkitSliders 内部滚动生效（scrollHeight > clientHeight）或面板完整可见",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "scrollHeight=363 clientHeight=363 overflowing=False"
+    },
+    {
+      "id": "T6",
+      "name": "展开全部分组后 #arkitSliders 可滚动到内容底部（scrollTop > 0）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "scrollTop=1070 scrollHeight=1484 clientHeight=414"
+    },
+    {
+      "id": "13",
+      "name": "ARKit 预设 → 前景 mean|Δpixel| > 0.5（契约 8.13 口径）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "最强预设 surprise=前景 4.9407（12/12 个预设 >0.5）；全部：smile=fg:1.264/full:0.148(7.75%) bigSmile=fg:1.686/full:0.198(9.94%) laugh=fg:3.682/full:0.432(14.96%) surprise=fg:4.941/full:0.580(18.31%) angry=fg:2.679/full:0.313(14.17%) sad=fg:2.466/full:0.290(12.54%) kiss=fg:1.717/full:0.204(8.49%) mouthOpen=fg:3.261/full:0.382(10.23%) blink=fg:1.462/full:0.171(4.07%) winkLeft=fg:1.306/full:0.152(5.95%) winkRight=fg:1.373/full:0.160(6.22%) cheekPuff=fg:1.073/full:0.124(6.38%)"
+    },
+    {
+      "id": "13",
+      "name": "每个 ARKit 预设均产生高于噪声本底的像素变化",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "噪声地板=0.0 最弱预设 cheekPuff=前景 1.0734；全部：smile=fg:1.264/full:0.148(7.75%) bigSmile=fg:1.686/full:0.198(9.94%) laugh=fg:3.682/full:0.432(14.96%) surprise=fg:4.941/full:0.580(18.31%) angry=fg:2.679/full:0.313(14.17%) sad=fg:2.466/full:0.290(12.54%) kiss=fg:1.717/full:0.204(8.49%) mouthOpen=fg:3.261/full:0.382(10.23%) blink=fg:1.462/full:0.171(4.07%) winkLeft=fg:1.306/full:0.152(5.95%) winkRight=fg:1.373/full:0.160(6.22%) cheekPuff=fg:1.073/full:0.124(6.38%)"
+    },
+    {
+      "id": "13",
+      "name": "ARKit 滑块 → 前景 mean|Δpixel| > 0.5（契约 8.13 口径）",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "最强通道 jawOpen=前景 2.9630；全部：jawOpen=fg:2.963/full:0.344(9.88%) browInnerUp=fg:1.148/full:0.134(6.27%) mouthSmileLeft=fg:0.539/full:0.062(3.58%)"
+    },
+    {
+      "id": "13",
+      "name": "#arkitLatency 出现数值",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "text='延迟 33 ms · 服务端 13.97 ms'"
+    },
+    {
+      "id": "13",
+      "name": "两次不同预设 → 服务端点云几何确实不同",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "{'n': 20018, 'xyz_mean_abs_delta': 0.000167, 'scale_mean_abs_delta': 1.3e-05, 'center_max_abs_delta': 0.0, 'bytes_a': 1121152, 'bytes_b': 1121152, 'preset_a_nonzero': 0, 'preset_b_nonzero': 1, 'bbox_a': [-0.1757, -0.241, -0.1723, 0.1823, 0.1943, 0.0714], 'ms_a': '13.97'}"
+    },
+    {
+      "id": "15",
+      "name": "#wire 点击无异常",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "is-on=True"
+    },
+    {
+      "id": "15",
+      "name": "#spin 点击无异常",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "is-on=True"
+    },
+    {
+      "id": "16",
+      "name": "OrbitControls 实例存在",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "1 个实例；dom=CANVAS#."
+    },
+    {
+      "id": "16",
+      "name": "参数未被改：damping 0.07 / min 0.2 / max 4.0 / enableDamping true",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "damping=0.07 min=0.2 max=4 enableDamping=True"
+    },
+    {
+      "id": "16",
+      "name": "rotateSpeed 0.85 保留",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "rotateSpeed=0.85"
+    },
+    {
+      "id": "15",
+      "name": "console error 0 条",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "0 条：[]"
+    },
+    {
+      "id": "15",
+      "name": "pageerror 0 条",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "0 条：[]"
+    },
+    {
+      "id": "15",
+      "name": "无 alert/confirm 弹窗、无新标签页",
+      "ok": true,
+      "tag": "PASS",
+      "extra": "dialogs=[] popups=[]"
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "final_00_baseline_page.png",
+      "size": "3200x1900",
+      "bytes": 425857
+    },
+    {
+      "file": "final_01_initial.png",
+      "size": "3200x1900",
+      "bytes": 426346
+    },
+    {
+      "file": "final_02_ready.png",
+      "size": "3200x1900",
+      "bytes": 628950
+    },
+    {
+      "file": "final_03_generating.png",
+      "size": "3200x1900",
+      "bytes": 577465
+    },
+    {
+      "file": "final_04_result_facecard.png",
+      "size": "3200x1900",
+      "bytes": 1124748
+    },
+    {
+      "file": "final_05_splat_render.png",
+      "size": "1508x1276",
+      "bytes": 287317
+    },
+    {
+      "file": "final_06_after_drag.png",
+      "size": "3200x1900",
+      "bytes": 1077777
+    },
+    {
+      "file": "final_07_view_left.png",
+      "size": "1508x1276",
+      "bytes": 281172
+    },
+    {
+      "file": "final_07_view_right.png",
+      "size": "1508x1276",
+      "bytes": 272510
+    },
+    {
+      "file": "final_07_view_three.png",
+      "size": "1508x1276",
+      "bytes": 279977
+    },
+    {
+      "file": "final_08_arkit_panel.png",
+      "size": "3200x1900",
+      "bytes": 795793
+    },
+    {
+      "file": "t6_panel_in_left_col.png",
+      "size": "3200x1900",
+      "bytes": 795791
+    },
+    {
+      "file": "t6_panel_vs_viewer.png",
+      "size": "3200x1900",
+      "bytes": 800022
+    },
+    {
+      "file": "t6_panel_scrolled.png",
+      "size": "3200x1900",
+      "bytes": 824009
+    },
+    {
+      "file": "final_09_arkit_preset.png",
+      "size": "3200x1900",
+      "bytes": 824453
+    },
+    {
+      "file": "final_10_arkit_slider.png",
+      "size": "3200x1900",
+      "bytes": 821552
+    },
+    {
+      "file": "final_11_final_state.png",
+      "size": "3200x1900",
+      "bytes": 822405
+    }
+  ],
+  "notes": [
+    "服务就绪：{'ready': True, 'warming': False, 'error': None, 'queue': 0}",
+    "OrbitControls 观察器已装载",
+    "已选样例：barbara.jpg（11 个可选）",
+    "POST /api/generate → 200 {\"id\": \"0e60d621801c\", \"image_name\": \"barbara.jpg\", \"state\": \"queued\", \"stage\": \"queued\", \"progress\": 0.0, \"detail\": \"\", \"created_at\": 1792594353.3765333, \"started_at\": null, \"finished_at\": null, \"ela",
+    "#result 已显示",
+    "#viewerBadge = '已加载 · 20,018 高斯 · 可 360° 拖拽'",
+    "#viewer canvas 已出现",
+    "POST arkit_splat → HTTP 200 | count=20018 ms=5.28 cache='no-store' | len=52 非零(0)={}",
+    "面板打开前：canvas=1508x1276 css=754x638 dpr=2 panel.hidden=True",
+    "像素度量噪声地板 mean|Δ|=0.0（同状态连拍两帧；0 表示捕获完全确定性）",
+    "前景掩码：bg=(15, 19, 28) fg_px=223908/1924208（占比 11.6364%，全图均值被稀释约 8.6x）",
+    "逐预设分布（canonical front，前景掩码内 mean|Δ|）：smile=fg:1.264/full:0.148(7.75%) bigSmile=fg:1.686/full:0.198(9.94%) laugh=fg:3.682/full:0.432(14.96%) surprise=fg:4.941/full:0.580(18.31%) angry=fg:2.679/full:0.313(14.17%) sad=fg:2.466/full:0.290(12.54%) kiss=fg:1.717/full:0.204(8.49%) mouthOpen=fg:3.261/full:0.382(10.23%) blink=fg:1.462/full:0.171(4.07%) winkLeft=fg:1.306/full:0.152(5.95%) winkRight=fg:1.373/full:0.160(6.22%) cheekPuff=fg:1.073/full:0.124(6.38%)"
+  ]
+}

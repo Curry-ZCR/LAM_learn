@@ -994,6 +994,146 @@ def t10_end_to_end(renderer):
     return True
 
 
+def t11_tga_covariance(renderer, gs, qp, fd):
+    """TGA/PGT：Sigma' = J Sigma J^T 的雅可比协方差形变（lam3d 侧注入实现）。"""
+    section("T11 TGA 雅可比协方差形变（Sigma' = J Sigma J^T -> 回写 (q', s')）")
+    from lam3d.core import tga_covariance as tga
+
+    # ---- T11.1 向量化审计：lam3d 侧的 tga_covariance.py 里没有沿 N 的 Python for
+    src = (LAM3D_ROOT / "lam3d/core/tga_covariance.py").read_text()
+    codes = re.sub(r'"""[\s\S]*?"""', '""', src)
+    codes = re.sub(r"'''[\s\S]*?'''", "''", codes)
+    codes = re.sub(r"#[^\n]*", "", codes)
+    tree = ast.parse(codes)
+    loops = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.For):
+            try:
+                loops.append((node.lineno, ast.unparse(node.iter)))
+            except Exception:                                     # noqa: BLE001
+                loops.append((node.lineno, "<unparse>"))
+    # 用词边界匹配，否则 "LAM3D_TGA_STRENGTH" 里的 N 会误报（install() 读环境变量
+    # 的那个 for 与高斯维度无关）。
+    _loop_pat = re.compile(r"\bN\b|\bn_vert\b|\bn_face\b|\bx0\b|\bxB\b|range\s*\(")
+    bad_loops = [l for l in loops if _loop_pat.search(l[1])]
+    report("T11.1 tga_covariance.py 无沿高斯维度 N 的 Python for 循环",
+           not bad_loops, "for 语句 {} 个，可疑 {} 个：{}".format(len(loops), len(bad_loops),
+                                                        bad_loops))
+    # C1': Sigma 只在数学上构造用于特征分解，绝不写进渲染器。
+    report("T11.2 tga_covariance.py 从不设置 cov3D_precomp / 不改 LAM 与 CUDA",
+           "cov3D_precomp" not in codes and "diff_gaussian_rasterization" not in codes,
+           "命中: {}".format([w for w in ("cov3D_precomp", "diff_gaussian_rasterization")
+                              if w in codes]))
+
+    mod = tga.TgaCovarianceModulator(renderer.flame_model)
+    mod.to(DEV).eval()
+    report("T11.3 构造成功，N == flame 上采样顶点数",
+           mod.num_gaussians == int(gs.xyz.shape[0]),
+           "num_gaussians={}".format(mod.num_gaussians))
+
+    # ---- T11.4 回写保真：R' diag(s'^2) R'^T 必须逐元素等于 J Sigma J^T
+    with torch.no_grad():
+        n = 4096
+        gen = torch.Generator(device="cpu").manual_seed(7)
+        q0 = F.normalize(torch.randn(n, 4, generator=gen).to(DEV), dim=-1)
+        s0 = (1.0 + 0.3 * torch.rand(n, 3, generator=gen).to(DEV)) * 2e-3
+        # 温和扰动：保证比例夹紧（契约 A6 的 1.35 上限）在本用例里**不触发**，
+        # 否则「回写保真」会被夹紧本身破坏——那是设计上的取舍，不是精度问题。
+        J = torch.eye(3, device=DEV)[None].repeat(n, 1, 1).clone()
+        J = J + 0.10 * torch.randn(n, 3, 3, generator=gen).to(DEV) / math.sqrt(3.0)
+        qp_, sp_ = mod.apply(None, J, q0, s0)
+        R0 = tga.quat_to_matrix(q0)
+        Sig0 = R0 @ torch.diag_embed(s0 * s0) @ R0.transpose(-1, -2)
+        want = J.double() @ Sig0.double() @ J.double().transpose(-1, -2)
+        R1 = tga.quat_to_matrix(qp_.double())
+        got = R1 @ torch.diag_embed(sp_.double() ** 2) @ R1.transpose(-1, -2)
+        rel = ((got - want).norm(dim=(-1, -2))
+               / want.norm(dim=(-1, -2)).clamp(min=1e-30))
+        # 自检：本次用例里夹紧确实没触发（否则下面的保真断言无意义）
+        ev_want = torch.linalg.eigvalsh(0.5 * (want + want.transpose(-1, -2))).sqrt()
+        s0_sorted = torch.sort(s0.double(), dim=-1).values
+        r_self = ev_want / s0_sorted.clamp(min=1e-30)
+        n_clamped = int(((r_self < 0.25) | (r_self > 1.35)).any(-1).sum())
+        report("T11.4 R' diag(s'^2) R'^T == J Sigma J^T（相对误差 < 1e-5，夹紧未触发）",
+               bool(rel.max() < 1e-5) and n_clamped == 0,
+               "mean={:.2e} p99={:.2e} max={:.2e}  夹紧高斯 {}/{}".format(
+                   rel.mean().item(), rel.quantile(0.99).item(), rel.max().item(),
+                   n_clamped, n))
+
+    # ---- T11.5 J == I 且特征值分离时，(q', s') 回到 (q0, s0)
+    # J == I 时 Sigma' 与 Sigma 有同一组主轴：R' 必须逐列回到 R0，s' 只是把
+    # 特征值按 **升序** 重新配对（c 取递增，保证排序不变、夹紧不触发）。
+    with torch.no_grad():
+        # s0 必须 **人工构造** 成严格分离的 (1.0, 1.6, 2.6) 倍: 随机 s0 会出现
+        # 两个特征值只差 1e-4 的对，特征子空间在内部任意旋转，R' 在数学上本就
+        # 不必回到 R0（Sigma 仍精确），那是退化的正常表现，不是实现错误。
+        base = (0.5 + 1.5 * torch.rand(n, 1, generator=gen).to(DEV)) * 2e-3
+        s_sep = base * torch.tensor((1.0, 1.6, 2.6), device=DEV)      # 升序且分离
+        qp_, sp_ = mod.apply(None, torch.eye(3, device=DEV)[None].repeat(n, 1, 1),
+                             q0, s_sep)
+        dR = (tga.quat_to_matrix(qp_.double()) - tga.quat_to_matrix(q0.double())
+              ).abs().amax().item()
+        rel_s = ((sp_ - s_sep).abs() / s_sep).max().item()
+        report("T11.5 J=I（特征值分离）→ R' 逐列回到 R0，s' 与特征值的升序配对一致",
+               dR < 1e-5 and rel_s < 1e-4,
+               "max|dR|={:.2e}  max rel|ds|={:.2e}".format(dR, rel_s))
+
+    # ---- T11.6 极端 J 下有界：s'/s0 ∈ [min_scale_ratio, max_scale_ratio]、|q'|=1、无 NaN
+    with torch.no_grad():
+        Jext = torch.eye(3, device=DEV)[None].repeat(n, 1, 1).clone()
+        Jext[:, 0, 0] = 8.0
+        Jext[:, 1, 1] = 0.1
+        qp_, sp_ = mod.apply(None, Jext, q0, s0)
+        ratio = (sp_ / s0).clamp(min=0)
+        qn = qp_.norm(dim=-1)
+        ok_ext = (bool(torch.isfinite(sp_).all()) and bool(torch.isfinite(qp_).all())
+                  and bool((ratio <= float(tga.DEFAULTS["max_scale_ratio"]) + 1e-4).all())
+                  and bool((ratio >= float(tga.DEFAULTS["min_scale_ratio"]) - 1e-4).all())
+                  and bool(((qn - 1).abs() <= 1e-5).all()))
+        report("T11.6 极端 J（拉 8x / 压 0.1x）→ s'/s0 有界、|q'|=1、无 NaN/Inf",
+               ok_ext, "s'/s0 ∈ [{:.4f}, {:.4f}]  max|1-|q||={:.2e}".format(
+                   ratio.min().item(), ratio.max().item(), (qn - 1).abs().max().item()))
+
+    # ---- T11.7 装进 renderer 之后，全 0 退化仍逐位一致；全 1 与 LAM 原调制器不同
+    ones = torch.ones(52, device=DEV)
+    zeros = torch.zeros(52, device=DEV)
+    with torch.no_grad():
+        base_static = renderer.animate_gs_model(gs, qp, fd, arkit_params=None)[0]
+        base_zero = renderer.animate_gs_model(gs, qp, fd, arkit_params=zeros)[0]
+        lam_mod = renderer._get_cov_modulator(DEV)          # LAM 原调制器
+        lam_ones = renderer.animate_gs_model(gs, qp, fd, arkit_params=ones)[0]
+
+    tga_mod = tga.install(renderer, force=True)
+    try:
+        with torch.no_grad():
+            new_static = renderer.animate_gs_model(gs, qp, fd, arkit_params=None)[0]
+            new_zero = renderer.animate_gs_model(gs, qp, fd, arkit_params=zeros)[0]
+            tga_ones = renderer.animate_gs_model(gs, qp, fd, arkit_params=ones)[0]
+        bit = all(torch.equal(getattr(new_static, k), getattr(base_static, k))
+                  for k in ("xyz", "rotation", "scaling", "opacity", "shs", "offset"))
+        bit_zero = all(torch.equal(getattr(new_zero, k), getattr(base_zero, k))
+                       for k in ("xyz", "rotation", "scaling", "opacity", "shs", "offset"))
+        report("T11.7 装上 TGA 后：arkit=None / 全 0 仍与改动前逐位一致（C4 退化一致性）",
+               bit and bit_zero, "None bitwise={}  zeros bitwise={}".format(bit, bit_zero))
+        dq_rot = (tga_ones.rotation - lam_ones.rotation).abs().mean().item()
+        dq_scl = (tga_ones.scaling - lam_ones.scaling).abs().mean().item()
+        report("T11.8 全 1 时 TGA 的 (q', s') 与 LAM 原调制器不同",
+               dq_rot > 1e-4 and dq_scl > 1e-5,
+               "mean|dq'|={:.4f}  mean|ds'|={:.2e}".format(dq_rot, dq_scl))
+        ratio = (tga_ones.scaling / gs.scaling.clamp(min=1e-30))
+        finite = all(bool(torch.isfinite(getattr(tga_ones, k)).all())
+                     for k in ("xyz", "rotation", "scaling", "opacity", "shs"))
+        report("T11.9 全 1 时 TGA 路径无 NaN/Inf 且 s' <= 1.35*s0、|q'|=1",
+               finite and bool((ratio <= 1.35 + 1e-4).all())
+               and bool(((tga_ones.rotation.norm(dim=-1) - 1).abs() <= 1e-5).all()),
+               "max(s'/s0)={:.6f}  min={:.6f}".format(ratio.max().item(),
+                                                      ratio.min().item()))
+        ok = (not bad_loops and bit and bit_zero and dq_rot > 1e-4 and finite)
+    finally:
+        # 还原：后续/其它脚本若复用同一 renderer，仍走 LAM 原调制器
+        renderer._cov_modulator = None
+    return ok
+
 def main():
     t_start = time.time()
     print("torch {}  device {}".format(torch.__version__, torch.cuda.get_device_name(0)))
@@ -1034,6 +1174,7 @@ def main():
         ("X1", lambda: extra_reuse(renderer)),
         ("T9", lambda: t9_polar(renderer)),
         ("T10", lambda: t10_end_to_end(renderer)),
+        ("T11", lambda: t11_tga_covariance(renderer, gs, qp[0], fd)),
     ):
         try:
             res[key] = fn()
