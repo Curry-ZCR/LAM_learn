@@ -1,0 +1,34 @@
+# 任务 s-a:测 Δε(normal_cov_err)——法向协变修正取舍判决实验
+
+## 你是谁/在哪
+你在远程主机 root@cpod-1wupncac6q7g.podtcp.compshare.cn:/workspace 上工作(已通过 SSH 工具 rw_* 连接,当前机器已注册)。远程 GPU=RTX 4090 24GB,当前空闲。Python 必须用 /usr/local/miniconda3/envs/lam/bin/python(系统 python3 无 torch)。
+
+## 背景(自包含,勿再检索文献)
+项目 lam3d 在 LAM(单图数字人,arXiv:2502.17796)上做了推理期协方差调制:LAM 的 20018 个高斯绑在 FLAME 细分顶点,表情变化时只动中心不动朝向/尺度。已有四个方法:
+- LAM 原版(covariance_modulation.py):面内 2x2 极分解+tanh 面积调制;
+- RotSync(方法一,lam3d/core/rot_sync.py):逐面 J_f 极分解取 R,Markley 聚合到顶点,Σ'=RΣ0Rᵀ,只转不拉;
+- TGA(lam3d/core/tga_covariance.py):Σ'=J Σ0 Jᵀ 全形变,eigh 回写+clamp[0.25,1.35];
+- VTP:先平均 J 再极分解(对照组)。
+
+## 要回答的问题
+RSB(方法四,待实现)有一个候选支路"法向协变修正":用 n₁=normalize(cof(J)n₀)=normalize(J^{-T}n₀)(cof=伴随矩阵=det(J)J^{-T})替代 R·n₀ 作为预测法向,再做最短弧对齐。判决依据:**若 RotSync 的旋转法向与严格协变法向的差异 Δε=ε_ROT−ε_TGA 的 p90 < 2°,则该支路收益太小,砍掉**(连同 SPD 测地插值候选一起砍,少两条实现支路)。
+
+## 数据(已备好,直接读)
+- /tmp/m4_base.pt(17MB):字典,含 Jv[20018,3,3] 顶点雅可比、Rf/detJ/kf/nv 等逐面/逐顶点张量(键名以实际为准,先 torch.load 后 print(keys))。
+- /tmp/rot_capture.pt(3MB):RotSync 中间量(delta_q 等)。
+- 参考实现:/workspace/lam3d/scripts/proto_m4_*.py(约30个原型脚本,看 proto_m4_lib.py 与 proto_m4_nres.py 的口径)与 /workspace/lam3d/core/rot_sync.py。
+- 顶点法向:n₀ 可从规范网格(faces_up 39904面/20018顶点)用 lstsq/叉积面积加权算;规范顶点位置在 LAM 资产里(参考 rot_sync.py 的 x0 数据通路)。
+
+## 具体步骤
+1. torch.load 两个张量文件,print 全部键与 shape,确认语义。
+2. 计算三组法向(逐顶点):ε_ROT=rotate(n₀, R_v)(R_v 从 Jv 极分解或 rot_capture 的 delta_q);ε_TGA=normalize(Jv^{-T} n₀)=normalize(cof(Jv) n₀);若 m4_base.pt 里已有 nv(形变法向),先核对它等于哪一支。
+3. Δε=arccos(clip(dot(ε_ROT, ε_TGA),-1,1)) 逐顶点角度分布;分 9 个 ARKit preset(ones/half/extreme/rand/rand_sparse/bigSmile/laugh/surprise/mouthOpen,可从 eval_cov_offline.py 或 /tmp/cov_offline.json 里拿)统计 p50/p90/p99/max。
+4. 顺带统计:Δε 与 conf(m4_base.pt 的置信度)的相关——若大 Δε 集中在低 conf 区,门控已兜住,更支持砍。
+5. 输出写 /workspace/lam3d/docs/exp_de_normal_cov.md:方法(可复现命令)、分布表、判决(砍/留,依据预声明判据 p90<2°→砍)、与 conf 的相关分析。附脚本到 /workspace/lam3d/scripts/exp_de_normal_cov.py。
+
+## 硬约束
+- 只新增文件(exp_de_normal_cov.*),不改 lam3d/core/ 与 LAM/ 任何现有文件。
+- 张量运算禁止沿 N 的 Python 循环(向量化,20018 顶点)。
+- 数值:dot 后 clip;除零 eps=1e-12。
+- GPU 单卡:你的脚本是本阶段唯一 GPU 用户,但运行时间尽量 <10min。
+- 完成后消息回报:Δε p50/p90/p99(ones 与 extreme 两行)+判决(砍/留)+落盘路径。

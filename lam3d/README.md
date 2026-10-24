@@ -153,6 +153,37 @@ cd /workspace/lam3d && PYTHONPATH=/workspace/lam3d:/workspace/LAM \
 相对误差 < 1e-5）、`J = I` 还原、极端 `J` 有界、退化逐位一致、向量化审计（且断言
 `tga_covariance.py` 里不出现 `cov3D_precomp`，即绝不回头去注入协方差）。
 
+### 旋转同步（RotSync）与 RSB（法向贴合）
+
+协方差方法在前端「表情」卡片里可切换（`GET /api/cov/methods`），当前共五种：
+`lam`（原版面内 2×2 极分解）/ `tga` / `rot_sync` / `vertex_then_polar` / `rsb`。
+
+- **RotSync**（`lam3d/core/rot_sync.py`）：对每面构造完整 3D 形变梯度
+  `J_f = [d1 d2 n1][e1 e2 n0]⁻¹`（第三列取**单位**法向，不是 J·e3），
+  Newton 极分解出旋转 `R_f`，转四元数后按面积权重做 **Markley 平均**聚合到顶点
+  （外积矩阵主特征向量，免半球对齐，副产物 coherence = 1−λ₂/λ₁），
+  再过 恒等吸附 → 死区 → 增益 → 45° 限幅+coherence 门控（合并成一次 slerp）。
+  `s'` 与 `s0` 逐位相等（只转不拉）。端到端 ~7.2 ms/帧（4090，B=1）。
+- **RSB**（`lam3d/core/rsb.py`，方法四）：在 RotSync 之上加一级「顶点法向贴合」——
+  从形变网格边直接叉积出**形变后曲面法向** `n_v`（=面法向面积加权和，无需求逆），
+  对 `u_v = Rot(δq)·n_{0,v}` 与 `n_v` 的夹角做 `θ_cap·tanh(θ/θ_cap)` 软限幅的最短弧修正
+  `δq_fix`，门控 `a = g^1.5` 与 RotSync 共用同一 coherence 门；总旋转 `q' = δq_fix ⊗ δq ⊗ q0`。
+  增量 +0.8 ms；法向修正 mean 0.9° / p99 13.7° / 上限 25°（软限幅生效）。
+
+开关（环境变量；也走 `POST /api/cov/method` 动态切换）：
+
+```bash
+LAM3D_ROT_SYNC=0            # 关 RotSync 回退 LAM
+LAM3D_ROT_SYNC_MAX_ANGLE=45 # 旋转限幅（度）
+LAM3D_RSB=1                 # 启用 RSB（需先装 RotSync）
+LAM3D_RSB_NORMAL_CAP=25     # 法向修正软限幅（度）
+LAM3D_RSB_GATE_P=1.5        # 门控幂次
+```
+
+自检：`scripts/check_rot_sync_mesh.py`（网格级 20 项）、`/tmp/w8_assert.py`（RSB 12 项逐位断言，
+恒等帧/刚体/门控回退/尺度透传/限幅全覆盖）。文档：`docs/rot_sync_plan.md`（设计）、
+`docs/method4_rsb_design.md`（RSB v2.0 + 实测判决）、`docs/rsb_reverify.md`（slerp 半球修复后重验）。
+
 ---
 
 ## 抽取出来的模块

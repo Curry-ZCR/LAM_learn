@@ -1,0 +1,34 @@
+# 任务 s-b:p99 尾部 fallback 三方案对比——G2 能否过的判决实验
+
+## 你是谁/在哪
+你在远程主机 root@cpod-1wupncac6q7g.podtcp.compshare.cn:/workspace 上工作(SSH rw_* 工具,机器已注册)。GPU=RTX 4090,Python 用 /usr/local/miniconda3/envs/lam/bin/python。
+
+## 背景(自包含)
+lam3d 在 LAM(单图数字人)上做推理期协方差调制。四方法:LAM 原版/RotSync(只转,Σ'=RΣ0Rᵀ,Markley聚合)/TGA(全形变 Σ'=JΣ0Jᵀ+clamp)/VTP(对照)。已实测:extreme preset 下 rigid_err p50:LAM 15.73°/TGA 12.12°/RotSync 3.14°/VTP 3.15°(RotSync 主体最优);**但 p99:LAM 150.73/TGA 164.57/RotSync 143.12/VTP 99.55——尾部仅改善5%,VTP 尾部最优**。原因:46–76 个顶点(0.2–0.4%)一环面旋转两两夹角中位 176°(嘴内/眼内/颈裁剪的真实翻折区),任何平均法无解。验收线 G2 要求 rigid p99≤60°,当前不过。
+
+## 要回答的问题
+对这批尾部无解顶点,三个 fallback 方案哪个能把 p99 压到 60° 以内(或最接近):
+- F1 coherence_gate(RotSync 已实现,默认关):coh<τ 的顶点旋转回退 identity(不改 q);τ 取 {0.3, 0.5, 0.7} 三档。
+- F2 回落 LAM:coh<τ 的顶点用 LAM 原版调制器的 delta(面内2x2+tanh)。
+- F3 回落 VTP:coh<τ 的顶点用先平均再分解的旋转。
+对照:F0 无 fallback(RotSync 现状)+ GSDeformer splitting 作为第四候选(只做文献级评估:arXiv 2405.15491,拆长高斯为2-3短高斯,估算对 46-76 顶点的作用边界,不实现)。
+
+## 数据与基建
+- /tmp/cov_protocol_pergaussian.npz(12MB):逐高斯 rigid_err 等,四方法;先 python -c "import numpy as np; d=np.load(...); print(d.files)" 看键。
+- /tmp/cov_offline.json:eval_cov_offline.py 的四方法同口径基线。
+- /workspace/lam3d/core/rot_sync.py:coherence_gate 参数已实现(g=clamp((R-τ)/(1-τ),0,1)^p,默认关),看它的实现口径。
+- /workspace/lam3d/scripts/eval_cov_offline.py:评测主脚本(离线口径)。
+- conf 分布实测:conf<0.3 占 0.085%,conf<0.1 占 0.013%(τ=0.30 有分布支撑)。
+
+## 具体步骤
+1. 从 npz/json 拿到逐高斯 rigid_err(四方法)+ 顶点 conf(若 npz 没有,用 /tmp/m4_base.pt 的 conf 键,20018 维)。
+2. 对每个 preset(至少 ones/half/extreme/rand/rand_sparse)×每个方案 F0-F3×τ 档位:重算逐高斯 rigid_err(fallback 只改 coh<τ 的顶点的 delta_q,rigid_err 口径照 eval_cov_offline.py),统计 p50/p90/p99/max 与"p99≤60° 达标率"。
+3. 输出表:p99(每方案×preset),并标出每方案下仍 >60° 的顶点数与位置(顶点 id 列表落盘)。
+4. splitting 文献级评估:半页,给出"若拆高斯,预期把 p99 顶点降为 M 个"的量级推算(引用 GSDeformer 增量<1% 的结论),不写代码。
+5. 写 /workspace/lam3d/docs/exp_p99_fallback.md:方法、表、判决(哪个方案/τ 让 G2 过或最接近;若都不过,给"最接近+残余顶点数")、splitting 评估。脚本落 /workspace/lam3d/scripts/exp_p99_fallback.py。
+
+## 硬约束
+- 只新增文件,不改 lam3d/core/ 与 LAM/ 现有文件。
+- GPU 运行 <30min;禁止沿 N Python 循环。
+- 判据预声明:G2=rigid p99≤60°(全 preset);辅助看 p50 不劣化超过 +0.5°。
+- 完成后消息回报:最优方案+τ、各方案 p99(extreme)、G2 判决、落盘路径。

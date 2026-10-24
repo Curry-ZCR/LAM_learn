@@ -24,6 +24,7 @@ async function init() {
   bindDropZone();
   bindButtons();
   initArkitPanel();
+  initCovPanel();
   try {
     const cfg = await fetchJSON(`${API}/api/config`);
     renderSamples(cfg.samples);
@@ -744,6 +745,8 @@ async function sendArkitSplat() {
     arkitState.lastMs = data.ms;
     const lat = $('arkitLatency');
     if (lat) lat.textContent = `延迟 ${data.ms} ms · 服务端 ${data.serverMs} ms`;
+    const cms = $('covMs');                     // 当前协方差方法的服务端耗时
+    if (cms) cms.textContent = `服务端 ${data.serverMs.toFixed(1)} ms`;
     setArkitStatus('');
   } catch (e) {
     setArkitStatus(`点云失败：${e.message}`);
@@ -805,6 +808,310 @@ function resetArkitForNewJob(job) {
   if (lat) lat.textContent = '延迟 --';
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   协方差形变方法切换（验收用）
+   - GET  /api/cov/methods -> {method, params, methods:[{id,label,params}]}
+   - POST /api/cov/method  {method, params} -> 同上 + class/session_rebound
+   切换后后端复用现有 live 会话，这里只需重拉一帧当前表情即可看到差别。
+   ═══════════════════════════════════════════════════════════════ */
+const covState = {
+  methods: [], method: null, params: {}, meta: {}, busy: false, loaded: false,
+};
+
+async function initCovPanel() {
+  const sel = $('covMethod');
+  if (!sel) return;
+  try {
+    const data = await fetchJSON(`${API}/api/cov/methods`);
+    covState.methods = data.methods || [];
+    covState.method = data.method || null;
+    covState.params = data.params || {};
+    covState.loaded = true;
+    buildCovSelect();
+    bindCovCompare();
+  } catch (e) {
+    sel.innerHTML = '<option>协方差接口不可用</option>';
+    sel.disabled = true;
+    const h = $('covHint');
+    if (h) h.textContent = `方法列表读取失败：${e.message}`;
+  }
+}
+
+function buildCovSelect() {
+  const sel = $('covMethod');
+  if (!sel) return;
+  sel.innerHTML = '';
+  covState.methods.forEach((m) => {
+    const o = document.createElement('option');
+    o.value = m.id;
+    o.textContent = m.label;
+    o.title = m.desc || m.label;
+    if (m.id === covState.method) o.selected = true;
+    sel.appendChild(o);
+  });
+  sel.onchange = () => {
+    covState.method = sel.value;
+    covState.params = defaultParamsOf(sel.value);
+    buildCovParams();
+    applyCovMethod();
+  };
+  buildCovParams();
+}
+
+function methodMeta(id) {
+  return covState.methods.find((m) => m.id === id) || { params: [] };
+}
+
+function defaultParamsOf(id) {
+  const out = {};
+  (methodMeta(id).params || []).forEach((p) => { out[p.key] = p.default; });
+  return out;
+}
+
+function buildCovParams() {
+  const host = $('covParams');
+  if (!host) return;
+  host.innerHTML = '';
+  const specs = methodMeta(covState.method).params || [];
+  if (!specs.length) {
+    const p = document.createElement('div');
+    p.className = 'arkit-cov-empty';
+    p.textContent = '该方法没有可调参数';
+    host.appendChild(p);
+    return;
+  }
+  specs.forEach((sp) => {
+    const row = document.createElement('label');
+    row.className = 'arkit-cov-param';
+    const nm = document.createElement('span');
+    nm.className = 'arkit-cov-param__name';
+    nm.textContent = sp.label;
+    nm.title = `${sp.key} · ${sp.label}`;
+    const range = document.createElement('input');
+    range.type = 'range';
+    range.min = String(sp.min);
+    range.max = String(sp.max);
+    range.step = String(sp.step);
+    const cur = covState.params[sp.key] != null ? covState.params[sp.key] : sp.default;
+    range.value = String(cur);
+    const val = document.createElement('span');
+    val.className = 'arkit-cov-param__val';
+    val.textContent = fmtCov(cur, sp.step);
+    range.addEventListener('input', () => {
+      const v = parseFloat(range.value);
+      covState.params[sp.key] = v;
+      val.textContent = fmtCov(v, sp.step);
+    });
+    range.addEventListener('change', applyCovMethod);
+    row.append(nm, range, val);
+    host.appendChild(row);
+  });
+}
+
+function fmtCov(v, step) {
+  const dec = String(step).includes('.') ? String(step).split('.')[1].length : 0;
+  return Number(v).toFixed(Math.min(2, dec));
+}
+
+async function applyCovMethod() {
+  if (!covState.loaded || covState.busy) return;
+  covState.busy = true;
+  setCovHint('切换中…');
+  try {
+    const data = await fetchJSON(`${API}/api/cov/method`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ method: covState.method, params: covState.params }),
+    });
+    covState.params = data.params || covState.params;
+    const meta = covState.methods.find((m) => m.id === covState.method) || {};
+    setCovHint(`${meta.desc || data.class || covState.method}${data.session_rebound ? '' : ' · 当前无实时会话'}`);
+    if (arkitState.open) scheduleArkitRender();
+    $('covMethod').title = meta.desc || meta.label || covState.method;
+  } catch (e) {
+    setCovHint(`切换失败：${e.message}`);
+  } finally {
+    covState.busy = false;
+  }
+}
+
+function setCovHint(msg) {
+  const el = $('covHint');
+  if (el) el.textContent = msg;
+}
+
+
+/* ── 四法对比：把当前表情依次喂给四种调制器，四宫格并排看差别 ── */
+const COV_COMPARE_ORDER = ['lam', 'tga', 'rot_sync', 'vertex_then_polar'];
+
+function bindCovCompare() {
+  const btn = $('covCompare');
+  if (!btn) return;
+  btn.onclick = covCompare;
+}
+
+async function covCompare() {
+  const btn = $('covCompare');
+  const hint = $('covCompareHint');
+  if (!arkitState.open || !arkitState.jobId) {
+    if (hint) hint.textContent = '先在右上角打开表情面板';
+    return;
+  }
+  const keep = covState.method;
+  const keepParams = { ...covState.params };
+  const arkit = Array.from(arkitState.values);
+  btn.disabled = true;
+  const shots = [];
+  try {
+    for (const m of COV_COMPARE_ORDER) {
+      if (hint) hint.textContent = `渲染 ${m} …`;
+      await fetchJSON(`${API}/api/cov/method`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ method: m, params: {} }),
+      });
+      const res = await fetch(`${API}/api/jobs/${arkitState.jobId}/arkit_frame`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ arkit, yaw: 0, size: 512 }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      shots.push({ method: m, url: URL.createObjectURL(blob) });
+    }
+    showCovCompare(shots);
+    if (hint) hint.textContent = '差异集中在嘴唇/下巴/鼻翼等薄片高斯区';
+  } catch (e) {
+    if (hint) hint.textContent = `对比失败：${e.message}`;
+  } finally {
+    // 还原用户原来的选择
+    try {
+      await fetchJSON(`${API}/api/cov/method`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ method: keep, params: keepParams }),
+      });
+    } catch { /* 还原失败不阻断 */ }
+    btn.disabled = false;
+  }
+}
+
+function showCovCompare(shots) {
+  let box = $('covCompareBox');
+  if (!box) {
+    box = document.createElement('div');
+    box.id = 'covCompareBox';
+    box.className = 'covcmp';
+    box.innerHTML = '<div class="covcmp__inner"><div class="covcmp__head">'
+      + '<span>四法对比（同一表情 · 同一视角）</span>'
+      + '<button class="covcmp__close" type="button">✕</button></div>'
+      + '<div class="covcmp__grid" id="covcmpGrid"></div>'
+      + '<p class="covcmp__foot">四格依次为 LAM 原版 / TGA 雅可比 / 旋转同步 / 先平均再极分解；'
+      + '差异越大说明该方法对协方差朝向的修正越强。</p></div>';
+    document.body.appendChild(box);
+    box.addEventListener('click', (e) => {
+      if (e.target === box || e.target.classList.contains('covcmp__close')) box.hidden = true;
+    });
+  }
+  box.hidden = false;
+  renderCovCompare(shots);
+}
+
+const COV_LABEL = {
+  lam: 'LAM 原版', tga: 'TGA 雅可比', rot_sync: '旋转同步', vertex_then_polar: '先平均再极分解',
+};
+
+/* 把一张 blob URL 画到 canvas 取像素，用于算差图 */
+function covPixels(url) {
+  return new Promise((resolve, reject) => {
+    const im = new Image();
+    im.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = im.naturalWidth; c.height = im.naturalHeight;
+      const ctx = c.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(im, 0, 0);
+      resolve({ data: ctx.getImageData(0, 0, c.width, c.height), w: c.width, h: c.height, img: im });
+    };
+    im.onerror = () => reject(new Error('图片解码失败'));
+    im.src = url;
+  });
+}
+
+/* 与基准（LAM 原版）逐像素比较，输出差图 dataURL 与统计量 */
+async function covDiff(baseUrl, url) {
+  const a = await covPixels(baseUrl);
+  const b = await covPixels(url);
+  const n = a.w * a.h;
+  const out = new ImageData(a.w, a.h);
+  let sum = 0, changed = 0, mx = 0;
+  for (let i = 0; i < n; i++) {
+    const o = i * 4;
+    const dr = Math.abs(a.data.data[o] - b.data.data[o]);
+    const dg = Math.abs(a.data.data[o + 1] - b.data.data[o + 1]);
+    const db = Math.abs(a.data.data[o + 2] - b.data.data[o + 2]);
+    const d = Math.max(dr, dg, db);
+    sum += (dr + dg + db) / 3;
+    if (d > 2) changed++;
+    if (d > mx) mx = d;
+    const g = Math.min(255, d * 8);            // 差图增益 8 倍，便于肉眼看
+    out.data[o] = g; out.data[o + 1] = g * 0.55; out.data[o + 2] = g * 0.15;
+    out.data[o + 3] = 255;
+  }
+  const c = document.createElement('canvas');
+  c.width = a.w; c.height = a.h;
+  c.getContext('2d').putImageData(out, 0, 0);
+  return {
+    url: c.toDataURL('image/png'),
+    mean: sum / n,
+    changedPct: (100 * changed) / n,
+    max: mx,
+  };
+}
+
+async function renderCovCompare(shots) {
+  const grid = $('covcmpGrid');
+  grid.innerHTML = '';
+  const base = shots.find((s) => s.method === 'lam') || shots[0];
+  for (const s of shots) {
+    const cell = document.createElement('figure');
+    cell.className = 'covcmp__cell';
+    const img = document.createElement('img');
+    img.src = s.url;
+    img.alt = s.method;
+    const cap = document.createElement('figcaption');
+    cap.className = 'covcmp__cap';
+    const name = document.createElement('b');
+    name.textContent = COV_LABEL[s.method] || s.method;
+    cap.appendChild(name);
+    cell.append(img, cap);
+    grid.appendChild(cell);
+    if (s.method === base.method) {
+      const t = document.createElement('span');
+      t.className = 'covcmp__metric';
+      t.textContent = '基准';
+      cap.appendChild(t);
+      continue;
+    }
+    try {
+      const d = await covDiff(base.url, s.url);
+      const t = document.createElement('span');
+      t.className = 'covcmp__metric';
+      t.textContent = `均差 ${d.mean.toFixed(3)} · 改动 ${d.changedPct.toFixed(2)}% · 峰差 ${d.max}`;
+      cap.appendChild(t);
+      const dimg = document.createElement('img');
+      dimg.src = d.url;
+      dimg.className = 'covcmp__diff';
+      dimg.alt = `${s.method} 差图`;
+      dimg.title = '与 LAM 原版的像素差，橙色增益 8 倍';
+      cell.appendChild(dimg);
+    } catch (e) {
+      const t = document.createElement('span');
+      t.className = 'covcmp__metric';
+      t.textContent = `差图失败：${e.message}`;
+      cap.appendChild(t);
+    }
+  }
+}
 /* ────────────────────────────── 小工具 ────────────────────────────── */
 async function fetchJSON(url, opts) {
   const res = await fetch(url, opts);

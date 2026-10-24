@@ -1,0 +1,29 @@
+# 任务 s-c:实现 N1 penetration / N4 coverage / N5 saturate_frac 三个指标+试点跑数
+
+## 你是谁/在哪
+你在远程主机 root@cpod-1wupncac6q7g.podtcp.compshare.cn:/workspace 上工作(SSH rw_* 工具,机器已注册)。GPU=RTX 4090,Python 用 /usr/local/miniconda3/envs/lam/bin/python(系统 python3 无 torch)。
+
+## 背景(自包含)
+lam3d 在 LAM 上做推理期协方差调制,四方法(LAM/RotSync/TGA/VTP)都只改 (q,s) 不改中心。评测协议 v2(docs/gt_free_eval_protocol.md)规划了三个新指标尚未实现:
+- N1 penetration(穿透,P0最重要):高斯椭球穿出皮肤表面。**正确形式=方法间差分 Δθ**(表情态 vs 各自中性态的 protrusion 差)——已实测四方法的绝对 protrusion 逐位相同(theta p50≈59°,是资产属性非方法属性,绝对量无信息)。实现:BVH SDF 7 点采样(沿高斯三轴 ±σ 采样 7 点查 SDF 符号),mesh 用表情态 FLAME 网格。
+- N4 coverage Ω∈[0.97,1.03]:泼溅覆盖的表面积比(堵"缩小椭球作弊")。实现:各方法表情态高斯中心到 mesh 表面距离分布 vs 中性态的比。
+- N5 saturate_frac≤2%:旋转角压在 max_angle=45° 限幅的占比(applied angle 距 45° 的分布,|angle-45|<0.5° 视为饱和)。
+
+## 数据与基建(全部已存在)
+- /workspace/lam3d/scripts/eval_cov_metrics.py:render_full(sess,vec,yaw,size)/modulate 辅助/psnr/ssim/lpips——照它的口径建会话。
+- /workspace/lam3d/scripts/probe_protrusion.py(s3 早前写的 protrusion 探针,含 BVH/SDF 现成实现,直接复用其函数)。
+- /workspace/lam3d/scripts/eval_cov_offline.py:四方法离线评测主脚本。
+- 资产 messi:用 /workspace/lam3d/scripts/eval_cov_metrics.py 的会话创建方式(sample=sample_input/messi.png 或已有 job;先 ls /workspace/lam3d/experiments/ 或 workspace 根的 exps/ 找现有 job 目录)。
+- 9 preset ARKit 向量:从 eval_cov_offline.py 或 /tmp/cov_offline.json 拿。
+
+## 具体步骤
+1. 读 probe_protrusion.py,复用其 BVH/SDF 与法向计算;实现 N1(方法间差分 Δθ:每方法表情态 protrusion−同方法中性态 protrusion,逐高斯)、N4(Ω=median或mean 距离比,表情/中性)、N5(45° 饱和占比)。
+2. 四方法×9 preset×2 视角(正面+yaw35°,视角只影响渲染类指标,N1/N4/N5 是几何指标可不算视角)跑齐。
+3. 统计:p50/p90/p99 + 越限率(N1 无硬线但看方法间排序;N4 出 [0.97,1.03] 比例;N5 出 >2% 即 FAIL)。
+4. 写 /workspace/lam3d/docs/exp_n1n4n5_metrics.md:每指标定义式、四方法数字表、发现(尤其 N1 差分是否区分出方法差异——绝对量已证无信息)、对 RSB 的启示。脚本落 /workspace/lam3d/scripts/exp_n1n4n5.py。
+
+## 硬约束
+- 只新增文件(exp_n1n4n5.*),不改现有 core/scripts 文件(probe_protrusion.py 只 import 不改)。
+- GPU<40min;禁止沿 N Python 循环;数值 clip+eps=1e-12。
+- 判据预声明:N5>2% FAIL;N4 出界比例>5% 需在报告标注;N1 只报排序与差分分布。
+- 完成后消息回报:三指标四方法关键数(N1 差分 p90、N4 出界率、N5 饱和率)+落盘路径+一句话发现。

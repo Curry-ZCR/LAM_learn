@@ -82,6 +82,22 @@
         </div>
         <div class="arkit__readout" id="arkitOrbitReadout">yaw 0.0° · pitch 0.0° · zoom 1.00</div>
       </div>
+      <!-- 协方差形变方法：验收时在同一张脸上 A/B 四种调制器 -->
+      <div class="arkit__cov" id="covPanel">
+        <div class="arkit__cov-head">
+          <span class="arkit__cov-title">协方差形变</span>
+          <select class="arkit-cov-select" id="covMethod" title="切换协方差调制方法"></select>
+        </div>
+        <div class="arkit__cov-params" id="covParams"></div>
+        <div class="arkit__cov-foot">
+          <span id="covHint">ARKit 全 0 时四种方法逐位相同</span>
+          <span id="covMs"></span>
+        </div>
+        <div class="arkit__cov-actions">
+          <button class="arkit-cov-btn" id="covCompare" type="button" title="用当前表情把四种方法各渲染一帧，四宫格对比">四法对比</button>
+          <span class="arkit-cov-status" id="covCompareHint"></span>
+        </div>
+      </div>
       <div class="arkit__sliders" id="arkitSliders"></div>
       <div class="arkit__foot">
         <span id="arkitLatency">延迟 --</span>

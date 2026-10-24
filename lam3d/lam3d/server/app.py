@@ -243,6 +243,51 @@ def api_arkit_meta() -> dict:
         raise HTTPException(503, f"ARKit 元数据不可用：{exc}") from exc
 
 
+# ------------------------------------------------- 协方差方法切换（验收用）
+@app.get("/api/cov/methods")
+def api_cov_methods() -> dict:
+    """当前协方差调制方法 + 每个方法的可调参数（前端下拉框/滑块的数据源）。"""
+    from ..core import cov_switch
+
+    try:
+        return cov_switch.describe()
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(503, f"协方差方法不可用：{exc}") from exc
+
+
+@app.post("/api/cov/method")
+def api_cov_method(payload: dict) -> dict:
+    """切换协方差调制方法（lam / tga / rot_sync / vertex_then_polar）。
+
+    切换后**复用当前 live 会话**：renderer 是同一个对象，把新的调制器接上即可，
+    下一次 /arkit_splat 就按新方法算属性。B=0 静态基准无需重算——ARKit 全 0 时
+    渲染器的 is_neutral 短路、调制器根本没被调用，四种方法的 B=0 载荷逐位相同。
+    因此前端切完方法只要重拉一次首帧，**不需要重新生成**。
+    """
+    from ..core import cov_switch
+
+    name = str(payload.get("method") or "").strip()
+    if not name:
+        raise HTTPException(400, "缺少 method 字段")
+    params = payload.get("params") or {}
+    if not isinstance(params, dict):
+        raise HTTPException(400, "params 必须是对象")
+
+    pipeline = _get_loaded_pipeline()
+    renderer = getattr(getattr(pipeline, "lam", None), "renderer", None)
+    try:
+        info = cov_switch.set_method(name, params, renderer=renderer)
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+    except RuntimeError as exc:
+        raise HTTPException(409, str(exc)) from exc
+    rebound = cov_switch.rebind_session(pipeline)
+    out = cov_switch.describe()
+    out["class"] = info["class"]
+    out["session_rebound"] = bool(rebound)
+    return out
+
+
 @app.get("/api/jobs/{job_id}/arkit_session")
 def api_arkit_session(job_id: str) -> dict:
     if manager.get(job_id) is None:
