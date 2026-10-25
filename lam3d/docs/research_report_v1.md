@@ -10,7 +10,9 @@
 
 ## 0. 结论速览
 
-> **v2 更新(10-24 12:44)**:方法四 RSB 已从纯设计推进到**带真实数据消融的可执行版**(docs/method4_rsb_design.md 扩至 70KB,含 W1-W8 实施清单/完整伪代码/实测消融/安慰剂对照/无参考指标 nres)。核心实测:rig50 平均 **−35.2%**(5 preset 一致 −33.6%~−38.0%),无参考法向残差 nres p50 3.763°→**0.044°**(98.8% 降幅,87-91% 顶点被改善),安慰剂对照证明收益来自修正**方向**而非幅度(shrink-only 与 A0 逐位相同;neg-sign 反而 +36% 更差)。尺度支路实测恒等(eigmax_rel 恒 1.277,合成实验 s'/s0 恒 1.0000)→**默认关闭**,v1 的 G_dir 增益实测负收益→否决。rig50 的口径澄清:它度量 Kabsch 一环 vs Markley 聚合的定义差(A0 的 8.5° 不代表 RotSync 错了 8.5°),绝对正确性看 nres。已知缺口:PSNR/LPIPS 未测(需训练好的 LAM 多视角渲染)。
+> **v3 更新(10-24 23:30,数字口径刷新)**:①发现并修复 rot_sync.py `slerp_identity` 生产 bug(半球未对齐,w<0 顶点插值方向反号,随机四元数 t=1 时 |dot| 低至 0.11)——**本报告 v2 段与 method4_rsb_design.md 的 rig50/rig90/jitter 绝对值均为 bug 版历史数字**,方向性结论(RSB 优于 A0)不变,绝对值以下表为准;②修复后重验(5 preset,一环 Kabsch 口径,/tmp/rerig2.py):LAM 2.616/21.944°,RotSync gate=0 0.285/5.849°,gate=0.3 **0.283/5.727°**,RSB gate=0.3 0.308/6.464°(法向贴合刚性代价 +0.025°);③W8 断言 12/12、RSB 进 cov_switch 五方法下拉、live E2E 通过、GPU 计时 RotSync 7.16→RSB 7.97ms(+0.81);④三个子任务判决落地:Δε(砍 J⁻ᵀ 协变+SPD 插值,负收益)/p99(G2 FAIL,ORACLE4 下界 60.91°,splitting 判死)/N1N4N5(全过);⑤全部已推送 GitHub(dee9027),总结见 report/WORK_SUMMARY_2026-10-24.md。
+>
+> **v2 更新(10-24 12:44,历史——数字为 slerp-bug 版,仅方向性结论有效)**:方法四 RSB 已从纯设计推进到**带真实数据消融的可执行版**(docs/method4_rsb_design.md 扩至 70KB,含 W1-W8 实施清单/完整伪代码/实测消融/安慰剂对照/无参考指标 nres)。核心实测:rig50 平均 **−35.2%**(5 preset 一致 −33.6%~−38.0%),无参考法向残差 nres p50 3.763°→**0.044°**(98.8% 降幅,87-91% 顶点被改善),安慰剂对照证明收益来自修正**方向**而非幅度(shrink-only 与 A0 逐位相同;neg-sign 反而 +36% 更差)。尺度支路实测恒等(eigmax_rel 恒 1.277,合成实验 s'/s0 恒 1.0000)→**默认关闭**,v1 的 G_dir 增益实测负收益→否决。rig50 的口径澄清:它度量 Kabsch 一环 vs Markley 聚合的定义差(A0 的 8.5° 不代表 RotSync 错了 8.5°),绝对正确性看 nres。已知缺口:PSNR/LPIPS 未测(需训练好的 LAM 多视角渲染)。
 
 1. **问题定位已经闭环**。LAM 的 20018 个高斯绑在 FLAME Loop 细分顶点上、极度各向异性
    (轴比 p50=3.37 / p90=83 / >2 占 80.4%),原版调制只动中心+面内 2×2 角度,面外旋转缺失
@@ -18,9 +20,12 @@
    (docs/cov_methods_eval.md):RotSync 旋转保真最好(rigid_err 1.54° vs LAM 7.76°),
    但按定义丢剪切(shape_err 0.857 vs LAM 0.830);TGA 形变最全但 65–70% 越界必 clamp,
    clamp 后假旋转 3–5%、时域最糙(0.73–0.94)。
-2. **尾部安全警告(s3 补充实测)**:RotSync 改善集中在主体(extreme p50 −80%/p90 −70%),
-   **p99 仅 −5%(143.12°,VTP 99.55° 反而最优)**——1% 高斯仍在撕裂。尾部安全成为唯一硬否决项
-   G2(rigid p99≤60°),无解区 fallback 实验是 RSB 之前的第一优先级。
+2. **尾部安全警告(s3 补充实测;v3 已系统验证:G2 FAIL 且不可救)**:RotSync 改善集中在主体
+   (extreme p50 −80%/p90 −70%),**p99 仅 −5%(143.12°,VTP 99.55° 反而最优)**——1% 高斯仍在撕裂。
+   v3 判决(docs/exp_p99_fallback.md,38 臂扫描):尾部=参考系不稳顶点(1-ring vs 2-ring 差≥5° 集合 100% 覆盖尾部),
+   ORACLE4(逐高斯三选一+一环最好面旋转)信息下界 60.91°>60°——**60° 判据不可达,属逐面常值 J 的分辨率极限**,
+   接受现状,不实现 fallback;splitting(GSDeformer)单轮膨胀 2.1-4× 判死。评测口径注意:换 Markley 参考后方法排序翻转
+   (rot_sync 158→121,vtp 99.5→165),「158°」含 10-68° 口径差——未来协议必须固定并双报参考系。
 3. **关键新实测证据(本次报告新增,决定方法四形态)**:在真实会话 5 个 preset 上直接测
    "法向厚度比" k_f = A|det J|/A'(Nanson 公式,见 §3):逐顶点对数厚度 ℓ 的 p1/p50/p99 全部
    ≈0(精确到 1e-3),|ℓ|>log1.35 的占比 **0.0%**,k_f>1.35 仅 **0.01%**,k_f<0.741 为 0%。
@@ -143,7 +148,7 @@ FlashAvatar/HeadGaS/GaussianHeadAvatar/3D Gaussian Blendshapes 等。
 
 ## 5. 方法四 RSB:核心设计(完整版 docs/method4_rsb_design.md)——已实测(v2)
 
-> 状态:设计→原型→真实 capture 消融完成(10-24 12:44)。数据 /tmp/rot_capture.pt(5 preset),脚本 scripts/proto_m4_*.py(12 个),复现命令见 method4_rsb_design.md 附录 B。v1→v2 变更 17 条见附录 D,其中 3 条 v1 路线被实测否决:k_f 公式降级为自检恒等式(f64 误差 1.4e-13)/条件数置信度删除(cond(J) p99=1.08)/G_dir 增益否决(负收益 rig50 5.507→6.018)。尺度支路实测恒等(eigmax_rel 恒 1.277)→默认关闭。新增最强证据链:安慰剂对照(§10.4,shrink-only 与 A0 逐位相同证明收益来自方向而非幅度;neg-sign +36% 更差证明方向信息真实)+无参考指标 nres(§10.5,p50 3.763°→0.044°,98.8% 降幅,87-91% 顶点改善,完全不依赖被测方法中间量)。rig50 口径澄清(§10.6):度量 Kabsch 一环 vs Markley 聚合之差,A0 的 8.5° 不代表 RotSync 错 8.5°。
+> 状态:设计→原型→真实 capture 消融完成(10-24 12:44);**v3(10-24 23:30):仓库级落地完成**——lam3d/core/rsb.py(RsbModulator)+cov_switch.py 注册(`rsb` 方法,前端下拉)+W8 断言 12/12+live E2E 通过。注意:本节及 method4_rsb_design.md 的 rig50 5.507/8.501 等绝对值为 slerp-bug 版历史数字,修复后重验见 §0 v3 段(RotSync rig50 0.283/RSB 0.308)。数据 /tmp/rot_capture.pt(5 preset),脚本 scripts/proto_m4_*.py(12 个),复现命令见 method4_rsb_design.md 附录 B。v1→v2 变更 17 条见附录 D,其中 3 条 v1 路线被实测否决:k_f 公式降级为自检恒等式(f64 误差 1.4e-13)/条件数置信度删除(cond(J) p99=1.08)/G_dir 增益否决(负收益 rig50 5.507→6.018)。尺度支路实测恒等(eigmax_rel 恒 1.277)→默认关闭。新增最强证据链:安慰剂对照(§10.4,shrink-only 与 A0 逐位相同证明收益来自方向而非幅度;neg-sign +36% 更差证明方向信息真实)+无参考指标 nres(§10.5,p50 3.763°→0.044°,98.8% 降幅,87-91% 顶点改善,完全不依赖被测方法中间量)。rig50 口径澄清(§10.6):度量 Kabsch 一环 vs Markley 聚合之差,A0 的 8.5° 不代表 RotSync 错 8.5°。
 
 **七步公式链**(全部 f32、可向量化、无 eigh):
 S0 逐面 J_f=[d₁ d₂ n₁][e₁ e₂ n₀]⁻¹(已有)→ S1 极分解 R_f=Higham8(已有 2.95ms)→
@@ -202,6 +207,8 @@ extreme 向量 rigid_err: p50 LAM 15.73°→RotSync 3.14°(−80%),p90 78.28°�
 
 ## 7. 实施路线图
 
+> **v3 执行记录(10-24):本节全部完成**——①Δε 已测:真实 preset p90 1.178°<2°,判据成立,砍 J⁻ᵀ 协变修正+SPD 插值(docs/exp_de_normal_cov.md);②p99 fallback 已测:38 臂 G2 FAIL,ORACLE4 信息下界 60.91°,尾部=参考系不稳,splitting 判死(docs/exp_p99_fallback.md);③N1/N4/N5 已测全过:Ω∈[0.97,1.03],饱和 1.2%<2%(docs/exp_n1n4n5_metrics.md);④P0-P3 全部完成(rsb.py 落地/消融/前端/e2e)。下表为原始计划留档。
+
 **先做 s3 的四步高性价比实验(≈11h,决定 RSB 参数取舍)**:
 1. 2h 测 Δε=ε_ROT−ε_TGA(normal_cov_err)→ 若 p90<2° 则砍掉法向协变修正与 SPD 插值两个候选项;
 2. 4h 测 p99 尾部三种 fallback(coherence_gate/回落LAM/回落VTP)→ 决定 G2 能否过;
@@ -225,7 +232,13 @@ P3 加验 SH 旋转(Wigner D)是否对 LAM 的 view-dependent 外观有可见影
 
 ## 8. 交付物索引
 
-- 本报告:docs/research_report_v1.md
+- 本报告:docs/research_report_v1.md(v3 口径刷新)
+- **仓库级落地(10-24 新增)**:lam3d/core/rsb.py(RsbModulator,法向贴合+软限幅 25°)/
+  lam3d/core/cov_switch.py(lam/tga/rot_sync/vertex_then_polar/rsb 五方法热切换+REST+前端)/
+  rot_sync.py 的 slerp_identity 半球对齐修复(生产 bug)
+- 三子任务实验文档:docs/exp_de_normal_cov.md(Δε 判决)/docs/exp_p99_fallback.md(+summary,38 臂 G2 FAIL)/
+  docs/exp_n1n4n5_metrics.md(N1/N4/N5)/docs/rsb_reverify.md(slerp 修复后重验)/
+  report/WORK_SUMMARY_2026-10-24.md(全工作总结,已推送 GitHub dee9027)
 - 方法四完整设计:docs/method4_rsb_design.md(v2,约 1080 行/70KB:七步链+W1-W8 实施清单+完整伪代码+实测消融+安慰剂对照+附录 D 十七条变更日志)
 - 文献侦察:docs/lit_scan_covariance_2024_2026.md(15 篇)+ docs/arxiv_index_gaussian.tsv(1315 条)
   + report/gaussian_avatar_deform_survey.md(307 行深度调研,TOP5 可迁移技术/命名警告/空白点)
