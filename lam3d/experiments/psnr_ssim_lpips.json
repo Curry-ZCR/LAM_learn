@@ -1,0 +1,107 @@
+{
+ "meta": {
+  "frames": 24,
+  "size": 512,
+  "lpips_net": "alex",
+  "input": "/workspace/LAM/assets/sample_input/messi.png",
+  "note": "A=重构保真(GT=输入原图;渲染为头部特写取景,PSNR 受取景/背景差异主导,仅作参考);B=方法间偏离(参考=LAM原版渲染,量化协方差方法的感知级改动量)"
+ },
+ "A_input_recon": {
+  "lam": {
+   "psnr": 7.19,
+   "ssim": 0.4729,
+   "lpips": 0.6265
+  },
+  "tga": {
+   "psnr": 7.19,
+   "ssim": 0.4729,
+   "lpips": 0.6265
+  },
+  "rot_sync": {
+   "psnr": 7.19,
+   "ssim": 0.4729,
+   "lpips": 0.6265
+  },
+  "rsb": {
+   "psnr": 7.19,
+   "ssim": 0.4729,
+   "lpips": 0.6265
+  },
+  "vertex_then_polar": {
+   "psnr": 7.19,
+   "ssim": 0.4729,
+   "lpips": 0.6265
+  }
+ },
+ "A_neutral_bitwise_identical": {
+  "lam": true,
+  "tga": true,
+  "rot_sync": true,
+  "rsb": true,
+  "vertex_then_polar": true
+ },
+ "B_vs_lam_baseline": {
+  "lam|yaw0": {
+   "psnr_mean": 102.37,
+   "ssim_mean": 1.0,
+   "lpips_mean": 0.0,
+   "lpips_p95": 0.0
+  },
+  "tga|yaw0": {
+   "psnr_mean": 40.547,
+   "ssim_mean": 0.98944,
+   "lpips_mean": 0.01252,
+   "lpips_p95": 0.01253
+  },
+  "rot_sync|yaw0": {
+   "psnr_mean": 40.687,
+   "ssim_mean": 0.98932,
+   "lpips_mean": 0.01041,
+   "lpips_p95": 0.01042
+  },
+  "rsb|yaw0": {
+   "psnr_mean": 40.842,
+   "ssim_mean": 0.98939,
+   "lpips_mean": 0.01029,
+   "lpips_p95": 0.0103
+  },
+  "vertex_then_polar|yaw0": {
+   "psnr_mean": 40.76,
+   "ssim_mean": 0.98937,
+   "lpips_mean": 0.01046,
+   "lpips_p95": 0.01046
+  },
+  "lam|yaw35": {
+   "psnr_mean": 99.0,
+   "ssim_mean": 1.0,
+   "lpips_mean": 0.0,
+   "lpips_p95": 0.0
+  },
+  "tga|yaw35": {
+   "psnr_mean": 51.071,
+   "ssim_mean": 0.99947,
+   "lpips_mean": 0.00098,
+   "lpips_p95": 0.00098
+  },
+  "rot_sync|yaw35": {
+   "psnr_mean": 51.247,
+   "ssim_mean": 0.99947,
+   "lpips_mean": 0.00077,
+   "lpips_p95": 0.00077
+  },
+  "rsb|yaw35": {
+   "psnr_mean": 51.619,
+   "ssim_mean": 0.99948,
+   "lpips_mean": 0.00079,
+   "lpips_p95": 0.00079
+  },
+  "vertex_then_polar|yaw35": {
+   "psnr_mean": 51.235,
+   "ssim_mean": 0.99947,
+   "lpips_mean": 0.00079,
+   "lpips_p95": 0.00079
+  }
+ },
+ "B_selftest_yaw0_bitwise_equal": false,
+ "B_selftest_yaw35_bitwise_equal": false
+}

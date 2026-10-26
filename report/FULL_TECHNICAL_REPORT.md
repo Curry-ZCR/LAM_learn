@@ -154,6 +154,16 @@ TJA jerk 放大:rot_sync 的 out_jerk 在全部 4 条轨迹上比 tga 低 1-2 �
 
 ---
 
+### 5.6 PSNR/SSIM/LPIPS(2026-10-26,口径受限)
+
+无逐帧照片 GT(单图资产;驱动视频非同人)。已完成的替代口径(docs/eval_psnr_ssim_lpips.md):
+
+- **中性重构校验**:五方法中性帧(arkit=0)**逐位一致**——协方差调制不污染静态重构 ✓
+- **方法间偏离**(参考=LAM 原版渲染,24 帧×yaw{0,35},LPIPS-alex):
+  tga 0.01252 > vertex_then_polar 0.01046 ≈ rot_sync 0.01041 ≈ **rsb 0.01029**(yaw0);
+  yaw35 全线缩小 ~13×。RSB 与 RotSync 改动量同量级(软限幅不引入额外可见改动),
+  TGA 改动最大;改动量≠质量,质量仍以 5.1 rig 表+§6 视觉对照为准。
+
 ## 6. 视觉验证(渲染对照)
 
 图:docs/images/rsb_compare.png(4 行×2 列×2 preset:B0 静态/RotSync/RSB/|RSB−ROT|×8;正面+35°)。
@@ -215,7 +225,7 @@ TJA jerk 放大:rot_sync 的 out_jerk 在全部 4 条轨迹上比 tga 低 1-2 �
 ### 8.2 局限
 
 - 单资产(messi)单卡验证;多资产泛化未做;
-- PSNR/LPIPS 未测(需训练好的 LAM 多视角渲染);
+- PSNR/LPIPS:无逐帧照片 GT(单图资产+驱动视频非同人)。已做替代口径(docs/eval_psnr_ssim_lpips.md):中性重构五方法逐位一致(不污染静态);方法间偏离 rot_sync/rsb LPIPS 0.0103-0.0104 vs tga 0.0125(改动量温和);感知质量仍以 rig 表+视觉对照为准;
 - 感知质量用户研究(协议已设计)未执行;
 - 内部代号 TGA 与 NeurIPS 2025 "TGA: True-to-Geometry Avatar" 撞名,正式写作需改名(建议 ACD)。
 
