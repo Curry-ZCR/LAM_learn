@@ -159,6 +159,9 @@ TJA jerk 放大:rot_sync 的 out_jerk 在全部 4 条轨迹上比 tga 低 1-2 �
 无逐帧照片 GT(单图资产;驱动视频非同人)。已完成的替代口径(docs/eval_psnr_ssim_lpips.md):
 
 - **中性重构校验**:五方法中性帧(arkit=0)**逐位一致**——协方差调制不污染静态重构 ✓
+- **A-v2 对齐口径**(人脸对齐裁剪+alpha掩膜,experiments/eval_a2_aligned.json):
+  PSNR(头区)**18.68 dB** / SSIM 0.587 / LPIPS 0.483 = LAM 单图拟合的固有重构误差,五方法逐位相同;
+  对齐几何自检:两图脸中心均≈(256,256)、脸尺寸≈269px
 - **方法间偏离**(参考=LAM 原版渲染,24 帧×yaw{0,35},LPIPS-alex):
   **lam=参考系,偏离恒 0.0**(自渲染噪声底 99–102 dB†);其余相对 LAM:
   tga 0.01252 > vertex_then_polar 0.01046 ≈ rot_sync 0.01041 ≈ **rsb 0.01029**(yaw0);

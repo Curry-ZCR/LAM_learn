@@ -1,0 +1,103 @@
+{
+ "meta": {
+  "size": 512,
+  "k": 1.9,
+  "lpips_net": "alex",
+  "note": "A_v2=人脸对齐裁剪(k=1.9x脸宽)+alpha掩膜PSNR(仅头部);中性态,五方法逐位一致"
+ },
+ "lam": {
+  "bitwise_identical_neutral": true,
+  "psnr_head_masked": 18.682,
+  "ssim_aligned": 0.5865,
+  "lpips_aligned": 0.4831,
+  "head_coverage": 0.4537,
+  "render_face_box": {
+   "box": [
+    136,
+    125,
+    246,
+    246
+   ],
+   "src_hw": [
+    512,
+    512
+   ]
+  }
+ },
+ "tga": {
+  "bitwise_identical_neutral": true,
+  "psnr_head_masked": 18.682,
+  "ssim_aligned": 0.5865,
+  "lpips_aligned": 0.4831,
+  "head_coverage": 0.4537,
+  "render_face_box": {
+   "box": [
+    136,
+    125,
+    246,
+    246
+   ],
+   "src_hw": [
+    512,
+    512
+   ]
+  }
+ },
+ "rot_sync": {
+  "bitwise_identical_neutral": true,
+  "psnr_head_masked": 18.682,
+  "ssim_aligned": 0.5865,
+  "lpips_aligned": 0.4831,
+  "head_coverage": 0.4537,
+  "render_face_box": {
+   "box": [
+    136,
+    125,
+    246,
+    246
+   ],
+   "src_hw": [
+    512,
+    512
+   ]
+  }
+ },
+ "rsb": {
+  "bitwise_identical_neutral": true,
+  "psnr_head_masked": 18.682,
+  "ssim_aligned": 0.5865,
+  "lpips_aligned": 0.4831,
+  "head_coverage": 0.4537,
+  "render_face_box": {
+   "box": [
+    136,
+    125,
+    246,
+    246
+   ],
+   "src_hw": [
+    512,
+    512
+   ]
+  }
+ },
+ "vertex_then_polar": {
+  "bitwise_identical_neutral": true,
+  "psnr_head_masked": 18.682,
+  "ssim_aligned": 0.5865,
+  "lpips_aligned": 0.4831,
+  "head_coverage": 0.4537,
+  "render_face_box": {
+   "box": [
+    136,
+    125,
+    246,
+    246
+   ],
+   "src_hw": [
+    512,
+    512
+   ]
+  }
+ }
+}
